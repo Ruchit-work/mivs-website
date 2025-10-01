@@ -14,7 +14,7 @@ export default function CallToAction() {
       
       <h2 className="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
       <p className="text-xl mb-8 opacity-90">
-        Let's discuss how we can help bring your ideas to life with our expert development services.
+        Let&apos;s discuss how we can help bring your ideas to life with our expert development services.
       </p>
       <a 
         href="/contact" 

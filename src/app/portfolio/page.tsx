@@ -66,7 +66,7 @@ export default function Portfolio() {
   const filteredProjects = useMemo(() => {
     if (active === "All") return projects;
     return projects.filter((p) => p.category === active);
-  }, [active]);
+  }, [active, projects]);
   return (
     <div className="min-h-screen bg-white pt-20">
       <AnimatedHero 

@@ -82,32 +82,40 @@ Message: ${message}
       { message: "Email sent successfully!" },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const emailError = error as { 
+      message?: string; 
+      code?: string; 
+      command?: string; 
+      response?: string; 
+      responseCode?: number;
+    };
+    
     console.error("Detailed email error:", {
-      message: error.message,
-      code: error.code,
-      command: error.command,
-      response: error.response,
-      responseCode: error.responseCode,
+      message: emailError.message,
+      code: emailError.code,
+      command: emailError.command,
+      response: emailError.response,
+      responseCode: emailError.responseCode,
     });
     
     // Provide more specific error messages
     let userMessage = "Failed to send email. ";
-    if (error.code === "EAUTH") {
+    if (emailError.code === "EAUTH") {
       userMessage += "Email authentication failed. Please check your App Password.";
-    } else if (error.code === "ECONNECTION" || error.code === "ETIMEDOUT") {
+    } else if (emailError.code === "ECONNECTION" || emailError.code === "ETIMEDOUT") {
       userMessage += "Could not connect to email server. Please check your internet connection.";
-    } else if (error.responseCode === 535) {
+    } else if (emailError.responseCode === 535) {
       userMessage += "Invalid email credentials. Please verify your App Password.";
     } else {
-      userMessage += error.message;
+      userMessage += emailError.message || "Unknown error occurred.";
     }
 
     return NextResponse.json(
       { 
         message: userMessage,
-        error: error.message,
-        code: error.code
+        error: emailError.message,
+        code: emailError.code
       },
       { status: 500 }
     );
