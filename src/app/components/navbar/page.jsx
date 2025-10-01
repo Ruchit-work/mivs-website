@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,10 +67,13 @@ export default function Navbar() {
                     <div className="flex-shrink-0">
                         <a href="/" className="flex items-center space-x-3">
                             <div className="flex items-center">
-                                <img 
+                                <Image 
                                     src="/images/logo.png" 
                                     alt="MIVS Software Development" 
+                                    width={160}
+                                    height={160}
                                     className="h-40 w-auto"
+                                    priority
                                 />
                             </div>
                         </a>

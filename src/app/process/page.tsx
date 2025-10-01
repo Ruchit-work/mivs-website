@@ -1,5 +1,6 @@
 import CallToAction from "../components/CTA/CallToAction";
 import AnimatedHero from "../components/Hero/AnimatedHero";
+import Image from "next/image";
 
 export default function Process() {
   return (
@@ -49,8 +50,8 @@ export default function Process() {
             </div>
             <div className="lg:w-1/2">
               <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl">
-                <div className="w-full h-64 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center">
-                 <img src="/images/process_1.jpg" alt="Discovery & Planning" className="w-full h-full " />
+                <div className="w-full h-64 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center overflow-hidden relative">
+                 <Image src="/images/process_1.jpg" alt="Discovery & Planning" fill className="object-cover" />
                 </div>
               </div>
             </div>
@@ -91,8 +92,8 @@ export default function Process() {
             </div>
             <div className="lg:w-1/2">
               <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-2xl">
-                <div className="w-full h-64 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center">
-                 <img src="/images/designing.jpg" alt="Design & Prototyping" className="w-full h-full " />
+                <div className="w-full h-64 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl overflow-hidden relative">
+                 <Image src="/images/designing.jpg" alt="Design & Prototyping" fill className="object-cover" />
                 </div>
               </div>
             </div>
@@ -133,8 +134,8 @@ export default function Process() {
             </div>
             <div className="lg:w-1/2">
               <div className="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-2xl">
-                <div className="w-full h-64 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl flex items-center justify-center">
-                <img src="/images/dev.jpg" alt="Development" className="w-full h-full object-cover" />
+                <div className="w-full h-64 bg-gradient-to-br from-green-400 to-blue-500 rounded-xl overflow-hidden relative">
+                <Image src="/images/dev.jpg" alt="Development" fill className="object-cover" />
                 </div>
               </div>
             </div>
@@ -175,8 +176,8 @@ export default function Process() {
             </div>
             <div className="lg:w-1/2">
               <div className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl">
-                <div className="w-full h-64 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl flex items-center justify-center">
-                  <img src="/images/deploy.jpg" alt="Deployment & Launch" className="w-full h-full object-cover" />
+                <div className="w-full h-64 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl overflow-hidden relative">
+                  <Image src="/images/deploy.jpg" alt="Deployment & Launch" fill className="object-cover" />
                 </div>
               </div>
             </div>
@@ -217,8 +218,8 @@ export default function Process() {
             </div>
             <div className="lg:w-1/2">
               <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-8 rounded-2xl">
-                <div className="w-full h-64 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-xl flex items-center justify-center">
-                  <img src="/images/support.jpg" alt="Support & Maintenance" className="w-full h-full object-cover" />
+                <div className="w-full h-64 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-xl overflow-hidden relative">
+                  <Image src="/images/support.jpg" alt="Support & Maintenance" fill className="object-cover" />
                 </div>
               </div>
             </div>

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Footer() {
     return (
         <footer className="relative bg-gradient-to-br from-[#1e3a5f] via-[#2563eb] to-[#06b6d4] text-white mt-20 overflow-hidden">
@@ -13,7 +15,13 @@ export default function Footer() {
                     {/* Brand + Summary */}
                     <div className="lg:col-span-1">
                         <div className="mb-6">
-                            <img src="/images/logo.png" alt="MIVS" className="h-20 w-auto" />
+                            <Image 
+                                src="/images/logo.png" 
+                                alt="MIVS" 
+                                width={80}
+                                height={80}
+                                className="h-20 w-auto" 
+                            />
                         </div>
                         <p className="text-blue-100 leading-relaxed mb-6">
                             Transforming ideas into powerful software solutions. Your trusted partner in digital innovation.
