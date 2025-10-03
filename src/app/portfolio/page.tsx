@@ -67,8 +67,9 @@ export default function Portfolio() {
     if (active === "All") return projects;
     return projects.filter((p) => p.category === active);
   }, [active, projects]);
+
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-[#0a0a0f] pt-20">
       <AnimatedHero 
         title="Our Work"
         subtitle="Work that blends delightful UX with measurable business outcomes."
@@ -79,15 +80,15 @@ export default function Portfolio() {
 
         {/* Filter Tabs */}
         <div className="flex justify-center mb-12">
-          <div className="bg-gray-100 rounded-lg p-1">
+          <div className="glass rounded-xl p-1.5 inline-flex">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActive(tab)}
-                className={`px-6 py-2 font-semibold rounded-md transition-colors duration-200 ${
+                className={`px-6 py-2.5 font-semibold rounded-lg transition-all duration-200 ${
                   active === tab
-                    ? "bg-blue-600 text-white"
-                    : "text-gray-600 hover:text-blue-600"
+                    ? "bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg shadow-purple-500/30"
+                    : "text-slate-400 hover:text-white hover:bg-purple-500/10"
                 }`}
               >
                 {tab}
@@ -97,26 +98,30 @@ export default function Portfolio() {
         </div>
 
         {/* Portfolio Grid with Flip Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {filteredProjects.map((p) => (
             <div key={p.id} className="group h-[400px] perspective-1000">
               <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
                 {/* Front of Card */}
-                <div className="absolute inset-0 backface-hidden bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-md">
-                  <div className="h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                    <span className="text-blue-900 text-2xl font-bold">{p.label}</span>
+                <div className="absolute inset-0 backface-hidden glass-card border border-purple-500/30 rounded-2xl overflow-hidden shadow-lg">
+                  <div className="h-48 bg-gradient-to-br from-purple-600/20 via-cyan-600/20 to-blue-600/20 flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 animate-gradient"></div>
+                    <span className="relative z-10 text-white text-2xl font-bold px-4 text-center">{p.label}</span>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{p.title}</h3>
-                    <p className="text-gray-600 text-sm line-clamp-3">{p.description}</p>
-                    <div className="mt-4 text-center text-sm text-gray-400">
-                      Hover to see details →
+                    <h3 className="text-xl font-semibold text-white mb-2">{p.title}</h3>
+                    <p className="text-slate-400 text-sm line-clamp-3 leading-relaxed">{p.description}</p>
+                    <div className="mt-6 text-center text-sm text-slate-500 flex items-center justify-center gap-2">
+                      <span>Hover to see details</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
                     </div>
                   </div>
                 </div>
 
                 {/* Back of Card */}
-                <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl overflow-hidden shadow-xl p-6 flex flex-col justify-between">
+                <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-2xl overflow-hidden shadow-2xl p-6 flex flex-col justify-between">
                   <div>
                     <h3 className="text-2xl font-bold text-white mb-3">{p.title}</h3>
                     <p className="text-white/90 text-sm leading-relaxed mb-4">{p.description}</p>
@@ -125,19 +130,13 @@ export default function Portfolio() {
                       <h4 className="text-white font-semibold mb-2 text-sm">Technologies:</h4>
                       <div className="flex flex-wrap gap-2">
                         {p.tags.map((t) => (
-                          <span key={t} className="px-3 py-1 bg-white/20 text-white text-xs rounded-full backdrop-blur-sm border border-white/30">
+                          <span key={t} className="px-3 py-1.5 bg-white/20 text-white text-xs rounded-lg backdrop-blur-sm border border-white/30 font-medium">
                             {t}
                           </span>
                         ))}
                       </div>
                     </div>
                   </div>
-
-                  {/* <div className="mt-auto">
-                    <button className="w-full bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                      View Case Study
-                    </button>
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -145,43 +144,43 @@ export default function Portfolio() {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-gray-50 rounded-2xl p-12">
+        <div className="glass-card rounded-2xl p-12 border border-purple-500/20">
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <AnimatedCounter 
-                end={150} 
-                suffix="+" 
-                className="text-4xl font-bold text-blue-600 mb-2"
-                duration={2500}
-              />
-              <div className="text-gray-600">Projects Completed</div>
-            </div>
-            <div>
-              <AnimatedCounter 
-                end={98} 
-                suffix="%" 
-                className="text-4xl font-bold text-purple-600 mb-2"
-                duration={2500}
-              />
-              <div className="text-gray-600">Client Satisfaction</div>
-            </div>
-            <div>
+            <div className="group hover:scale-105 transition-transform duration-300">
               <AnimatedCounter 
                 end={50} 
                 suffix="+" 
-                className="text-4xl font-bold text-green-600 mb-2"
+                className="text-5xl font-bold gradient-text mb-2"
                 duration={2500}
               />
-              <div className="text-gray-600">Happy Clients</div>
+              <div className="text-slate-400 font-medium">Projects Completed</div>
             </div>
-            <div>
+            <div className="group hover:scale-105 transition-transform duration-300">
               <AnimatedCounter 
-                end={5} 
-                suffix="+" 
-                className="text-4xl font-bold text-orange-600 mb-2"
+                end={98} 
+                suffix="%" 
+                className="text-5xl font-bold gradient-text mb-2"
                 duration={2500}
               />
-              <div className="text-gray-600">Years Experience</div>
+              <div className="text-slate-400 font-medium">Client Satisfaction</div>
+            </div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <AnimatedCounter 
+                end={50} 
+                suffix="+" 
+                className="text-5xl font-bold gradient-text mb-2"
+                duration={2500}
+              />
+              <div className="text-slate-400 font-medium">Happy Clients</div>
+            </div>
+            <div className="group hover:scale-105 transition-transform duration-300">
+              <AnimatedCounter 
+                end={3} 
+                suffix="+" 
+                className="text-5xl font-bold gradient-text mb-2"
+                duration={2500}
+              />
+              <div className="text-slate-400 font-medium">Years Experience</div>
             </div>
           </div>
         </div>

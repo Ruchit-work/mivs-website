@@ -8,19 +8,51 @@ import Image from 'next/image';
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(true);
     const pathname = usePathname();
 
-    const baseLinkClasses = 'px-3 py-2 text-base font-semibold transition-colors duration-200 hover:underline underline-offset-8 decoration-2';
+    const baseLinkClasses = 'px-3 py-2 text-base font-semibold transition-all duration-200 relative group';
     const desktopLink = (href, text) => (
         <a 
             href={href}
-            className={`${pathname === href ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'} ${href === '/' ? 'text-gray-900' : ''} ${baseLinkClasses}`}
+            className={`${pathname === href ? 'text-purple-400' : 'text-slate-300 hover:text-white'} ${baseLinkClasses}`}
         >
             {text}
+            <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 transform transition-transform duration-300 ${pathname === href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
         </a>
     );
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+
+    // Initialize theme from localStorage on component mount
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'light') {
+            setIsDarkMode(false);
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            setIsDarkMode(true);
+            document.documentElement.removeAttribute('data-theme');
+        }
+    }, []);
+
+    // Theme toggle function
+    const toggleTheme = () => {
+        const newTheme = !isDarkMode;
+        setIsDarkMode(newTheme);
+        
+        if (newTheme) {
+            // Dark mode
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            // Light mode
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -58,7 +90,7 @@ export default function Navbar() {
     return (
         <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform ${
             isScrolled 
-                ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200' 
+                ? 'glass border-b border-purple-500/20 shadow-lg shadow-purple-500/10' 
                 : 'bg-transparent'
         } ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,11 +100,11 @@ export default function Navbar() {
                         <a href="/" className="flex items-center space-x-3">
                             <div className="flex items-center">
                                 <Image 
-                                    src="/images/logo.png" 
+                                    src="/images/MIVS_1.png" 
                                     alt="MIVS Software Development" 
-                                    width={160}
-                                    height={160}
-                                    className="h-40 w-auto"
+                                    width={200}
+                                    height={90}
+                                    className="h-30 lg:h-30 w-auto"
                                     priority
                                 />
                             </div>
@@ -91,14 +123,34 @@ export default function Navbar() {
                         </div>
                     </div>
 
-                    {/* CTA Button */}
-                    <div className="hidden lg:block">
+                    {/* Theme Toggle Button */}
+                    <div className="hidden lg:flex items-center gap-3">
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2.5 glass border border-purple-500/30 rounded-lg hover:bg-purple-500/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-purple-500 group"
+                            aria-label="Toggle theme"
+                            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                        >
+                            {isDarkMode ? (
+                                // Sun icon for switching to light mode
+                                <svg className="w-5 h-5 text-slate-300 group-hover:text-yellow-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                            ) : (
+                                // Moon icon for switching to dark mode
+                                <svg className="w-5 h-5 text-slate-700 group-hover:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                </svg>
+                            )}
+                        </button>
+                        
+                        {/* CTA Button */}
                         <a 
                             href="/contact" 
-                            className="relative inline-flex items-center justify-center px-6 py-2 text-sm font-semibold text-white rounded-xl transition-all duration-300 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 shadow-[0_10px_25px_-10px_rgba(59,130,246,0.8)] hover:shadow-[0_15px_35px_-10px_rgba(79,70,229,0.9)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            className="relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white rounded-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
                         >
-                            <span className="absolute inset-0 rounded-xl bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></span>
-                            <span>Contact Us</span>
+                            <span className="relative z-10">Contact Us</span>
+                            <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                         </a>
                     </div>
 
@@ -106,7 +158,7 @@ export default function Navbar() {
                     <div className="lg:hidden">
                         <button
                             onClick={toggleMenu}
-                            className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200"
+                            className="inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-white hover:bg-purple-500/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 transition-colors duration-200"
                             aria-expanded="false"
                         >
                             <span className="sr-only">Open main menu</span>
@@ -130,38 +182,38 @@ export default function Navbar() {
                     ? 'max-h-96 opacity-100' 
                     : 'max-h-0 opacity-0 overflow-hidden'
             }`}>
-                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-md border-t border-gray-200">
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass border-t border-purple-500/20">
                     <a 
                         href="/" 
-                        className={`block px-3 py-2 text-base font-semibold transition-colors duration-200 hover:underline underline-offset-8 decoration-2 ${pathname === '/' ? 'text-blue-600' : 'text-gray-900 hover:text-blue-600'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Home
                     </a>
                     <a 
                         href="/about" 
-                        className={`block px-3 py-2 text-base font-semibold transition-colors duration-200 hover:underline underline-offset-8 decoration-2 ${pathname === '/about' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/about' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         About
                     </a>
                     <a 
                         href="/services" 
-                        className={`block px-3 py-2 text-base font-semibold transition-colors duration-200 hover:underline underline-offset-8 decoration-2 ${pathname === '/services' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/services' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Services
                     </a>
                     <a 
                         href="/portfolio" 
-                        className={`block px-3 py-2 text-base font-semibold transition-colors duration-200 hover:underline underline-offset-8 decoration-2 ${pathname === '/portfolio' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/portfolio' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Our Work
                     </a>
                     <a 
                         href="/process" 
-                        className={`block px-3 py-2 text-base font-semibold transition-colors duration-200 hover:underline underline-offset-8 decoration-2 ${pathname === '/process' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/process' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Process
@@ -169,15 +221,39 @@ export default function Navbar() {
                     
                     <a 
                         href="/pricing" 
-                        className={`block px-3 py-2 text-base font-semibold transition-colors duration-200 hover:underline underline-offset-8 decoration-2 ${pathname === '/contact' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/pricing' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Pricing
                     </a>
-                    <div className="pt-4 pb-3 border-t border-gray-200">
+                    {/* Theme Toggle for Mobile */}
+                    <div className="pt-4 border-t border-purple-500/20">
+                        <button
+                            onClick={() => {
+                                toggleTheme();
+                                closeMenu();
+                            }}
+                            className="w-full flex items-center justify-center gap-3 px-4 py-3 text-base font-semibold rounded-lg transition-all duration-300 glass border border-purple-500/30 hover:bg-purple-500/20 mb-3"
+                        >
+                            {isDarkMode ? (
+                                <>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                    <span className="text-slate-300">Switch to Light Mode</span>
+                                </>
+                            ) : (
+                                <>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                    </svg>
+                                    <span className="text-slate-700">Switch to Dark Mode</span>
+                                </>
+                            )}
+                        </button>
                         <a 
                             href="/contact" 
-                            className="block text-center px-4 py-3 text-base font-semibold text-white rounded-xl transition-all duration-300 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 shadow-[0_10px_25px_-10px_rgba(59,130,246,0.8)] hover:shadow-[0_15px_35px_-10px_rgba(79,70,229,0.9)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            className="block text-center px-4 py-3 text-base font-semibold text-white rounded-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             onClick={closeMenu}
                         >
                             Contact Us

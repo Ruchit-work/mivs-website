@@ -1,8 +1,303 @@
 @import "tailwindcss";
 
+/* Premium Midnight Theme - Color System */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background Colors - Dark First */
+  --background: #0a0a0f;
+  --background-secondary: #13131a;
+  --background-tertiary: #1a1a24;
+  
+  /* Text Colors */
+  --foreground: #f1f5f9;
+  --foreground-secondary: #cbd5e1;
+  --foreground-muted: #94a3b8;
+  
+  /* Brand Colors */
+  --primary: #7c3aed;
+  --primary-hover: #a855f7;
+  --secondary: #06b6d4;
+  --secondary-hover: #14b8a6;
+  --accent: #3b82f6;
+  --accent-cta: #f59e0b;
+  --accent-cta-hover: #fb923c;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(26, 26, 36, 0.7);
+  --glass-border: rgba(148, 163, 184, 0.1);
+}
+
+/* ============================================
+   LIGHT MODE - Professional Color Palette
+   ============================================ */
+
+[data-theme="light"] {
+  /* Soft, warm backgrounds - not harsh white */
+  --background: #fafbfc;
+  --background-secondary: #f3f4f6;
+  --background-tertiary: #e5e7eb;
+  
+  /* Readable text colors */
+  --foreground: #111827;
+  --foreground-secondary: #374151;
+  --foreground-muted: #6b7280;
+  
+  /* Glass effects for light mode */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(124, 58, 237, 0.12);
+}
+
+/* Body and main backgrounds */
+[data-theme="light"] body {
+  background: linear-gradient(180deg, #fafbfc 0%, #f8f9fa 100%);
+  color: #111827;
+}
+
+/* Page sections - soft gradients instead of pure white */
+[data-theme="light"] div[class*="min-h-screen"] {
+  background: linear-gradient(180deg, #fafbfc 0%, #f3f4f6 50%, #fafbfc 100%) !important;
+}
+
+[data-theme="light"] section {
+  background: transparent !important;
+}
+
+/* Text colors - proper contrast for light mode */
+[data-theme="light"] .text-white,
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4 {
+  color: #111827 !important;
+}
+
+[data-theme="light"] .text-slate-300 {
+  color: #4b5563 !important;
+}
+
+[data-theme="light"] .text-slate-400 {
+  color: #6b7280 !important;
+}
+
+[data-theme="light"] .text-slate-500 {
+  color: #9ca3af !important;
+}
+
+/* Beautiful glass cards for light mode */
+[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.08);
+}
+
+[data-theme="light"] .glass-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(249, 250, 251, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  box-shadow: 
+    0 4px 20px rgba(124, 58, 237, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .glass-card:hover {
+  box-shadow: 
+    0 8px 30px rgba(124, 58, 237, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Input fields - clean and modern */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #111827 !important;
+  border: 1px solid rgba(124, 58, 237, 0.2) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus {
+  border-color: rgba(124, 58, 237, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1) !important;
+}
+
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Navbar - clean with subtle shadow */
+[data-theme="light"] nav {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(124, 58, 237, 0.1) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Dropdown menus */
+[data-theme="light"] [class*="absolute"][class*="mt-2"] {
+  background: rgba(255, 255, 255, 0.98);
+  color: #111827;
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Borders - subtle but visible */
+[data-theme="light"] [class*="border-purple"] {
+  border-color: rgba(124, 58, 237, 0.2) !important;
+}
+
+/* Footer - stays dark in light mode for contrast */
+[data-theme="light"] footer {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%) !important;
+  border-top: 1px solid rgba(124, 58, 237, 0.3) !important;
+}
+
+/* Footer text colors in light mode - keep light colors on dark footer */
+[data-theme="light"] footer h3,
+[data-theme="light"] footer .text-white {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] footer .text-slate-400 {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="light"] footer a {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="light"] footer a:hover {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] footer .text-cyan-400 {
+  color: #06b6d4 !important;
+}
+
+/* Footer glass elements stay dark themed */
+[data-theme="light"] footer .glass {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+[data-theme="light"] footer svg {
+  color: inherit !important;
+}
+
+/* Mesh gradient - subtle and beautiful */
+[data-theme="light"] .mesh-gradient {
+  background: 
+    radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.06) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.06) 0px, transparent 50%);
+}
+
+/* Gradient text - maintains vibrancy */
+[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shadow adjustments for light mode - softer, more natural */
+[data-theme="light"] [class*="shadow-purple-500"] {
+  --tw-shadow-color: rgba(124, 58, 237, 0.15);
+  --tw-shadow: 0 4px 20px var(--tw-shadow-color);
+}
+
+[data-theme="light"] [class*="shadow-cyan-500"] {
+  --tw-shadow-color: rgba(6, 182, 212, 0.15);
+  --tw-shadow: 0 4px 20px var(--tw-shadow-color);
+}
+
+/* Buttons maintain their gradient but with adjusted shadows */
+[data-theme="light"] [class*="bg-gradient-to-r"] {
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+}
+
+[data-theme="light"] [class*="bg-gradient-to-r"]:hover {
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+}
+
+/* Hero sections - beautiful gradients */
+[data-theme="light"] section[class*="relative"]:first-child {
+  background: linear-gradient(135deg, 
+    #f0f4ff 0%, 
+    #e0f2fe 50%, 
+    #f0f9ff 100%) !important;
+}
+
+/* Animated elements - softer glows */
+[data-theme="light"] [class*="animate-pulse"] {
+  opacity: 0.7;
+}
+
+/* Icon colors in light mode */
+[data-theme="light"] svg {
+  color: inherit;
+}
+
+[data-theme="light"] .text-purple-400 {
+  color: #7c3aed !important;
+}
+
+[data-theme="light"] .text-cyan-400 {
+  color: #06b6d4 !important;
+}
+
+[data-theme="light"] .text-blue-400 {
+  color: #3b82f6 !important;
+}
+
+[data-theme="light"] .text-green-400 {
+  color: #10b981 !important;
+}
+
+/* Background color adjustments for sections */
+[data-theme="light"] [class*="from-purple"],
+[data-theme="light"] [class*="from-cyan"],
+[data-theme="light"] [class*="via-purple"],
+[data-theme="light"] [class*="via-cyan"] {
+  opacity: 0.85;
+}
+
+/* ============================================
+   HERO BANNER TEXT - Theme-Aware
+   ============================================ */
+
+/* Dark mode hero text - white with dark shadows */
+.hero-title {
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.hero-subtitle {
+  color: #e2e8f0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Light mode hero text - dark with white shadows for visibility */
+[data-theme="light"] .hero-title {
+  color: #ffffff !important;
+  text-shadow: 
+    0 2px 20px rgba(0, 0, 0, 0.9),
+    0 4px 40px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(124, 58, 237, 0.3);
+  font-weight: 900;
+}
+
+[data-theme="light"] .hero-subtitle {
+  color: #ffffff !important;
+  text-shadow: 
+    0 2px 15px rgba(0, 0, 0, 0.8),
+    0 4px 30px rgba(0, 0, 0, 0.6);
+  font-weight: 600;
 }
 
 @theme inline {
@@ -12,54 +307,67 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Animations for Hero Section */
+/* Modern Glassmorphism Utility */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Modern Animations */
 @keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @keyframes spin-slow-reverse {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
 @keyframes glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse-glow {
   0%, 100% {
-    opacity: 0.5;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
   }
   50% {
-    opacity: 1;
+    box-shadow: 0 0 40px rgba(124, 58, 237, 0.6);
   }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .animate-spin-slow {
@@ -78,11 +386,37 @@ body {
   animation: glow 3s ease-in-out infinite;
 }
 
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Shimmer Effect */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
 /* Fade up on enter */
 @keyframes fade-up-enter {
   0% {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(24px);
   }
   100% {
     opacity: 1;
@@ -90,8 +424,32 @@ body {
   }
 }
 
+@keyframes scale-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .animate-fade-up {
   animation: fade-up-enter 700ms ease-out both;
+}
+
+.animate-scale-in {
+  animation: scale-in 500ms ease-out both;
 }
 
 /* Global page content animation container */
@@ -99,19 +457,19 @@ body {
   animation: fade-up-enter 600ms ease-out both;
 }
 .page-enter-animate > *:nth-child(2) {
-  animation-delay: 60ms;
+  animation-delay: 80ms;
 }
 .page-enter-animate > *:nth-child(3) {
-  animation-delay: 120ms;
+  animation-delay: 160ms;
 }
 .page-enter-animate > *:nth-child(4) {
-  animation-delay: 180ms;
-}
-.page-enter-animate > *:nth-child(5) {
   animation-delay: 240ms;
 }
+.page-enter-animate > *:nth-child(5) {
+  animation-delay: 320ms;
+}
 
-/* 3D Flip Card Utilities */
+/* 3D Utilities */
 .perspective-1000 {
   perspective: 1000px;
 }
@@ -131,4 +489,53 @@ body {
 
 .group:hover .group-hover\:rotate-y-180 {
   transform: rotateY(180deg);
+}
+
+/* Modern Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.6);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--foreground);
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Mesh Gradient Background */
+.mesh-gradient {
+  background: 
+    radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.2) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.2) 0px, transparent 50%);
 }

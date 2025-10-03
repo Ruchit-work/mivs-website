@@ -4,7 +4,7 @@ import AnimatedHero from "../components/Hero/AnimatedHero";
 
 export default function Services() {
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-[#0a0a0f] pt-20">
       <AnimatedHero 
         title="Our Services"
         subtitle="We build scalable web, mobile, cloud, and AI solutions tailored to your business."
