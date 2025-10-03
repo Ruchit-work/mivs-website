@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <div className="min-h-screen bg-[#0a0a0f] pt-20">
         {/* Hero Section - Premium Midnight */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden" role="banner" aria-label="Hero section">
           {/* Mesh Gradient Background */}
           <div className="absolute inset-0 mesh-gradient"></div>
           
@@ -81,7 +81,7 @@ export default function Home() {
             </h1>
 
             <p className="text-xl sm:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              We create scalable, secure, and innovative software solutions that help businesses thrive in the digital age.
+              We create scalable, secure, and innovative software solutions including web development, mobile app development, cloud solutions, and AI/ML development that help businesses thrive in the digital age.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
@@ -127,7 +127,7 @@ export default function Home() {
         </section>
 
         {/* Services Preview Section */}
-        <section className="py-24 bg-gradient-to-b from-[#0a0a0f] to-[#13131a] relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-b from-[#0a0a0f] to-[#13131a] relative overflow-hidden" aria-label="Our services">
           {/* Background Elements */}
           <div className="absolute inset-0">
             <div className="absolute top-40 left-20 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
@@ -174,7 +174,7 @@ export default function Home() {
         </div>
 
         {/* Our Work Section - Modern Redesign */}
-        <section className="py-32 relative overflow-hidden">
+        <section className="py-32 relative overflow-hidden" aria-label="Our portfolio">
           {/* Elegant Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950/20 to-slate-950"></div>
           

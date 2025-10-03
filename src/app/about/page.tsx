@@ -1,4 +1,36 @@
 import AnimatedHero from "../components/Hero/AnimatedHero";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About MIVS Software Development | Expert Team & Company Values",
+  description: "Learn about MIVS Software Development - our mission, vision, values, and expert team of developers, designers, and engineers. Professional software development company with proven track record.",
+  keywords: [
+    "about MIVS", "software development company", "development team", "company values",
+    "mission statement", "vision statement", "expert developers", "professional team",
+    "software company culture", "development expertise", "technical team", "company history"
+  ],
+  openGraph: {
+    title: "About MIVS Software Development | Expert Team & Company Values",
+    description: "Learn about MIVS Software Development - our mission, vision, values, and expert team of developers, designers, and engineers.",
+    url: "https://mivs.in/about",
+    images: [
+      {
+        url: "/images/about-hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About MIVS Software Development Team",
+      },
+    ],
+  },
+  twitter: {
+    title: "About MIVS Software Development | Expert Team & Company Values",
+    description: "Learn about MIVS Software Development - our mission, vision, values, and expert team of developers, designers, and engineers.",
+    images: ["/images/about-hero.jpg"],
+  },
+  alternates: {
+    canonical: "https://mivs.in/about",
+  },
+};
 
 export default function About() {
   return (

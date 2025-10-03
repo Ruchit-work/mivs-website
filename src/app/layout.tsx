@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/page";
 import Footer from "./components/footer/page";
+import StructuredData from "./components/StructuredData/StructuredData";
+import PerformanceMonitor from "./components/PerformanceMonitor/PerformanceMonitor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,53 +17,115 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MIVS Softwares Development | Web, Mobile & Cloud Solutions",
+  title: {
+    default: "MIVS Softwares Development | Web, Mobile & Cloud Solutions",
+    template: "%s | MIVS Software Development"
+  },
   description: "Professional software development services. We build scalable web, mobile, cloud, and AI solutions tailored to your business needs. Expert team, proven process, reliable delivery.",
-  keywords: ["software development", "web development", "mobile apps", "cloud solutions", "AI/ML", "DevOps", "MIVS"],
-  authors: [{ name: "MIVS Software Development" }],
+  keywords: [
+    "software development", "web development", "mobile app development", "cloud solutions", 
+    "AI/ML development", "DevOps services", "custom software", "enterprise solutions",
+    "React development", "Node.js development", "Python development", "Next.js development",
+    "React Native", "Flutter development", "AWS cloud", "Google Cloud", "Azure cloud",
+    "machine learning", "artificial intelligence", "data analytics", "API development",
+    "database design", "UI/UX design", "responsive web design", "e-commerce development",
+    "MIVS", "software company", "tech solutions", "digital transformation"
+  ],
+  authors: [{ name: "MIVS Software Development", url: "https://mivs.in" }],
   creator: "MIVS Software Development",
   publisher: "MIVS Software Development",
   metadataBase: new URL('https://mivs.in'),
   
-  // Favicon and icons
+  // Enhanced favicon and icons
   icons: {
     icon: [
-      { url: '/images/logo.png', sizes: 'any' },
+      { url: '/images/logo.png', sizes: 'any', type: 'image/png' },
       { url: '/favicon.ico', sizes: 'any' },
+      { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/logo.png', sizes: '16x16', type: 'image/png' },
     ],
-    apple: '/images/logo.png',
+    apple: [
+      { url: '/images/logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/images/logo.png', color: '#7c3aed' },
+    ],
   },
 
-  // Open Graph (for social media sharing)
+  // Enhanced Open Graph
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://mivs.in',
     siteName: 'MIVS Software Development',
     title: 'MIVS Software Development | Web, Mobile & Cloud Solutions',
-    description: 'Professional software development services. Expert team, proven process, reliable delivery.',
+    description: 'Professional software development services. Expert team, proven process, reliable delivery. Custom web apps, mobile apps, cloud solutions, and AI/ML development.',
     images: [
       {
-        url: '/images/logo.png',
+        url: '/images/MIVS_1.png',
         width: 1200,
         height: 630,
-        alt: 'MIVS Software Development',
+        alt: 'MIVS Software Development - Professional Software Solutions',
+        type: 'image/png',
+      },
+      {
+        url: '/images/logo.png',
+        width: 800,
+        height: 600,
+        alt: 'MIVS Software Development Logo',
+        type: 'image/png',
       },
     ],
   },
 
-  // Twitter Card
+  // Enhanced Twitter Card
   twitter: {
     card: 'summary_large_image',
-    title: 'MIVS Software Development',
+    site: '@mivs_software',
+    creator: '@mivs_software',
+    title: 'MIVS Software Development | Web, Mobile & Cloud Solutions',
     description: 'Professional software development services. Expert team, proven process, reliable delivery.',
-    images: ['/images/logo.png'],
+    images: ['/images/MIVS_1.png'],
   },
 
-  // Verification and other meta
+  // Enhanced robots and SEO
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
+  // Additional SEO meta tags
+  alternates: {
+    canonical: 'https://mivs.in',
+  },
+  
+  // Verification tags (add your actual verification codes)
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+    yahoo: 'your-yahoo-verification-code',
+  },
+  
+  // App-specific meta
+  applicationName: 'MIVS Software Development',
+  generator: 'Next.js',
+  referrer: 'origin-when-cross-origin',
+  
+  // Additional meta tags
+  other: {
+    'mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'black-translucent',
+    'apple-mobile-web-app-title': 'MIVS Software',
+    'msapplication-TileColor': '#7c3aed',
+    'theme-color': '#7c3aed',
   },
 };
 
@@ -72,9 +136,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData type="organization" data={{}} />
+        <StructuredData type="website" data={{}} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <PerformanceMonitor />
         <Navbar />
         <main className="page-enter-animate">
           {children}
