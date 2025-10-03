@@ -80,12 +80,12 @@ export default function Portfolio() {
 
         {/* Filter Tabs */}
         <div className="flex justify-center mb-12">
-          <div className="glass rounded-xl p-1.5 inline-flex">
+          <div className="glass rounded-xl p-1.5 inline-flex flex-wrap gap-1 sm:gap-0">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActive(tab)}
-                className={`px-6 py-2.5 font-semibold rounded-lg transition-all duration-200 ${
+                className={`px-3 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base font-semibold rounded-lg transition-all duration-200 ${
                   active === tab
                     ? "bg-gradient-to-r from-purple-600 to-cyan-600 text-white shadow-lg shadow-purple-500/30"
                     : "text-slate-400 hover:text-white hover:bg-purple-500/10"
