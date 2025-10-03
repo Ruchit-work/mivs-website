@@ -86,7 +86,7 @@ export function validateSEOData(seoData: SEOData): { isValid: boolean; errors: s
   };
 }
 
-export function generateStructuredData(type: 'organization' | 'website' | 'service' | 'breadcrumb', data: any) {
+export function generateStructuredData(type: 'organization' | 'website' | 'service' | 'breadcrumb', data: Record<string, unknown>) {
   const baseUrl = 'https://mivs.in';
   
   switch (type) {
@@ -155,7 +155,7 @@ export function generateStructuredData(type: 'organization' | 'website' | 'servi
       return {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": data.items.map((item: any, index: number) => ({
+        "itemListElement": (data.items as Array<{name: string; url: string}>).map((item, index: number) => ({
           "@type": "ListItem",
           "position": index + 1,
           "name": item.name,
