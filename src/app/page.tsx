@@ -54,7 +54,7 @@ export default function Home() {
               async function() { }
             </div>
             <div className="absolute bottom-20 right-10 text-purple-400 text-xl font-mono animate-float" style={{animationDelay: '3s'}}>
-              import React from 'react'
+              import React from &apos;react&apos;
             </div>
           </div>
 

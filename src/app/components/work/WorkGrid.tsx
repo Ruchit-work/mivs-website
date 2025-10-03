@@ -49,7 +49,7 @@ export default function WorkGrid({ limit }: { limit?: number }) {
 
               {/* Tags - Modern Pills */}
               <div className="flex flex-wrap gap-2 mb-6">
-                {p.tags.map((t, idx) => (
+                {p.tags.map((t) => (
                   <span 
                     key={t} 
                     className="relative px-4 py-2 rounded-full text-xs font-medium overflow-hidden group/tag"

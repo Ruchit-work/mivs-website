@@ -13,7 +13,7 @@ export default function Pricing() {
         {/* Intro copy */}
         <div className="max-w-3xl mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6">Pricing built for your <span className="gradient-text">business</span></h2>
-          <p className="text-xl text-slate-400 leading-relaxed">Every business is unique—your budget, process, and tech are constantly evolving. That's why we craft customized pricing built to your needs.</p>
+          <p className="text-xl text-slate-400 leading-relaxed">Every business is unique—your budget, process, and tech are constantly evolving. That&apos;s why we craft customized pricing built to your needs.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 mb-16">

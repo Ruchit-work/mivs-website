@@ -10,7 +10,7 @@ export default function Portfolio() {
 
   type Category = typeof tabs[number];
 
-  const projects = [
+  const projects = useMemo(() => [
     {
       id: "ai-jobs",
       title: "AI-Powered Job Recommendation System",
@@ -61,7 +61,7 @@ export default function Portfolio() {
         "Search, filter, and analyze WhatsApp Business conversations with AI insights and automated summary reports.",
       tags: ["WhatsApp API", "LLM", "Reporting", "Sentiment"],
     },
-  ];
+  ], []);
 
   const filteredProjects = useMemo(() => {
     if (active === "All") return projects;
