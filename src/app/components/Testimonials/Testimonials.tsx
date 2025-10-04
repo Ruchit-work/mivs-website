@@ -96,7 +96,7 @@ export default function Testimonials() {
               Client <span className="gradient-text">Testimonials</span>
             </h2>
             <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-              Don't just take our word for it. Here's what our clients say about working with MIVS.
+              Don&apos;t just take our word for it. Here&apos;s what our clients say about working with MIVS.
             </p>
           </div>
           
@@ -110,7 +110,7 @@ export default function Testimonials() {
                 ))}
               </div>
               <p className="text-lg text-slate-300 mb-6 italic">
-                "MIVS delivered exceptional software solutions that exceeded our expectations. Their expertise and professionalism are unmatched."
+                &quot;MIVS delivered exceptional software solutions that exceeded our expectations. Their expertise and professionalism are unmatched.&quot;
               </p>
               <div className="text-white font-semibold">Client Testimonials</div>
             </div>
@@ -144,7 +144,7 @@ export default function Testimonials() {
             Client <span className="gradient-text">Testimonials</span>
           </h2>
           <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our clients say about working with MIVS.
+            Don&apos;t just take our word for it. Here&apos;s what our clients say about working with MIVS.
           </p>
         </div>
 
@@ -163,7 +163,7 @@ export default function Testimonials() {
 
               {/* Testimonial Content */}
               <blockquote className="text-lg md:text-xl text-slate-300 mb-8 italic leading-relaxed">
-                "{currentTestimonial.content}"
+                &quot;{currentTestimonial.content}&quot;
               </blockquote>
 
               {/* Client Info */}
