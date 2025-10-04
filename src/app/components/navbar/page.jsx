@@ -9,6 +9,7 @@ export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isClient, setIsClient] = useState(false);
     const pathname = usePathname();
 
     const baseLinkClasses = 'px-3 py-2 text-base font-semibold transition-all duration-200 relative group';
@@ -24,8 +25,15 @@ export default function Navbar() {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
 
+    // Set client-side rendering flag
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
     // Initialize theme from localStorage on component mount
     useEffect(() => {
+        if (!isClient) return;
+        
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
@@ -36,7 +44,7 @@ export default function Navbar() {
             setIsDarkMode(true);
             document.documentElement.removeAttribute('data-theme');
         }
-    }, []);
+    }, [isClient]);
 
     // Theme toggle function
     const toggleTheme = () => {
@@ -55,6 +63,8 @@ export default function Navbar() {
     };
 
     useEffect(() => {
+        if (!isClient) return;
+        
         const handleScroll = () => {
             const currentY = window.scrollY;
             setIsScrolled(currentY > 10);
@@ -77,7 +87,7 @@ export default function Navbar() {
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isMenuOpen, lastScrollY]);
+    }, [isClient, isMenuOpen, lastScrollY]);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -86,6 +96,32 @@ export default function Navbar() {
     const closeMenu = () => {
         setIsMenuOpen(false);
     };
+
+    // Prevent hydration mismatch by not rendering until client-side
+    if (!isClient) {
+        return (
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between h-16 lg:h-20">
+                        <div className="flex-shrink-0">
+                            <a href="/" className="flex items-center space-x-3">
+                                <div className="flex items-center">
+                                    <Image 
+                                        src="/images/MIVS_1.png" 
+                                        alt="MIVS Software Development" 
+                                        width={200}
+                                        height={90}
+                                        className="h-30 lg:h-30 w-auto"
+                                        priority
+                                    />
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        );
+    }
 
     return (
         <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform ${
@@ -118,6 +154,7 @@ export default function Navbar() {
                             {desktopLink('/about', 'About')}
                             {desktopLink('/services', 'Services')}
                             {desktopLink('/portfolio', 'Our Work')}
+                            {desktopLink('/blog', 'Blog')}
                             {desktopLink('/process', 'Process')}
                             {desktopLink('/pricing', 'Pricing')}
                         </div>
@@ -210,6 +247,13 @@ export default function Navbar() {
                         onClick={closeMenu}
                     >
                         Our Work
+                    </a>
+                    <a 
+                        href="/blog" 
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/blog' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        onClick={closeMenu}
+                    >
+                        Blog
                     </a>
                     <a 
                         href="/process" 

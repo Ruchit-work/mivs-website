@@ -23,12 +23,29 @@ export const metadata: Metadata = {
   },
   description: "Professional software development services. We build scalable web, mobile, cloud, and AI solutions tailored to your business needs. Expert team, proven process, reliable delivery.",
   keywords: [
+    // Primary Services
     "software development", "web development", "mobile app development", "cloud solutions", 
     "AI/ML development", "DevOps services", "custom software", "enterprise solutions",
+    
+    // Technologies
     "React development", "Node.js development", "Python development", "Next.js development",
     "React Native", "Flutter development", "AWS cloud", "Google Cloud", "Azure cloud",
+    
+    // Specializations
     "machine learning", "artificial intelligence", "data analytics", "API development",
     "database design", "UI/UX design", "responsive web design", "e-commerce development",
+    
+    // Location-based Keywords
+    "software development company in India", "web development services in Gujarat",
+    "mobile app development in Bardoli", "cloud solutions provider in India",
+    "AI/ML development company in Gujarat",
+    
+    // Long-tail Keywords
+    "custom software development services", "enterprise software solutions",
+    "full-stack development company", "cross-platform mobile app development",
+    "cloud migration services",
+    
+    // Brand & General
     "MIVS", "software company", "tech solutions", "digital transformation"
   ],
   authors: [{ name: "MIVS Software Development", url: "https://mivs.in" }],

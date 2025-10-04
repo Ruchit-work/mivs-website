@@ -3,10 +3,23 @@ import ServicesGrid from "./components/services/ServicesGrid";
 import WorkGrid from "./components/work/WorkGrid";
 import ChooseUs from "./components/choose_us/page";
 import Typewriter from "./components/Typewriter/Typewriter";
+import FAQ from "./components/FAQ/FAQ";
+import SEOOptimizer from "./components/SEOOptimizer/SEOOptimizer";
+import AdvancedSchema from "./components/AdvancedSchema/AdvancedSchema";
+import Testimonials from "./components/Testimonials/Testimonials";
 
 export default function Home() {
   return (
     <>
+      <SEOOptimizer />
+      <AdvancedSchema 
+        type="localBusiness" 
+        data={{
+          name: "MIVS Software Development",
+          description: "Professional software development services including web development, mobile app development, cloud solutions, and AI/ML development.",
+          services: ["Web Development", "Mobile App Development", "Cloud Solutions", "AI/ML Development"]
+        }} 
+      />
       <div className="min-h-screen bg-[#0a0a0f] pt-20">
         {/* Hero Section - Premium Midnight */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden" role="banner" aria-label="Hero section">
@@ -219,6 +232,12 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <FAQ />
+
+        {/* Testimonials Section */}
+        <Testimonials />
     </div>
     </>
   );
