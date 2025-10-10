@@ -6,6 +6,7 @@ export type ServiceItem = {
   color: "blue" | "purple" | "green" | "orange" | "red" | "indigo" | "teal" | "yellow" | "cyan" | "gray";
   technologies?: string[];
   features?: string[];
+  image?: string; // optional hero image path for service detail page
 };
 
 export const SERVICES: ServiceItem[] = [
@@ -18,6 +19,7 @@ export const SERVICES: ServiceItem[] = [
     color: "blue",
     technologies: ["React.js", "Next.js", "Node.js", "Python", "Django", "Vue.js", "Angular", "TypeScript"],
     features: ["Responsive design", "Progressive Web Apps", "API integration", "Performance optimization"],
+    image: "/images/webdevelopment.jpg",
   },
   {
     id: "mobile",
@@ -68,6 +70,7 @@ export const SERVICES: ServiceItem[] = [
     color: "indigo",
     technologies: ["TensorFlow", "PyTorch", "scikit-learn", "OpenAI", "Hugging Face", "Keras"],
     features: ["Natural language processing", "Computer vision", "Predictive modeling", "Automation"],
+    image: "/images/AI-ML.png",
   },
   {
     id: "design",
@@ -78,6 +81,7 @@ export const SERVICES: ServiceItem[] = [
     color: "teal",
     technologies: ["Figma", "Adobe XD", "Sketch", "InVision", "Tailwind CSS", "Material-UI"],
     features: ["User research", "Wireframing", "Prototyping", "Design systems"],
+    image: "/images/UI-UX.jpg",
   },
   {
     id: "qa",

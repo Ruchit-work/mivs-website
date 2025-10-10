@@ -1,4 +1,5 @@
 import AnimatedHero from "../components/Hero/AnimatedHero";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -38,7 +39,7 @@ export default function About() {
       <AnimatedHero 
         title="About MIVS"
         subtitle="We build scalable web, mobile, cloud, and AI solutions tailored to your business."
-        backgroundImage="/images/about-hero.jpg"
+        backgroundImage="/images/team.jpg"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -192,6 +193,34 @@ export default function About() {
               <h3 className="text-lg font-semibold text-white mb-2">Timeliness</h3>
               <p className="text-slate-400">We deliver projects on time and within budget</p>
             </div>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-bold text-white mb-4">Ready to Work With Us?</h3>
+          <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
+            Let&apos;s discuss how we can help transform your business with the right technology solutions.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105"
+            >
+              <span>Explore Our Services</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 glass border-2 border-purple-500/50 text-white font-semibold rounded-xl hover:bg-purple-500/20 hover:border-purple-400 transition-all duration-300 hover:scale-105"
+            >
+              <span>Get In Touch</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </Link>
           </div>
         </div>
       </div>

@@ -210,7 +210,7 @@ export default function ServicesGrid({ limit }: { limit?: number }) {
           <article
             key={s.id}
             className="group h-full rounded-xl glass-card transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
-            onClick={() => setSelectedService(s)}
+            onClick={() => (window.location.href = `/services/${s.id}`)}
           >
             <div className="p-6 flex flex-col h-full">
               <div className="flex items-center mb-4">

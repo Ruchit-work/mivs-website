@@ -1,5 +1,5 @@
 "use client";
-import ServicesGrid from "./components/services/ServicesGrid";
+import Link from "next/link";
 import WorkGrid from "./components/work/WorkGrid";
 import ChooseUs from "./components/choose_us/page";
 import Typewriter from "./components/Typewriter/Typewriter";
@@ -7,6 +7,11 @@ import FAQ from "./components/FAQ/FAQ";
 import SEOOptimizer from "./components/SEOOptimizer/SEOOptimizer";
 import AdvancedSchema from "./components/AdvancedSchema/AdvancedSchema";
 import Testimonials from "./components/Testimonials/Testimonials";
+import HowWeHelp from "./components/HowWeHelp/HowWeHelp";
+import OurApproach from "./components/OurApproach/OurApproach";
+import CaseStudies from "./components/CaseStudies/CaseStudies";
+import Industries from "./components/Industries/Industries";
+import Challenges from "./components/Challenges/Challenges";
 
 export default function Home() {
   return (
@@ -80,37 +85,36 @@ export default function Home() {
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold text-white mb-6 leading-tight tracking-tight">
-              Building Digital
+              Engineers Who Think Like
               <span className="block bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent min-h-[1.2em] animate-gradient">
                 <Typewriter 
-                  texts={["Excellence", "Innovation", "Solutions"]} 
+                  texts={["Strategists", "Innovators", "Partners"]} 
                   speed={150}
                   deleteSpeed={75}
                   delayBetweenTexts={2000}
                   initialDelay={500}
                 />
               </span>
-              for Modern Businesses
             </h1>
 
             <p className="text-xl sm:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              We create scalable, secure, and innovative software solutions including web development, mobile app development, cloud solutions, and AI/ML development that help businesses thrive in the digital age.
+              Turning technology into your competitive advantage. We build scalable, secure solutions that drive measurable business outcomes.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-              <a 
+              <Link 
                 href="/contact" 
                 className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 via-purple-500 to-cyan-500 text-white font-semibold rounded-xl text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-[0_20px_50px_rgba(124,58,237,0.5)] animate-pulse-glow overflow-hidden"
               >
                 <span className="relative z-10">Start Your Project</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </a>
-              <a 
+              </Link>
+              <Link 
                 href="/services" 
                 className="px-8 py-4 glass border-2 border-purple-500/50 text-white font-semibold rounded-xl text-lg transition-all duration-300 hover:bg-purple-500/20 hover:border-purple-400 hover:scale-105"
               >
                 View Our Services
-              </a>
+              </Link>
             </div>
 
             {/* Stats */}
@@ -139,47 +143,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Services Preview Section */}
-        <section className="py-24 bg-gradient-to-b from-[#0a0a0f] to-[#13131a] relative overflow-hidden" aria-label="Our services">
-          {/* Background Elements */}
-          <div className="absolute inset-0">
-            <div className="absolute top-40 left-20 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
-          </div>
+        {/* How We Help Section */}
+        <HowWeHelp />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="text-center mb-16">
-              {/* Section Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 glass rounded-full border border-purple-500/20">
-                <svg className="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                </svg>
-                <span className="text-sm font-medium text-slate-300">What We Offer</span>
-              </div>
+        {/* Case Studies Section */}
+        <CaseStudies limit={2} />
 
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Our <span className="gradient-text">Services</span>
-              </h2>
-              <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                Comprehensive software development solutions tailored to your business needs
-              </p>
-            </div>
+        {/* Our Approach Section */}
+        <OurApproach />
 
-            <ServicesGrid limit={4} />
+        {/* Industry Solutions Section */}
+        <Industries limit={6} />
 
-            <div className="text-center mt-16">
-              <a 
-                href="/services" 
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105"
-              >
-                <span>Explore All Services</span>
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </section>
+        {/* Challenges We Solve Section */}
+        <Challenges />
 
         {/* Why Choose MIVS Section */}
         <div className="bg-gradient-to-b from-[#0a0a0f] to-[#13131a] ">
@@ -219,7 +196,7 @@ export default function Home() {
 
             {/* Elegant CTA */}
             <div className="text-center mt-20">
-              <a 
+              <Link 
                 href="/portfolio" 
                 className="group relative inline-flex items-center gap-3 px-10 py-5 bg-white/5 border border-white/10 backdrop-blur-sm text-white font-semibold rounded-2xl hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/20"
               >
@@ -228,7 +205,7 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-cyan-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

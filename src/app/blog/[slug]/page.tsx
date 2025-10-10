@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 // Blog posts data
 const blogPosts = {
@@ -194,10 +196,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Featured Image */}
         <div className="mb-12">
-          <img 
+          <Image 
             src={post.image} 
             alt={post.title}
+            width={1200}
+            height={400}
             className="w-full h-64 object-cover rounded-2xl"
+            priority
           />
         </div>
 
@@ -233,7 +238,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <p className="text-slate-400 mb-6">
               Let our expert team help you implement these technologies in your business.
             </p>
-            <a 
+            <Link 
               href="/contact"
               className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-300"
             >
@@ -241,7 +246,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </article>

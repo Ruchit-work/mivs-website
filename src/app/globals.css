@@ -424,6 +424,22 @@ body {
   }
 }
 
+@keyframes fade-out-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes bounce-down-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
+
 @keyframes scale-in {
   0% {
     opacity: 0;
@@ -446,6 +462,14 @@ body {
 
 .animate-fade-up {
   animation: fade-up-enter 700ms ease-out both;
+}
+
+.animate-fade-out-up {
+  animation: fade-out-up 180ms ease-in forwards;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-down-subtle 500ms ease-out 1;
 }
 
 .animate-scale-in {

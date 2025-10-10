@@ -152,8 +152,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const saved = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = saved ? saved : (prefersDark ? 'dark' : 'light');
+                if (theme === 'dark') {
+                  document.documentElement.removeAttribute('data-theme');
+                } else {
+                  document.documentElement.setAttribute('data-theme', 'light');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
         <StructuredData type="organization" data={{}} />
         <StructuredData type="website" data={{}} />
       </head>

@@ -4,13 +4,17 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import ServicesMegaMenu from './ServicesMegaMenu';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(false); // default to light theme
     const [isClient, setIsClient] = useState(false);
     const pathname = usePathname();
+    const [showServicesMenu, setShowServicesMenu] = useState(false);
+    const [servicesExiting, setServicesExiting] = useState(false);
+    let servicesTimerRef;
 
     const baseLinkClasses = 'px-3 py-2 text-base font-semibold transition-all duration-200 relative group';
     const desktopLink = (href, text) => (
@@ -30,19 +34,19 @@ export default function Navbar() {
         setIsClient(true);
     }, []);
 
-    // Initialize theme from localStorage on component mount
+    // Initialize theme from localStorage on component mount (default: light)
     useEffect(() => {
         if (!isClient) return;
         
         const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'light') {
-            setIsDarkMode(false);
-            document.documentElement.setAttribute('data-theme', 'light');
-        } else if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        if (savedTheme === 'dark') {
             setIsDarkMode(true);
             document.documentElement.removeAttribute('data-theme');
+        } else {
+            // default to light when not explicitly dark
+            setIsDarkMode(false);
+            document.documentElement.setAttribute('data-theme', 'light');
+            if (!savedTheme) localStorage.setItem('theme', 'light');
         }
     }, [isClient]);
 
@@ -149,14 +153,55 @@ export default function Navbar() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:block">
-                        <div className="ml-10 flex items-baseline space-x-8">
+                        <div className="ml-10 flex items-baseline space-x-6">
                             {desktopLink('/', 'Home')}
                             {desktopLink('/about', 'About')}
-                            {desktopLink('/services', 'Services')}
-                            {desktopLink('/portfolio', 'Our Work')}
-                            {desktopLink('/blog', 'Blog')}
-                            {desktopLink('/process', 'Process')}
-                            {desktopLink('/pricing', 'Pricing')}
+                            <div className="relative"
+                                onMouseEnter={() => {
+                                    if (servicesTimerRef) clearTimeout(servicesTimerRef);
+                                    setServicesExiting(false);
+                                    setShowServicesMenu(true);
+                                }}
+                                onMouseLeave={() => {
+                                    servicesTimerRef = setTimeout(() => {
+                                        setServicesExiting(true);
+                                        setTimeout(() => setShowServicesMenu(false), 180);
+                                    }, 120);
+                                }}
+                            >
+                                <a 
+									href="/services"
+                                    className={`${pathname === '/services' ? 'text-purple-400' : 'text-slate-300 hover:text-white'} ${baseLinkClasses} flex items-center gap-1`}
+								>
+									<span>Services</span>
+                                    <svg className={`w-3.5 h-3.5 ml-0.5 transition-transform duration-200 ${showServicesMenu && !servicesExiting ? 'rotate-180 animate-bounce-subtle' : 'rotate-0'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 9l6 6 6-6" />
+									</svg>
+									<span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 transform transition-transform duration-300 ${pathname === '/services' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+								</a>
+                                {showServicesMenu && (
+                                    <div className="absolute left-1/2 -translate-x-1/2">
+                                        <ServicesMegaMenu 
+                                            onMouseEnter={() => {
+                                                if (servicesTimerRef) clearTimeout(servicesTimerRef);
+                                                setServicesExiting(false);
+                                                setShowServicesMenu(true);
+                                            }}
+                                            onMouseLeave={() => {
+                                                servicesTimerRef = setTimeout(() => {
+                                                    setServicesExiting(true);
+                                                    setTimeout(() => setShowServicesMenu(false), 180);
+                                                }, 120);
+                                            }}
+                                            isExiting={servicesExiting}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                            {desktopLink('/industries', 'Industries')}
+                            {desktopLink('/case-studies', 'Case Studies')}
+                            {desktopLink('/portfolio', 'Portfolio')}
+                            {/* {desktopLink('/pricing', 'Pricing')} */}
                         </div>
                     </div>
 
@@ -216,7 +261,7 @@ export default function Navbar() {
             {/* Mobile menu */}
             <div className={`lg:hidden transition-all duration-300 ease-in-out ${
                 isMenuOpen 
-                    ? 'max-h-96 opacity-100' 
+                    ? 'max-h-[600px] opacity-100' 
                     : 'max-h-0 opacity-0 overflow-hidden'
             }`}>
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass border-t border-purple-500/20">
@@ -242,18 +287,25 @@ export default function Navbar() {
                         Services
                     </a>
                     <a 
+                        href="/industries" 
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/industries' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        onClick={closeMenu}
+                    >
+                        Industries
+                    </a>
+                    <a 
+                        href="/case-studies" 
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/case-studies' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        onClick={closeMenu}
+                    >
+                        Case Studies
+                    </a>
+                    <a 
                         href="/portfolio" 
                         className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/portfolio' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
-                        Our Work
-                    </a>
-                    <a 
-                        href="/blog" 
-                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/blog' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
-                        onClick={closeMenu}
-                    >
-                        Blog
+                        Portfolio
                     </a>
                     <a 
                         href="/process" 
@@ -263,6 +315,7 @@ export default function Navbar() {
                         Process
                     </a>
                     
+                    {/*
                     <a 
                         href="/pricing" 
                         className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/pricing' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
@@ -270,6 +323,7 @@ export default function Navbar() {
                     >
                         Pricing
                     </a>
+                    */}
                     {/* Theme Toggle for Mobile */}
                     <div className="pt-4 border-t border-purple-500/20">
                         <button

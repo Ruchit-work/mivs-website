@@ -73,7 +73,7 @@ export default function Portfolio() {
       <AnimatedHero 
         title="Our Work"
         subtitle="Work that blends delightful UX with measurable business outcomes."
-        backgroundImage="/images/portfolio-hero.jpg"
+        backgroundImage="/images/portfolio.jpg"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

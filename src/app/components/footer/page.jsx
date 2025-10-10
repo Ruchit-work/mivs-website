@@ -103,20 +103,29 @@ export default function Footer() {
                             </li>
                             <li>
                                 <a 
-                                    href="/portfolio" 
+                                    href="/industries" 
                                     className="text-slate-400 hover:text-purple-400 hover:translate-x-1 inline-block transition-all duration-200 group"
-                                    aria-label="See our portfolio"
+                                    aria-label="Explore industries we serve"
                                 >
-                                    <span className="group-hover:text-purple-400 transition-colors">→</span> Our Work
+                                    <span className="group-hover:text-purple-400 transition-colors">→</span> Industries
                                 </a>
                             </li>
                             <li>
                                 <a 
-                                    href="/process" 
+                                    href="/case-studies" 
                                     className="text-slate-400 hover:text-purple-400 hover:translate-x-1 inline-block transition-all duration-200 group"
-                                    aria-label="Learn about our process"
+                                    aria-label="View our success stories"
                                 >
-                                    <span className="group-hover:text-purple-400 transition-colors">→</span> Process
+                                    <span className="group-hover:text-purple-400 transition-colors">→</span> Case Studies
+                                </a>
+                            </li>
+                            <li>
+                                <a 
+                                    href="/portfolio" 
+                                    className="text-slate-400 hover:text-purple-400 hover:translate-x-1 inline-block transition-all duration-200 group"
+                                    aria-label="See our portfolio"
+                                >
+                                    <span className="group-hover:text-purple-400 transition-colors">→</span> Portfolio
                                 </a>
                             </li>
                             <li>
@@ -135,29 +144,41 @@ export default function Footer() {
                     <div>
                         <h3 className="text-xl font-semibold mb-6 text-white">Top Services</h3>
                         <ul className="space-y-3 text-slate-400">
-                            <li className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group cursor-pointer">
-                                <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
-                                <span>Web Development</span>
+                            <li>
+                                <a href="/services" className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group">
+                                    <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
+                                    <span>Web Development</span>
+                                </a>
                             </li>
-                            <li className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group cursor-pointer">
-                                <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
-                                <span>Mobile Apps</span>
+                            <li>
+                                <a href="/services" className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group">
+                                    <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
+                                    <span>Mobile Apps</span>
+                                </a>
                             </li>
-                            <li className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group cursor-pointer">
-                                <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
-                                <span>Cloud Solutions</span>
+                            <li>
+                                <a href="/services" className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group">
+                                    <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
+                                    <span>Cloud Solutions</span>
+                                </a>
                             </li>
-                            <li className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group cursor-pointer">
-                                <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
-                                <span>AI/ML Solutions</span>
+                            <li>
+                                <a href="/services" className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group">
+                                    <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
+                                    <span>AI/ML Solutions</span>
+                                </a>
                             </li>
-                            <li className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group cursor-pointer">
-                                <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
-                                <span>DevOps</span>
+                            <li>
+                                <a href="/services" className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group">
+                                    <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
+                                    <span>DevOps</span>
+                                </a>
                             </li>
-                            <li className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group cursor-pointer">
-                                <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
-                                <span>SEO Optimization</span>
+                            <li>
+                                <a href="/services" className="flex items-center gap-2 hover:text-cyan-400 transition-colors duration-200 group">
+                                    <span className="text-cyan-400 group-hover:translate-x-1 transition-transform">▹</span>
+                                    <span>SEO Optimization</span>
+                                </a>
                             </li>
                         </ul>
                     </div>
