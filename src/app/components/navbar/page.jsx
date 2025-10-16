@@ -4,12 +4,13 @@
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import ServicesMegaMenu from './ServicesMegaMenu';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(false); // default to light theme
+    const [isDarkMode, setIsDarkMode] = useState(true); // default to dark theme
     const [isClient, setIsClient] = useState(false);
     const pathname = usePathname();
     const [showServicesMenu, setShowServicesMenu] = useState(false);
@@ -18,13 +19,13 @@ export default function Navbar() {
 
     const baseLinkClasses = 'px-3 py-2 text-base font-semibold transition-all duration-200 relative group';
     const desktopLink = (href, text) => (
-        <a 
+        <Link 
             href={href}
             className={`${pathname === href ? 'text-purple-400' : 'text-slate-300 hover:text-white'} ${baseLinkClasses}`}
         >
             {text}
             <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 transform transition-transform duration-300 ${pathname === href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-        </a>
+        </Link>
     );
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
@@ -34,19 +35,19 @@ export default function Navbar() {
         setIsClient(true);
     }, []);
 
-    // Initialize theme from localStorage on component mount (default: light)
+    // Initialize theme from localStorage on component mount (default: dark)
     useEffect(() => {
         if (!isClient) return;
         
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            setIsDarkMode(true);
-            document.documentElement.removeAttribute('data-theme');
-        } else {
-            // default to light when not explicitly dark
+        if (savedTheme === 'light') {
             setIsDarkMode(false);
             document.documentElement.setAttribute('data-theme', 'light');
-            if (!savedTheme) localStorage.setItem('theme', 'light');
+        } else {
+            // default to dark when not explicitly light
+            setIsDarkMode(true);
+            document.documentElement.removeAttribute('data-theme');
+            if (!savedTheme) localStorage.setItem('theme', 'dark');
         }
     }, [isClient]);
 
@@ -108,7 +109,7 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16 lg:h-20">
                         <div className="flex-shrink-0">
-                            <a href="/" className="flex items-center space-x-3">
+                            <Link href="/" className="flex items-center space-x-3">
                                 <div className="flex items-center">
                                     <Image 
                                         src="/images/MIVS_1.png" 
@@ -119,7 +120,7 @@ export default function Navbar() {
                                         priority
                                     />
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -137,7 +138,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-16 lg:h-20">
                     {/* Logo */}
                     <div className="flex-shrink-0">
-                        <a href="/" className="flex items-center space-x-3">
+                        <Link href="/" className="flex items-center space-x-3">
                             <div className="flex items-center">
                                 <Image 
                                     src="/images/MIVS_1.png" 
@@ -148,7 +149,7 @@ export default function Navbar() {
                                     priority
                                 />
                             </div>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation */}
@@ -169,16 +170,16 @@ export default function Navbar() {
                                     }, 120);
                                 }}
                             >
-                                <a 
-									href="/services"
+                                <Link 
+								href="/services"
                                     className={`${pathname === '/services' ? 'text-purple-400' : 'text-slate-300 hover:text-white'} ${baseLinkClasses} flex items-center gap-1`}
-								>
-									<span>Services</span>
+							>
+								<span>Services</span>
                                     <svg className={`w-3.5 h-3.5 ml-0.5 transition-transform duration-200 ${showServicesMenu && !servicesExiting ? 'rotate-180 animate-bounce-subtle' : 'rotate-0'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor">
-										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 9l6 6 6-6" />
-									</svg>
-									<span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 transform transition-transform duration-300 ${pathname === '/services' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-								</a>
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 9l6 6 6-6" />
+                                    </svg>
+								<span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 transform transition-transform duration-300 ${pathname === '/services' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+							</Link>
                                 {showServicesMenu && (
                                     <div className="absolute left-1/2 -translate-x-1/2">
                                         <ServicesMegaMenu 
@@ -227,13 +228,13 @@ export default function Navbar() {
                         </button>
                         
                         {/* CTA Button */}
-                        <a 
+                        <Link 
                             href="/contact" 
                             className="relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white rounded-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
                         >
                             <span className="relative z-10">Contact Us</span>
                             <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Mobile menu button */}
@@ -265,55 +266,55 @@ export default function Navbar() {
                     : 'max-h-0 opacity-0 overflow-hidden'
             }`}>
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass border-t border-purple-500/20">
-                    <a 
+                    <Link 
                         href="/" 
                         className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Home
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                         href="/about" 
                         className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/about' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         About
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                         href="/services" 
                         className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/services' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Services
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                         href="/industries" 
                         className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/industries' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Industries
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                         href="/case-studies" 
                         className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/case-studies' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Case Studies
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                         href="/portfolio" 
                         className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/portfolio' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Portfolio
-                    </a>
-                    <a 
+                    </Link>
+                    <Link 
                         href="/process" 
                         className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/process' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
                         onClick={closeMenu}
                     >
                         Process
-                    </a>
+                    </Link>
                     
                     {/*
                     <a 
@@ -349,13 +350,13 @@ export default function Navbar() {
                                 </>
                             )}
                         </button>
-                        <a 
+                        <Link 
                             href="/contact" 
                             className="block text-center px-4 py-3 text-base font-semibold text-white rounded-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             onClick={closeMenu}
                         >
                             Contact Us
-                        </a>
+                        </Link>
                     </div>
                 </div>
         </div>

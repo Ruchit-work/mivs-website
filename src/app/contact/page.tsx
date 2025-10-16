@@ -61,7 +61,23 @@ export default function Contact() {
         body: JSON.stringify(data),
       });
 
-      const result = await res.json();
+      // Try to read JSON; fall back to text if not JSON/empty
+      let result: any = null;
+      let responseText = "";
+      let contentType = res.headers.get("content-type") || "";
+      try {
+        if (contentType.includes("application/json")) {
+          result = await res.clone().json();
+          if (result && typeof result === "object" && Object.keys(result).length === 0) {
+            result = null; // treat empty object as no payload
+          }
+        }
+      } catch {}
+      if (!result) {
+        try {
+          responseText = await res.text();
+        } catch {}
+      }
 
       if (res.ok) {
         setMessageWithTimer("✅ Message sent successfully! We'll get back to you soon.", 5000);
@@ -72,9 +88,21 @@ export default function Contact() {
         setSelectedBudget("");
         setCustomBudget("");
       } else {
-        // Show detailed error message from server
-        setMessageWithTimer(`❌ ${result.message || "Failed to send message. Try again later."}`, 8000);
-        console.error("Server error:", result);
+        const statusInfo = `${res.status} ${res.statusText}`.trim();
+        const message = result?.message || responseText || statusInfo || "Failed to send message. Try again later.";
+        setMessageWithTimer(`❌ ${message}`, 8000);
+        const errorSnapshot = {
+          status: res.status,
+          statusText: res.statusText,
+          contentType,
+          body: result ?? responseText ?? null,
+        };
+        // Log a deep snapshot to avoid devtools showing an empty object later
+        try {
+          console.error("Server error:", JSON.parse(JSON.stringify(errorSnapshot)));
+        } catch {
+          console.error("Server error:", errorSnapshot);
+        }
       }
     } catch (error) {
       console.error("Network error:", error);
@@ -102,12 +130,13 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="firstName" className="block text-sm font-semibold text-white mb-2">
-                    First Name
+                    First Name <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
                     id="firstName"
                     name="firstName"
+                    required
                     className="w-full px-4 py-3 glass border border-purple-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-white placeholder-slate-500 transition-all duration-200"
                     placeholder="John"
                   />
@@ -232,109 +261,17 @@ export default function Contact() {
                 )}
               </div>
 
-              <div className="relative z-10 mb-4">
-                <label className="block text-sm font-semibold text-white mb-2">
-                  Project Budget <span className="text-red-400">*</span>
-                </label>
-                {selectedBudget === "other" ? (
-                  <div className="relative">
-                    <input
-                      type="text"
-                      value={customBudget}
-                      onChange={(e) => setCustomBudget(e.target.value)}
-                      placeholder="Type your budget (e.g., $5,000 or flexible)..."
-                      className="w-full px-4 py-3 glass border border-purple-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-white placeholder-slate-500 transition-all duration-200"
-                      autoFocus
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSelectedBudget("");
-                        setCustomBudget("");
-                      }}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-sm"
-                    >
-                      ✕ Back to list
-                    </button>
-                  </div>
-                ) : (
-                  <div className="relative">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const newState = !isBudgetDropdownOpen;
-                        setIsBudgetDropdownOpen(newState);
-                        if (newState) setIsServiceDropdownOpen(false);
-                      }}
-                      className="w-full px-4 py-3 glass border border-purple-500/30 rounded-lg text-left text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 hover:border-purple-500/50 transition-all duration-200 flex items-center justify-between"
-                    >
-                      <span className={selectedBudget ? "text-white" : "text-slate-500"}>
-                        {selectedBudget
-                          ? selectedBudget === "under-10k" ? "Under $10,000"
-                          : selectedBudget === "10k-25k" ? "$10,000 - $25,000"
-                          : selectedBudget === "25k-50k" ? "$25,000 - $50,000"
-                          : selectedBudget === "50k-100k" ? "$50,000 - $100,000"
-                          : selectedBudget === "over-100k" ? "Over $100,000"
-                          : selectedBudget
-                          : "💰 Select budget range"}
-                      </span>
-                      <svg
-                        className={`w-5 h-5 text-slate-400 transition-transform duration-200 ${isBudgetDropdownOpen ? "rotate-180" : ""}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    
-                    {isBudgetDropdownOpen && (
-                      <div className="absolute w-full mt-2 glass border border-purple-500/30 rounded-lg shadow-2xl max-h-60 overflow-y-auto z-50">
-                        {[
-                          { value: "under-10k", label: "Under $10,000" },
-                          { value: "10k-25k", label: "$10,000 - $25,000" },
-                          { value: "25k-50k", label: "$25,000 - $50,000" },
-                          { value: "50k-100k", label: "$50,000 - $100,000" },
-                          { value: "over-100k", label: "Over $100,000" },
-                          { value: "other", label: "✍️ Other (Type custom)" },
-                        ].map((option) => (
-                          <button
-                            key={option.value}
-                            type="button"
-                            onClick={() => {
-                              setSelectedBudget(option.value);
-                              setIsBudgetDropdownOpen(false);
-                            }}
-                            className={`w-full px-4 py-3 text-left hover:bg-purple-500/20 transition-colors duration-150 ${
-                              selectedBudget === option.value ? "bg-purple-500/20 text-purple-400 font-medium" : "text-slate-300"
-                            }`}
-                          >
-                            {option.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                    
-                    {/* Hidden input for form submission */}
-                    <input
-                      type="hidden"
-                      name="budget"
-                      value={selectedBudget}
-                      required={!selectedBudget}
-                    />
-                  </div>
-                )}
-              </div>
+           
 
               <div>
                 <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
-                  Project Details
+                  Project Details <span className="text-red-400">*</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={6}
+                  required
                   className="w-full px-4 py-3 glass border border-purple-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-white placeholder-slate-500 transition-all duration-200 resize-none"
                   placeholder="Tell us about your project, goals, and any specific requirements..."
                 ></textarea>
