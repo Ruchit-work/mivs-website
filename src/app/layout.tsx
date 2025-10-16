@@ -158,14 +158,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                const saved = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const theme = saved ? saved : (prefersDark ? 'dark' : 'light');
-                if (theme === 'dark') {
-                  document.documentElement.removeAttribute('data-theme');
-                } else {
-                  document.documentElement.setAttribute('data-theme', 'light');
-                }
+                // Force default dark on first paint and persist
+                localStorage.setItem('theme', 'dark');
+                document.documentElement.removeAttribute('data-theme');
               } catch (e) {}
             `,
           }}

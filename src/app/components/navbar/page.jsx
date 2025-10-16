@@ -35,20 +35,14 @@ export default function Navbar() {
         setIsClient(true);
     }, []);
 
-    // Initialize theme from localStorage on component mount (default: dark)
+    // Initialize theme from localStorage on component mount (forced default: dark)
     useEffect(() => {
         if (!isClient) return;
         
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            setIsDarkMode(false);
-            document.documentElement.setAttribute('data-theme', 'light');
-        } else {
-            // default to dark when not explicitly light
-            setIsDarkMode(true);
-            document.documentElement.removeAttribute('data-theme');
-            if (!savedTheme) localStorage.setItem('theme', 'dark');
-        }
+        // Force dark as baseline; user can toggle after
+        localStorage.setItem('theme', 'dark');
+        setIsDarkMode(true);
+        document.documentElement.removeAttribute('data-theme');
     }, [isClient]);
 
     // Theme toggle function
