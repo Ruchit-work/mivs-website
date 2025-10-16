@@ -11,7 +11,6 @@ export default function Contact() {
   const [selectedBudget, setSelectedBudget] = useState("");
   const [customBudget, setCustomBudget] = useState("");
   const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
-  const [isBudgetDropdownOpen, setIsBudgetDropdownOpen] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Clear timer on component unmount
@@ -62,9 +61,9 @@ export default function Contact() {
       });
 
       // Try to read JSON; fall back to text if not JSON/empty
-      let result: any = null;
+      let result: { message?: string } | Record<string, unknown> | null = null;
       let responseText = "";
-      let contentType = res.headers.get("content-type") || "";
+      const contentType = res.headers.get("content-type") || "";
       try {
         if (contentType.includes("application/json")) {
           result = await res.clone().json();
@@ -202,7 +201,6 @@ export default function Contact() {
                       onClick={() => {
                         const newState = !isServiceDropdownOpen;
                         setIsServiceDropdownOpen(newState);
-                        if (newState) setIsBudgetDropdownOpen(false);
                       }}
                       className="w-full px-4 py-3 glass border border-purple-500/30 rounded-lg text-left text-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 hover:border-purple-500/50 transition-all duration-200 flex items-center justify-between"
                     >
