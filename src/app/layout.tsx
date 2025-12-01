@@ -124,10 +124,11 @@ export const metadata: Metadata = {
   },
   
   // Verification tags (add your actual verification codes)
+  // Set GOOGLE_SITE_VERIFICATION in .env.local file
   verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    yahoo: 'your-yahoo-verification-code',
+    google: process.env.GOOGLE_SITE_VERIFICATION || '',
+    yandex: process.env.YANDEX_VERIFICATION || '',
+    yahoo: process.env.YAHOO_VERIFICATION || '',
   },
   
   // App-specific meta
