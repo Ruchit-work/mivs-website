@@ -35,7 +35,7 @@ export default async function IndustryDetailsPage({ params }: IndustryPageProps)
   const industry = getIndustry(id);
   if (!industry) {
     return (
-      <div className="min-h-screen bg-[#0a0a0f] pt-20 flex items-center justify-center">
+      <div className="min-h-screen bg-[#171717] pt-20 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-white mb-2">Industry not found</h1>
           <p className="text-slate-400">The requested industry does not exist.</p>
@@ -102,7 +102,7 @@ export default async function IndustryDetailsPage({ params }: IndustryPageProps)
   const extra = CONTENT[industry.id] ?? { useCases: [], kpis: [], compliance: [], tools: [] };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pt-20">
+    <div className="min-h-screen bg-[#171717] pt-20">
       <AnimatedHero
         title={industry.title}
         subtitle={industry.description}
@@ -178,7 +178,7 @@ export default async function IndustryDetailsPage({ params }: IndustryPageProps)
               'Security, privacy and compliance by design',
               'Outcome‑driven roadmaps with measurable KPIs',
               'Agile delivery and automation‑first mindset',
-              '24/7 support & runbook‑driven operations'
+              'Runbook-driven operations & handover'
             ].map((point) => (
               <div key={point} className="flex items-start gap-3">
                 <svg className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>

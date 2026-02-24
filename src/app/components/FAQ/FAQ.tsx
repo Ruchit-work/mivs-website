@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface FAQItem {
   question: string;
@@ -9,143 +9,66 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
   {
-    question: "What services does MIVS Software Development offer?",
-    answer: "MIVS offers comprehensive software development services including web development, mobile app development, cloud solutions, AI/ML development, DevOps services, and custom software solutions. We specialize in React, Node.js, Python, React Native, Flutter, AWS, Google Cloud, and Azure technologies."
+    question: "What does MIVS do?",
+    answer: "We design and deliver enterprise AI systems: automation architecture, LLM integrations, intelligent workflows, and decision engines. Our focus is enterprises and high-growth companies that need production-grade AI with clear outcomes."
   },
   {
-    question: "Where is MIVS Software Development located?",
-    answer: "MIVS Software Development is located in Bardoli, Gujarat, India. We serve clients across India and globally, providing remote software development services with our expert team of developers, designers, and engineers."
+    question: "Where is MIVS based?",
+    answer: "MIVS is based in India and works with clients globally. Engagements are delivered remotely and on-site as needed."
   },
   {
-    question: "How much does custom software development cost?",
-    answer: "The cost of custom software development varies based on project complexity, features, timeline, and technology stack. We offer competitive pricing and provide detailed quotes after understanding your specific requirements. Contact us for a free consultation and project estimate."
+    question: "How do you scope AI and automation engagements?",
+    answer: "We start with discovery: your goals, constraints, data, and systems. From there we propose a phased approach with clear scope, success criteria, and deliverables. Scope and pricing are defined before engagement."
   },
   {
-    question: "What technologies does MIVS use for web development?",
-    answer: "We use modern web development technologies including React, Next.js, Node.js, Python, TypeScript, and various databases. Our team stays updated with the latest frameworks and best practices to deliver high-performance, scalable web applications."
+    question: "Do you build LLM and RAG systems?",
+    answer: "Yes. We design and implement production LLM integrations, RAG pipelines, and AI agents with security, cost control, and governance in mind. We work with OpenAI, Anthropic, open-source models, and your existing stack."
   },
   {
-    question: "Do you provide mobile app development services?",
-    answer: "Yes, we offer both native and cross-platform mobile app development services. We use React Native for cross-platform apps and native development for iOS and Android. Our mobile apps are optimized for performance and user experience."
+    question: "What industries do you serve?",
+    answer: "We work across industries: financial services, healthcare, manufacturing, retail, and others. Our focus is enterprise and high-growth companies that need AI automation and transformation."
   },
   {
-    question: "What is your development process?",
-    answer: "Our development process includes requirement analysis, project planning, design, development, testing, deployment, and ongoing support. We follow agile methodologies with regular client communication and iterative delivery to ensure project success."
+    question: "What is your engagement model?",
+    answer: "We offer project-based delivery, dedicated teams, and advisory engagements. The model depends on your goals, timeline, and how you want to work with us."
   },
   {
-    question: "Do you offer cloud migration services?",
-    answer: "Yes, we provide comprehensive cloud migration services including AWS, Google Cloud, and Azure. Our team helps businesses migrate their applications and infrastructure to the cloud with minimal downtime and maximum security."
+    question: "How do you handle security and compliance?",
+    answer: "Security and compliance are part of our design process. We follow governance-by-design, audit trails, and align with your compliance requirements. Details are agreed in the engagement."
   },
   {
-    question: "What is your project delivery timeline?",
-    answer: "Project timelines vary based on complexity and requirements. Simple web applications can be delivered in 4-8 weeks, while complex enterprise solutions may take 3-6 months. We provide detailed project timelines during the consultation phase."
+    question: "How long do typical engagements run?",
+    answer: "It varies. Pilots and proofs-of-concept can be 4–8 weeks. Full implementations and transformation programs can run 3–12 months or longer. We define timelines in the proposal."
   }
 ];
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const toggleFAQ = (index: number) => {
-    if (!isClient) return;
-    setOpenIndex(openIndex === index ? null : index);
+    setOpenIndex((prev) => (prev === index ? null : index));
   };
 
-  // Prevent hydration mismatch by not rendering interactive elements until client-side
-  if (!isClient) {
-    return (
-      <section className="py-16 bg-gradient-to-b from-[#0a0a0f] to-[#13131a]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 glass rounded-full border border-purple-500/20">
-              <svg className="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-              </svg>
-              <span className="text-sm font-medium text-slate-300">Frequently Asked Questions</span>
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Common <span className="gradient-text">Questions</span>
-            </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              Find answers to the most frequently asked questions about our software development services.
-            </p>
-          </div>
-
-          {/* Static FAQ Items */}
-          <div className="space-y-4">
-            {faqData.map((faq, index) => (
-              <div key={index} className="glass-card rounded-xl p-6">
-                <h3 className="text-lg font-semibold text-white mb-3">
-                  {faq.question}
-                </h3>
-                <p className="text-slate-400 leading-relaxed">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="text-center mt-12">
-            <p className="text-slate-400 mb-4">
-              Still have questions? We&apos;re here to help!
-            </p>
-            <a 
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-300"
-            >
-              Contact Us
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section className="py-16 bg-gradient-to-b from-[#0a0a0f] to-[#13131a]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 glass rounded-full border border-purple-500/20">
-            <svg className="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-            </svg>
-            <span className="text-sm font-medium text-slate-300">Frequently Asked Questions</span>
-          </div>
-          
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Common <span className="gradient-text">Questions</span>
-          </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            Find answers to the most frequently asked questions about our software development services.
+    <section className="py-20 sm:py-24 bg-[var(--background-section)] animate-section-reveal">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12">
+          <h2 className="font-heading text-[32px] font-semibold text-[var(--foreground)] tracking-tight mb-3">FAQ</h2>
+          <p className="text-[var(--foreground-secondary)] text-base leading-[1.6]">
+            Answers to common questions about our enterprise AI and automation services.
           </p>
         </div>
 
-        {/* FAQ Items */}
-        <div className="space-y-4">
+        <div className="space-y-2">
           {faqData.map((faq, index) => (
-            <div key={index} className="glass-card rounded-xl overflow-hidden">
+            <div key={index} className="rounded-lg border border-[var(--border)] bg-[var(--background-card)] overflow-hidden">
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
+                className="w-full px-5 py-4 text-left flex items-center justify-between hover:bg-[var(--background-secondary)]/50 transition-colors"
               >
-                <h3 className="text-lg font-semibold text-white pr-4">
-                  {faq.question}
-                </h3>
+                <h3 className="font-heading text-base font-semibold text-[var(--foreground)] pr-4">{faq.question}</h3>
                 <svg
-                  className={`w-5 h-5 text-purple-400 transition-transform ${
-                    openIndex === index ? 'rotate-180' : ''
-                  }`}
+                  className={`w-5 h-5 text-[var(--foreground-muted)] transition-transform flex-shrink-0 ${openIndex === index ? 'rotate-180' : ''}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -153,30 +76,24 @@ export default function FAQ() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              
               {openIndex === index && (
-                <div className="px-6 pb-4">
-                  <p className="text-slate-400 leading-relaxed">
-                    {faq.answer}
-                  </p>
+                <div className="px-5 pb-4">
+                  <p className="text-[var(--foreground-secondary)] text-base leading-[1.6]">{faq.answer}</p>
                 </div>
               )}
             </div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <p className="text-slate-400 mb-4">
-            Still have questions? We&apos;re here to help!
-          </p>
-          <a 
+        <div className="text-center mt-10">
+          <p className="text-[var(--foreground-muted)] text-sm mb-3">Questions not covered here?</p>
+          <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-300"
+            className="btn-secondary inline-flex items-center gap-2"
           >
             Contact Us
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>
         </div>

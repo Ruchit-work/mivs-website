@@ -1,229 +1,193 @@
-import AnimatedHero from "../components/Hero/AnimatedHero";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
+import PageHero from "@/app/components/Hero/PageHero";
 
 export const metadata: Metadata = {
-  title: "About MIVS Software Development | Expert Team & Company Values",
-  description: "Learn about MIVS Software Development - our mission, vision, values, and expert team of developers, designers, and engineers. Professional software development company with proven track record.",
-  keywords: [
-    "about MIVS", "software development company", "development team", "company values",
-    "mission statement", "vision statement", "expert developers", "professional team",
-    "software company culture", "development expertise", "technical team", "company history"
-  ],
+  title: "About MIVS | Architecting Enterprise Intelligence",
+  description: "We engineer intelligent systems—not software. Automation-first architecture, production-grade AI, governance by design, measurable impact.",
+  keywords: ["about MIVS", "enterprise intelligence", "AI architecture", "automation-first", "production-grade AI"],
   openGraph: {
-    title: "About MIVS Software Development | Expert Team & Company Values",
-    description: "Learn about MIVS Software Development - our mission, vision, values, and expert team of developers, designers, and engineers.",
+    title: "About MIVS | Architecting Enterprise Intelligence",
+    description: "We engineer intelligent systems. Automation-first, production-grade, measurable.",
     url: "https://mivs.in/about",
-    images: [
-      {
-        url: "/images/about-hero.jpg",
-        width: 1200,
-        height: 630,
-        alt: "About MIVS Software Development Team",
-      },
-    ],
   },
-  twitter: {
-    title: "About MIVS Software Development | Expert Team & Company Values",
-    description: "Learn about MIVS Software Development - our mission, vision, values, and expert team of developers, designers, and engineers.",
-    images: ["/images/about-hero.jpg"],
-  },
-  alternates: {
-    canonical: "https://mivs.in/about",
-  },
+  alternates: { canonical: "https://mivs.in/about" },
 };
+
+const PRINCIPLES = [
+  "Automation-First Architecture",
+  "Production-Grade AI Engineering",
+  "Governance & Compliance by Design",
+  "Measurable Operational Impact",
+];
+
+const FOUNDERS = [
+  {
+    name: "Parjanya Patel",
+    title: "Chief AI Architect",
+    quote: "Intelligence belongs in the workflow, not in a dashboard. We design systems that decide, act, and scale.",
+  },
+  {
+    name: "Harshit Prajapati",
+    title: "Head of AI Engineering",
+    quote: "Production-grade means it runs when it matters. We build for reliability, governance, and long-term impact.",
+  },
+];
+
+const CAPABILITIES = [
+  { title: "Automation Architecture", sentence: "Design and orchestration of intelligent workflows, decision systems, and integration layers." },
+  { title: "AI Engineering", sentence: "Production-grade AI systems: LLMs, agents, RAG, and model deployment at scale." },
+  { title: "Data Systems", sentence: "Data pipelines, governance, and analytics infrastructure for AI-ready operations." },
+  { title: "Enterprise Integration", sentence: "Secure integration with existing stacks, compliance, and operational handover." },
+];
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pt-20">
-      <AnimatedHero 
-        title="About MIVS"
-        subtitle="We build scalable web, mobile, cloud, and AI solutions tailored to your business."
+    <div className="min-h-screen bg-white">
+      <PageHero
+        title="Architecting Enterprise Intelligence"
+        subtitle="We engineer intelligent systems that embed AI into enterprise workflows—automation-first, production-grade, with measurable impact."
         backgroundImage="/images/team.jpg"
+        badge="Enterprise AI Automation Company"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Vision & Mission Banner */}
-        <section className="relative overflow-hidden rounded-2xl mb-12">
-          <div
-            className="h-48 md:h-64 w-full bg-center bg-cover"
-            style={{ backgroundImage: "url('/images/banner.jpg')" }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 to-cyan-900/80" />
-            <div className="relative z-10 h-full flex items-center justify-center px-4">
-              <h2 className="text-3xl md:text-5xl font-bold text-white text-center">Our Vision & <span className="gradient-text">Mission</span></h2>
-            </div>
-          </div>
-        </section>
-
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
-          <div className="glass-card p-8 rounded-2xl group hover:scale-105 transition-all duration-300">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold text-white">Our Mission</h2>
-            </div>
-            <p className="text-slate-400 leading-relaxed">
-              To empower businesses with cutting-edge software solutions that enhance productivity, streamline operations, and drive growth in the digital age.
-            </p>
-          </div>
-          <div className="glass-card p-8 rounded-2xl group hover:scale-105 transition-all duration-300">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold text-white">Our Vision</h2>
-            </div>
-            <p className="text-slate-400 leading-relaxed">
-              To be the leading software development company that transforms ideas into innovative digital solutions, setting new standards in technology excellence.
-            </p>
-          </div>
-        </div>
-
-        {/* Team Section */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 glass rounded-full border border-purple-500/20">
-              <svg className="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
-              </svg>
-              <span className="text-sm font-medium text-slate-300">Our Network</span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">Our Professional <span className="gradient-text">Network</span></h2>
-            <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-              We work with a curated network of highly skilled freelance professionals, ensuring you get the best experts for your specific project needs.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: '💻', role: 'Full-Stack Developers', count: '20+', desc: 'MERN, Django, Next.js experts' },
-              { icon: '📱', role: 'Mobile Developers', count: '15+', desc: 'React Native, Flutter specialists' },
-              { icon: '🎨', role: 'UI/UX Designers', count: '12+', desc: 'Figma & Adobe Creative Suite pros' },
-              { icon: '🤖', role: 'AI/ML Engineers', count: '10+', desc: 'TensorFlow, PyTorch, OpenAI' },
-              { icon: '☁️', role: 'Cloud Architects', count: '8+', desc: 'AWS, GCP, Azure certified' },
-              { icon: '🔒', role: 'Security Experts', count: '6+', desc: 'Penetration testing & compliance' },
-              { icon: '📊', role: 'Data Scientists', count: '10+', desc: 'Analytics & visualization pros' },
-              { icon: '⚙️', role: 'DevOps Engineers', count: '8+', desc: 'CI/CD & automation experts' },
-            ].map((member, idx) => (
-              <div 
-                key={idx}
-                className="text-center glass-card rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-xl group"
-              >
-                <div className="text-5xl mb-3 transform group-hover:scale-110 transition-transform duration-300">{member.icon}</div>
-                <h3 className="text-lg font-semibold text-white mb-2">{member.role}</h3>
-                <div className="text-3xl font-bold gradient-text mb-2">{member.count}</div>
-                <p className="text-slate-400 text-sm">{member.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Info Banner */}
-          <div className="mt-12 glass-card border border-purple-500/30 rounded-xl p-6">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
-                <div className="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                  <svg className="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                  </svg>
-                </div>
-              </div>
-              <div>
-                <h4 className="font-semibold text-white mb-2">Flexible Team Model</h4>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  We hand-pick the right professionals for your project from our vetted network of experts. This flexible approach ensures you get specialized skills exactly when you need them, without the overhead of a large permanent team.
+      {/* 2. Who We Are – slate background + image */}
+      <section className="py-14 sm:py-20 bg-slate-50/80 border-t border-slate-200/80" aria-label="Who we are">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div>
+              <p className="font-heading text-2xl sm:text-3xl font-semibold text-slate-900 tracking-tight leading-snug">
+                We don&apos;t build software. We engineer intelligent systems.
+              </p>
+              <div className="mt-6 space-y-4">
+                <p className="text-slate-600 leading-relaxed">
+                  AI is embedded into enterprise workflows—where decisions are made and operations run. We apply automation-first thinking: map processes, identify decision points, deploy AI that reduces manual work and scales operations.
+                </p>
+                <p className="text-slate-600 leading-relaxed">
+                  Our work is production-grade from day one. Governance, security, and compliance are built in. We focus on measurable operational impact, not pilots.
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Values */}
-        <div className="glass-card rounded-2xl p-8 md:p-12">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 glass rounded-full border border-purple-500/20">
-              <svg className="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-              <span className="text-sm font-medium text-slate-300">Core Values</span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white">Our <span className="gradient-text">Values</span></h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center transition-all duration-300 hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-500 rounded-xl mx-auto mb-4 flex items-center justify-center shadow-lg shadow-purple-500/30">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Quality</h3>
-              <p className="text-slate-400">We deliver exceptional quality in every project</p>
-            </div>
-            <div className="text-center transition-all duration-300 hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-cyan-600 to-cyan-500 rounded-xl mx-auto mb-4 flex items-center justify-center shadow-lg shadow-cyan-500/30">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Innovation</h3>
-              <p className="text-slate-400">We embrace cutting-edge technologies and methodologies</p>
-            </div>
-            <div className="text-center transition-all duration-300 hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-500 rounded-xl mx-auto mb-4 flex items-center justify-center shadow-lg shadow-green-500/30">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Collaboration</h3>
-              <p className="text-slate-400">We work closely with clients as partners</p>
-            </div>
-            <div className="text-center transition-all duration-300 hover:scale-105">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-orange-500 rounded-xl mx-auto mb-4 flex items-center justify-center shadow-lg shadow-orange-500/30">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Timeliness</h3>
-              <p className="text-slate-400">We deliver projects on time and within budget</p>
+            <div className="relative rounded-2xl overflow-hidden border border-slate-200/80 bg-white shadow-sm">
+              <Image
+                src="/images/support.jpg"
+                alt="Strategic work and technical execution"
+                width={600}
+                height={380}
+                className="w-full h-auto object-cover"
+              />
             </div>
           </div>
         </div>
+      </section>
 
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-white mb-4">Ready to Work With Us?</h3>
-          <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
-            Let&apos;s discuss how we can help transform your business with the right technology solutions.
+      {/* 3. Operating Principles */}
+      <section className="py-14 sm:py-20 bg-white border-t border-slate-200" aria-label="Operating principles">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-sm font-medium text-slate-500 uppercase tracking-wider mb-8">
+            Operating principles
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/services"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105"
-            >
-              <span>Explore Our Services</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
+          <ul className="space-y-8">
+            {PRINCIPLES.map((principle, i) => (
+              <li key={principle} className="flex gap-4 md:gap-6 items-baseline border-b border-slate-100 pb-8 last:border-b-0 last:pb-0">
+                <span className="font-heading text-sm font-semibold text-slate-400 tracking-tight tabular-nums shrink-0 w-8">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="font-heading text-lg sm:text-xl font-semibold text-slate-900 tracking-tight">
+                  {principle}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 4. Leadership – team image */}
+      <section className="py-14 sm:py-20 bg-white border-t border-slate-200/80" aria-labelledby="leadership-heading">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-start md:gap-12">
+            <div className="shrink-0 mb-8 md:mb-0">
+              <div className="relative w-full max-w-sm aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
+                <Image
+                  src="/images/team.jpg"
+                  alt="Our team"
+                  width={400}
+                  height={300}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="flex-1">
+              <h2 id="leadership-heading" className="font-heading text-2xl font-semibold text-slate-900 tracking-tight mb-8">
+                Leadership
+              </h2>
+              <div className="space-y-12">
+                {FOUNDERS.map((person) => (
+                  <div key={person.name}>
+                    <p className="font-heading text-lg font-semibold text-slate-900 tracking-tight">{person.name}</p>
+                    <p className="text-indigo-600 text-sm font-medium mt-1">{person.title}</p>
+                    <p className="text-slate-600 mt-4 max-w-2xl leading-relaxed italic">
+                      &ldquo;{person.quote}&rdquo;
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Capabilities – slate background + icons */}
+      <section className="py-14 sm:py-20 bg-slate-50/80 border-t border-slate-200/80" aria-label="Capabilities">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-heading text-2xl font-semibold text-slate-900 tracking-tight mb-10">
+            Capabilities
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-10">
+            {CAPABILITIES.map((cap, i) => (
+              <div key={cap.title} className="flex gap-4">
+                <div className="shrink-0 w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center">
+                  <Image
+                    src={`/images/refector/samvaad-motif-${String((i % 3) + 1).padStart(2, "0")}.svg`}
+                    alt=""
+                    width={28}
+                    height={28}
+                    className="opacity-80"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-heading text-lg font-semibold text-slate-900 tracking-tight">{cap.title}</h3>
+                  <p className="text-slate-600 mt-2 leading-relaxed">{cap.sentence}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. CTA */}
+      <section className="relative py-14 sm:py-20 border-t border-slate-200/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-heading text-4xl md:text-5xl font-semibold tracking-tight text-slate-900">
+            Let&apos;s Engineer Your Intelligent Systems
+          </h2>
+          <div className="mt-6 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 glass border-2 border-purple-500/50 text-white font-semibold rounded-xl hover:bg-purple-500/20 hover:border-purple-400 transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors duration-200"
             >
-              <span>Get In Touch</span>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
+              Schedule Strategy Call
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-2xl border border-slate-300 text-slate-700 font-medium hover:border-slate-400 transition-colors duration-200"
+            >
+              Explore AI Solutions
             </Link>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

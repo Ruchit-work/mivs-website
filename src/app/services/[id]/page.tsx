@@ -1,8 +1,6 @@
-// import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SERVICES, type ServiceItem } from "@/app/data/services";
-import AnimatedHero from "@/app/components/Hero/AnimatedHero";
 import ServiceFAQ from "@/app/components/FAQ/ServiceFAQ";
 
 interface ServicePageProps {
@@ -39,47 +37,71 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
 export default async function ServiceDetailsPage({ params }: ServicePageProps) {
   const { id } = await params;
   const service = getService(id);
+
   if (!service) {
     return (
-      <div className="min-h-screen bg-[#0a0a0f] pt-20 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-white mb-2">Service not found</h1>
-          <p className="text-slate-400">The service you are looking for does not exist.</p>
-          <Link href="/services" className="inline-block mt-6 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold">Back to Services</Link>
+      <div className="min-h-screen bg-white pt-20 flex items-center justify-center">
+        <div className="text-center px-4">
+          <h1 className="font-heading text-2xl font-semibold text-slate-900 mb-2">Service not found</h1>
+          <p className="text-slate-600">The service you are looking for does not exist.</p>
+          <Link
+            href="/services"
+            className="inline-block mt-6 px-6 py-3 rounded-2xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors"
+          >
+            Back to Services
+          </Link>
         </div>
       </div>
     );
   }
 
-  const heroImage = undefined;
+  const heroBg = service.image || "/images/bg-1.jpg";
+  const heroBgEncoded = encodeURI(heroBg).replace(/"/g, "%22");
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pt-20">
-      <AnimatedHero
-        title={service.title}
-        subtitle={service.description}
-        backgroundImage={heroImage}
-      />
+    <div className="min-h-screen bg-white pt-20">
+      {/* Hero */}
+      <section
+        className="relative pt-12 pb-10 overflow-hidden min-h-[14rem] flex flex-col justify-center"
+        style={{
+          backgroundImage: `url("${heroBgEncoded}")`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-white/85" aria-hidden />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight">
+            {service.title}
+          </h1>
+          <p className="mt-3 text-base text-slate-600 leading-relaxed max-w-2xl">
+            {service.description}
+          </p>
+        </div>
+      </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Content */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-3 gap-10">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-8">
-            <section className="glass-card rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-4">Overview</h2>
-              <p className="text-slate-300 leading-relaxed">{service.description}</p>
+            <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <h2 className="font-heading text-xl font-semibold text-slate-900 tracking-tight mb-4">Overview</h2>
+              <p className="text-slate-600 leading-relaxed">{service.description}</p>
             </section>
 
             {service.features && service.features.length > 0 && (
-              <section className="glass-card rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-white mb-4">Key Capabilities</h3>
-                <ul className="grid sm:grid-cols-2 gap-3">
+              <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+                <h3 className="font-heading text-xl font-semibold text-slate-900 tracking-tight mb-6">Key Capabilities</h3>
+                <ul className="grid sm:grid-cols-2 gap-4">
                   {service.features.map((f) => (
                     <li key={f} className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-green-400 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span className="text-slate-300">{f}</span>
+                      <span className="shrink-0 w-5 h-5 rounded-full bg-indigo-100 flex items-center justify-center mt-0.5">
+                        <svg className="w-3 h-3 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </span>
+                      <span className="text-slate-600">{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -87,11 +109,14 @@ export default async function ServiceDetailsPage({ params }: ServicePageProps) {
             )}
 
             {service.technologies && service.technologies.length > 0 && (
-              <section className="glass-card rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-white mb-4">Technologies</h3>
+              <section className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+                <h3 className="font-heading text-xl font-semibold text-slate-900 tracking-tight mb-4">Technologies</h3>
                 <div className="flex flex-wrap gap-2">
                   {service.technologies.map((t) => (
-                    <span key={t} className="px-3 py-1 rounded-lg bg-white/15 text-white border border-white/25 text-sm hover:border-purple-400/40 transition-colors">
+                    <span
+                      key={t}
+                      className="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 text-sm font-medium border border-slate-200"
+                    >
                       {t}
                     </span>
                   ))}
@@ -102,21 +127,31 @@ export default async function ServiceDetailsPage({ params }: ServicePageProps) {
 
           {/* Sidebar */}
           <aside className="space-y-6">
-            <div className="glass-card rounded-2xl p-6">
-              <h4 className="text-lg font-semibold text-white mb-3">Get Started</h4>
-              <p className="text-slate-400 mb-4">Discuss how {service.title.toLowerCase()} can help your business.</p>
-              <Link href="/contact" className="block text-center px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-semibold">Talk to us</Link>
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h4 className="font-heading text-lg font-semibold text-slate-900 tracking-tight mb-3">Get Started</h4>
+              <p className="text-slate-600 text-sm mb-4">
+                Discuss how {service.title.toLowerCase()} can help your business.
+              </p>
+              <Link
+                href="/contact"
+                className="block text-center px-5 py-3 rounded-2xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors"
+              >
+                Talk to us
+              </Link>
             </div>
 
-            <div className="glass-card rounded-2xl p-6">
-              <h4 className="text-lg font-semibold text-white mb-4">Related Services</h4>
-              <ul className="space-y-2">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h4 className="font-heading text-lg font-semibold text-slate-900 tracking-tight mb-4">Related Services</h4>
+              <ul className="space-y-1">
                 {SERVICES.filter((s) => s.id !== service.id).slice(0, 4).map((s) => (
                   <li key={s.id}>
-                    <Link href={`/services/${s.id}`} className="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 text-slate-300 hover:text-white transition-colors">
-                      <span>{s.title}</span>
-                      <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    <Link
+                      href={`/services/${s.id}`}
+                      className="flex items-center justify-between py-2.5 px-3 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-indigo-600 transition-colors"
+                    >
+                      <span className="text-sm font-medium">{s.title}</span>
+                      <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </Link>
                   </li>
@@ -126,13 +161,19 @@ export default async function ServiceDetailsPage({ params }: ServicePageProps) {
           </aside>
         </div>
 
-        {/* FAQ Section similar to reference */}
-        <div className="mt-12">
+        {/* FAQ */}
+        <div className="mt-16">
           <ServiceFAQ
             items={[
               { q: `What are ${service.title.toLowerCase()}?`, a: service.description },
-              { q: `How does ${service.title.toLowerCase()} differ from traditional approaches?`, a: `We leverage modern architectures, automation and cloud-native tooling to deliver faster time-to-value and better reliability than legacy approaches.` },
-              { q: `How do ${service.title.toLowerCase()} help in digital transformation?`, a: `They align technology with business outcomes, reduce risk and accelerate delivery through best practices and proven processes.` },
+              {
+                q: `How does ${service.title.toLowerCase()} differ from traditional approaches?`,
+                a: `We leverage modern architectures, automation, and cloud-native tooling to deliver faster time-to-value and better reliability than legacy approaches.`,
+              },
+              {
+                q: `How do ${service.title.toLowerCase()} help in digital transformation?`,
+                a: `They align technology with business outcomes, reduce risk, and accelerate delivery through best practices and proven processes.`,
+              },
             ]}
           />
         </div>
@@ -140,5 +181,3 @@ export default async function ServiceDetailsPage({ params }: ServicePageProps) {
     </div>
   );
 }
-
-

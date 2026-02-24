@@ -4,10 +4,10 @@ import Image from "next/image";
 
 export default function Process() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pt-20">
+    <div className="min-h-screen bg-[#171717] pt-20">
       <AnimatedHero 
         title="Our Process"
-        subtitle="A proven methodology from discovery to support that ships reliable software."
+        subtitle="Discovery, strategy, design, build, and deploy. Phased delivery with clear scope and handover."
         backgroundImage="/images/process-hero.jpg"
       />
 
@@ -194,7 +194,7 @@ export default function Process() {
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  User training & support
+                  Training & handover
                 </li>
               </ul>
             </div>
@@ -217,7 +217,7 @@ export default function Process() {
                 <h2 className="text-2xl sm:text-3xl font-bold text-white">Support & Maintenance</h2>
               </div>
               <p className="text-slate-400 mb-6 leading-relaxed">
-                We provide ongoing support and maintenance to ensure your solution continues to perform optimally. Our team is always available for updates and enhancements.
+                We hand over documentation, runbooks, and knowledge so your team can operate and extend the solution. Follow-on engagements available as needed.
               </p>
               <ul className="space-y-3 text-slate-400">
                 <li className="flex items-center group">
@@ -226,7 +226,7 @@ export default function Process() {
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  24/7 technical support
+                  Documentation & runbooks
                 </li>
                 <li className="flex items-center group">
                   <div className="w-6 h-6 bg-green-500/20 rounded-lg flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">

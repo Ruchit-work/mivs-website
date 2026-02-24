@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useMemo } from "react";
+
 interface StructuredDataProps {
   type: 'organization' | 'website' | 'service' | 'breadcrumb' | 'faq' | 'article';
   data: Record<string, unknown>;
@@ -12,10 +14,10 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         return {
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": "MIVS Software Development",
+          "name": "MIVS",
           "url": "https://mivs.in",
           "logo": "https://mivs.in/images/logo.png",
-          "description": "Professional software development services including web development, mobile app development, cloud solutions, and AI/ML development.",
+          "description": "Enterprise AI automation and AI consulting. AI systems, LLM integrations, intelligent workflows, and enterprise transformation.",
           "foundingDate": "2020",
           "address": {
             "@type": "PostalAddress",
@@ -28,7 +30,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             "url": "https://mivs.in/contact"
           },
           "sameAs": [
-            "https://linkedin.com/company/mivs-software",
+            "https://www.linkedin.com/company/110551451",
             "https://twitter.com/mivs_software",
             "https://github.com/mivs-software"
           ],
@@ -38,38 +40,38 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           },
           "hasOfferCatalog": {
             "@type": "OfferCatalog",
-            "name": "Software Development Services",
+            "name": "Enterprise AI & Automation",
             "itemListElement": [
               {
                 "@type": "Offer",
                 "itemOffered": {
                   "@type": "Service",
-                  "name": "Web Development",
-                  "description": "Custom web applications using modern technologies like React, Next.js, Node.js"
+                  "name": "Enterprise AI Systems",
+                  "description": "AI strategy, architecture, and implementation for enterprises"
                 }
               },
               {
                 "@type": "Offer",
                 "itemOffered": {
                   "@type": "Service",
-                  "name": "Mobile App Development",
-                  "description": "Native and cross-platform mobile applications using React Native and Flutter"
+                  "name": "LLM Integrations",
+                  "description": "Production LLM integrations, RAG, and AI agents"
                 }
               },
               {
                 "@type": "Offer",
                 "itemOffered": {
                   "@type": "Service",
-                  "name": "Cloud Solutions",
-                  "description": "Cloud infrastructure setup and management on AWS, Google Cloud, and Azure"
+                  "name": "AI Automation Architecture",
+                  "description": "Design and deployment of AI automation and workflow systems"
                 }
               },
               {
                 "@type": "Offer",
                 "itemOffered": {
                   "@type": "Service",
-                  "name": "AI/ML Development",
-                  "description": "Artificial Intelligence and Machine Learning solutions for business automation"
+                  "name": "Intelligent Workflow Systems",
+                  "description": "Workflow and decision automation with AI"
                 }
               }
             ]
@@ -80,12 +82,12 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         return {
           "@context": "https://schema.org",
           "@type": "WebSite",
-          "name": "MIVS Software Development",
+          "name": "MIVS",
           "url": "https://mivs.in",
-          "description": "Professional software development services. We build scalable web, mobile, cloud, and AI solutions tailored to your business needs.",
+          "description": "Enterprise AI automation and AI consulting. AI automation architecture, LLM integrations, intelligent workflow systems.",
           "publisher": {
             "@type": "Organization",
-            "name": "MIVS Software Development",
+            "name": "MIVS",
             "logo": {
               "@type": "ImageObject",
               "url": "https://mivs.in/images/logo.png"
@@ -102,19 +104,19 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         return {
           "@context": "https://schema.org",
           "@type": "Service",
-          "name": data.name || "Software Development Services",
-          "description": data.description || "Professional software development services including web development, mobile app development, cloud solutions, and AI/ML development.",
+          "name": data.name || "Enterprise AI & Automation",
+          "description": data.description || "Enterprise AI systems, AI automation architecture, LLM integrations, intelligent workflow systems.",
           "provider": {
             "@type": "Organization",
-            "name": "MIVS Software Development",
+            "name": "MIVS",
             "url": "https://mivs.in"
           },
           "areaServed": {
             "@type": "Country",
             "name": "India"
           },
-          "serviceType": "Software Development",
-          "category": data.category || "Technology Services"
+          "serviceType": "AI Consulting",
+          "category": data.category || "Enterprise AI"
         };
 
       case 'breadcrumb':
@@ -152,11 +154,11 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           "image": data.image,
           "author": {
             "@type": "Organization",
-            "name": "MIVS Software Development"
+            "name": "MIVS"
           },
           "publisher": {
             "@type": "Organization",
-            "name": "MIVS Software Development",
+            "name": "MIVS",
             "logo": {
               "@type": "ImageObject",
               "url": "https://mivs.in/images/logo.png"
@@ -171,12 +173,19 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     }
   };
 
-  const structuredData = getStructuredData();
+  const dataKey = JSON.stringify(data);
+  const structuredData = useMemo(() => getStructuredData(), [type, dataKey]);
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-    />
-  );
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(structuredData);
+    script.setAttribute("data-structured-data", type);
+    document.head.appendChild(script);
+    return () => {
+      if (script.parentNode) script.parentNode.removeChild(script);
+    };
+  }, [type, structuredData]);
+
+  return null;
 }

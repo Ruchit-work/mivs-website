@@ -6,112 +6,117 @@ export type ServiceItem = {
   color: "blue" | "purple" | "green" | "orange" | "red" | "indigo" | "teal" | "yellow" | "cyan" | "gray";
   technologies?: string[];
   features?: string[];
-  image?: string; // optional hero image path for service detail page
+  image?: string;
 };
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: "web",
-    title: "Web Development",
-    description:
-      "Custom web applications built with modern technologies for optimal performance and user experience.",
-    icon: "web",
-    color: "blue",
-    technologies: ["React.js", "Next.js", "Node.js", "Python", "Django", "Vue.js", "Angular", "TypeScript"],
-    features: ["Responsive design", "Progressive Web Apps", "API integration", "Performance optimization"],
-    image: "/images/webdevelopment.jpg",
-  },
-  {
-    id: "mobile",
-    title: "Mobile Development",
-    description:
-      "Native and cross-platform mobile applications that deliver exceptional user experiences.",
-    icon: "mobile",
-    color: "purple",
-    technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Ionic", "Xamarin"],
-    features: ["Cross-platform apps", "Native performance", "Offline functionality", "Push notifications"],
-  },
-  {
-    id: "cloud",
-    title: "Cloud Solutions",
-    description:
-      "Scalable cloud infrastructure and deployment solutions for modern applications.",
-    icon: "cloud",
-    color: "green",
-    technologies: ["AWS", "Google Cloud", "Azure", "Docker", "Kubernetes", "Terraform"],
-    features: ["Auto-scaling", "High availability", "Cost optimization", "Security & compliance"],
-  },
-  {
-    id: "data",
-    title: "Data Analytics",
-    description:
-      "Transform your data into actionable insights with analytics and visualization.",
-    icon: "data",
-    color: "orange",
-    technologies: ["Python", "R", "Power BI", "Tableau", "SQL", "Apache Spark", "MongoDB"],
-    features: ["Data visualization", "Predictive analytics", "Real-time dashboards", "Business intelligence"],
-  },
-  {
-    id: "seo",
-    title: "SEO Optimization",
-    description:
-      "Boost your online visibility and search rankings with comprehensive SEO strategies and optimization techniques.",
-    icon: "seo",
-    color: "red",
-    technologies: ["Google Analytics", "SEMrush", "Ahrefs", "Schema Markup", "Core Web Vitals", "Keyword Research"],
-    features: ["On-page SEO", "Technical SEO", "Link building", "Performance optimization"],
-  },
-  {
     id: "ai",
-    title: "AI/ML Solutions",
+    title: "Enterprise AI Systems",
     description:
-      "Leverage AI and machine learning to automate and optimize your business processes.",
+      "End-to-end enterprise AI systems: strategy, architecture, and implementation for intelligent operations and measurable outcomes.",
     icon: "ai",
     color: "indigo",
-    technologies: ["TensorFlow", "PyTorch", "scikit-learn", "OpenAI", "Hugging Face", "Keras"],
-    features: ["Natural language processing", "Computer vision", "Predictive modeling", "Automation"],
+    technologies: ["LLMs", "RAG", "OpenAI", "Anthropic", "Hugging Face", "Vector DBs"],
+    features: ["AI strategy", "Enterprise AI architecture", "Governance", "Scalable deployment"],
     image: "/images/AI-ML.png",
   },
   {
-    id: "design",
-    title: "UI/UX Design",
+    id: "web",
+    title: "LLM Integrations",
     description:
-      "Intuitive interfaces that users love and businesses benefit from.",
+      "Integrate large language models into your systems. RAG, agents, and APIs for secure, production-grade LLM workflows.",
+    icon: "web",
+    color: "blue",
+    technologies: ["OpenAI", "Anthropic", "LangChain", "LlamaIndex", "Custom APIs"],
+    features: ["RAG pipelines", "AI agents", "API integration", "Prompt engineering"],
+    image: "/images/webdevelopment.jpg",
+  },
+  {
+    id: "cloud",
+    title: "AI Automation Architecture",
+    description:
+      "Design and deploy AI automation architecture: orchestration, event-driven workflows, and scalable AI infrastructure.",
+    icon: "cloud",
+    color: "green",
+    technologies: ["AWS", "GCP", "Azure AI", "Docker", "Kubernetes", "Terraform"],
+    features: ["Automation architecture", "Event-driven design", "Scalability", "Security"],
+  },
+  {
+    id: "data",
+    title: "Intelligent Workflow Systems",
+    description:
+      "Build intelligent workflow systems that automate decision points, approvals, and cross-system processes with AI.",
+    icon: "data",
+    color: "orange",
+    technologies: ["Python", "Workflow engines", "APIs", "Event streaming"],
+    features: ["Process automation", "Decision automation", "Integration", "Monitoring"],
+    image: "/images/support.jpg",
+  },
+  {
+    id: "design",
+    title: "AI-Powered Decision Engines",
+    description:
+      "Decision engines that combine data, rules, and AI for consistent, auditable outcomes at scale.",
     icon: "design",
     color: "teal",
-    technologies: ["Figma", "Adobe XD", "Sketch", "InVision", "Tailwind CSS", "Material-UI"],
-    features: ["User research", "Wireframing", "Prototyping", "Design systems"],
+    technologies: ["ML models", "Rule engines", "Real-time inference", "Explainability"],
+    features: ["Decision logic", "Model deployment", "Audit trails", "Compliance"],
     image: "/images/UI-UX.jpg",
   },
   {
-    id: "qa",
-    title: "Q/A Testing",
+    id: "custom",
+    title: "Enterprise Transformation",
     description:
-      "Ensure your software works as expected with thorough testing and validation.",
-    icon: "testing",
-    color: "yellow",
-    technologies: ["Selenium", "Jest", "Cypress", "JUnit", "Postman", "JMeter"],
-    features: ["Automated testing", "Manual testing", "Performance testing", "Bug tracking"],
+      "AI consulting and program delivery for enterprise transformation: roadmap, change, and execution.",
+    icon: "custom",
+    color: "gray",
+    technologies: ["Strategy", "Roadmapping", "Change management", "Delivery"],
+    features: ["AI strategy", "Roadmap", "Stakeholder alignment", "Program delivery"],
+    image: "/images/team.jpg",
   },
   {
     id: "devops",
-    title: "DevOps",
+    title: "AI Infrastructure & MLOps",
     description:
-      "Streamline your development and operations with CI/CD pipelines, automation, and infrastructure management.",
+      "Production AI infrastructure: model serving, monitoring, and MLOps for reliable enterprise AI.",
     icon: "devops",
     color: "cyan",
-    technologies: ["Jenkins", "GitLab CI", "Docker", "Kubernetes", "Ansible", "CircleCI"],
-    features: ["CI/CD pipelines", "Infrastructure as code", "Monitoring & logging", "Deployment automation"],
+    technologies: ["Model serving", "MLflow", "Kubernetes", "Monitoring"],
+    features: ["Model deployment", "Monitoring", "CI/CD for ML", "Governance"],
+    image: "/images/webdevelopment.jpg",
   },
   {
-    id: "custom",
-    title: "Custom Services",
+    id: "seo",
+    title: "Enterprise Search & RAG",
     description:
-      "Custom services according to your requirement, we will help you to build your idea into a reality.",
-    icon: "custom",
-    color: "gray",
-    technologies: ["Your Choice", "Custom Stack", "Flexible Solutions"],
-    features: ["Tailored solutions", "Flexible approach", "Dedicated team", "Ongoing support"],
+      "Enterprise search and retrieval-augmented generation for knowledge bases and internal systems.",
+    icon: "seo",
+    color: "red",
+    technologies: ["Vector search", "Embeddings", "RAG", "Semantic search"],
+    features: ["Knowledge retrieval", "RAG design", "Search relevance", "Security"],
+    image: "/images/portfolio.jpg",
+  },
+  {
+    id: "mobile",
+    title: "AI Agents & Assistants",
+    description:
+      "Conversational AI agents and assistants for internal tools, support, and workflow augmentation.",
+    icon: "mobile",
+    color: "purple",
+    technologies: ["LLM APIs", "Agent frameworks", "Tool use", "Orchestration"],
+    features: ["Agent design", "Tool integration", "Guardrails", "Evaluation"],
+    image: "/images/AI agent.webp",
+  },
+  {
+    id: "qa",
+    title: "AI Validation & Evaluation",
+    description:
+      "Testing, validation, and evaluation of AI systems for accuracy, safety, and compliance.",
+    icon: "testing",
+    color: "yellow",
+    technologies: ["Evaluation frameworks", "Red-teaming", "Benchmarks", "Monitoring"],
+    features: ["Model evaluation", "Safety", "Bias checks", "Compliance"],
+    image: "/images/qa.jpg",
   },
 ];
-

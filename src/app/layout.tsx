@@ -1,56 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar/page";
 import Footer from "./components/footer/page";
 import StructuredData from "./components/StructuredData/StructuredData";
 import PerformanceMonitor from "./components/PerformanceMonitor/PerformanceMonitor";
+import ScrollRevealObserver from "./components/ScrollReveal/ScrollRevealObserver";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "MIVS Softwares Development | Web, Mobile & Cloud Solutions",
-    template: "%s | MIVS Software Development"
+    default: "MIVS | Enterprise AI Automation & AI Consulting",
+    template: "%s | MIVS"
   },
-  description: "Professional software development services. We build scalable web, mobile, cloud, and AI solutions tailored to your business needs. Expert team, proven process, reliable delivery.",
+  description: "Enterprise AI systems and automation. We design and deliver AI architecture, LLM integrations, intelligent workflows, and decision engines for enterprise transformation.",
   keywords: [
-    // Primary Services
-    "software development", "web development", "mobile app development", "cloud solutions", 
-    "AI/ML development", "DevOps services", "custom software", "enterprise solutions",
-    
-    // Technologies
-    "React development", "Node.js development", "Python development", "Next.js development",
-    "React Native", "Flutter development", "AWS cloud", "Google Cloud", "Azure cloud",
-    
-    // Specializations
-    "machine learning", "artificial intelligence", "data analytics", "API development",
-    "database design", "UI/UX design", "responsive web design", "e-commerce development",
-    
-    // Location-based Keywords
-    "software development company in India", "web development services in Gujarat",
-    "mobile app development in Bardoli", "cloud solutions provider in India",
-    "AI/ML development company in Gujarat",
-    
-    // Long-tail Keywords
-    "custom software development services", "enterprise software solutions",
-    "full-stack development company", "cross-platform mobile app development",
-    "cloud migration services",
-    
-    // Brand & General
-    "MIVS", "software company", "tech solutions", "digital transformation"
+    "enterprise AI", "AI automation", "AI consulting", "LLM integration", "intelligent workflow",
+    "AI-powered decision engines", "enterprise transformation", "AI systems architecture",
+    "workflow automation", "enterprise AI strategy", "MIVS"
   ],
-  authors: [{ name: "MIVS Software Development", url: "https://mivs.in" }],
-  creator: "MIVS Software Development",
-  publisher: "MIVS Software Development",
+  authors: [{ name: "MIVS", url: "https://mivs.in" }],
+  creator: "MIVS",
+  publisher: "MIVS",
   metadataBase: new URL('https://mivs.in'),
   
   // Enhanced favicon and icons
@@ -65,7 +41,7 @@ export const metadata: Metadata = {
       { url: '/images/logo.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { rel: 'mask-icon', url: '/images/logo.png', color: '#7c3aed' },
+      { rel: 'mask-icon', url: '/images/logo.png', color: '#0F172A' },
     ],
   },
 
@@ -74,22 +50,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://mivs.in',
-    siteName: 'MIVS Software Development',
-    title: 'MIVS Software Development | Web, Mobile & Cloud Solutions',
-    description: 'Professional software development services. Expert team, proven process, reliable delivery. Custom web apps, mobile apps, cloud solutions, and AI/ML development.',
+    siteName: 'MIVS',
+    title: 'MIVS | Enterprise AI Automation & AI Consulting',
+    description: 'Enterprise AI automation and AI consulting. AI automation architecture, LLM integrations, intelligent workflow systems.',
     images: [
       {
         url: '/images/MIVS_1.png',
         width: 1200,
         height: 630,
-        alt: 'MIVS Software Development - Professional Software Solutions',
+        alt: 'MIVS - Enterprise AI Automation & Consulting',
         type: 'image/png',
       },
       {
         url: '/images/logo.png',
         width: 800,
         height: 600,
-        alt: 'MIVS Software Development Logo',
+        alt: 'MIVS Logo',
         type: 'image/png',
       },
     ],
@@ -100,8 +76,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@mivs_software',
     creator: '@mivs_software',
-    title: 'MIVS Software Development | Web, Mobile & Cloud Solutions',
-    description: 'Professional software development services. Expert team, proven process, reliable delivery.',
+    title: 'MIVS | Enterprise AI Automation & AI Consulting',
+    description: 'Enterprise AI automation and AI consulting. LLM integrations, intelligent workflows, AI-powered decision engines.',
     images: ['/images/MIVS_1.png'],
   },
 
@@ -132,7 +108,7 @@ export const metadata: Metadata = {
   },
   
   // App-specific meta
-  applicationName: 'MIVS Software Development',
+  applicationName: 'MIVS',
   generator: 'Next.js',
   referrer: 'origin-when-cross-origin',
   
@@ -141,9 +117,9 @@ export const metadata: Metadata = {
     'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
-    'apple-mobile-web-app-title': 'MIVS Software',
-    'msapplication-TileColor': '#7c3aed',
-    'theme-color': '#7c3aed',
+    'apple-mobile-web-app-title': 'MIVS',
+    'msapplication-TileColor': '#FFFFFF',
+    'theme-color': '#FFFFFF',
   },
 };
 
@@ -154,28 +130,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                // Force default dark on first paint and persist
-                localStorage.setItem('theme', 'dark');
-                document.documentElement.removeAttribute('data-theme');
-              } catch (e) {}
-            `,
-          }}
-        />
+      <body
+        className={`${inter.variable} font-sans antialiased`}
+      >
         <StructuredData type="organization" data={{}} />
         <StructuredData type="website" data={{}} />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
         <PerformanceMonitor />
         <Navbar />
-        <main className="page-enter-animate">
+        <main className="page-enter-animate pt-20">
           {children}
+          <ScrollRevealObserver />
         </main>
         <Footer />
       </body>

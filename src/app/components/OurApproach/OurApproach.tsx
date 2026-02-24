@@ -3,20 +3,20 @@
 export default function OurApproach() {
   const principles = [
     {
-      id: "client-focused",
-      title: "Client-Focused",
-      description: "We prioritize understanding your business goals and challenges. Every solution is tailored to deliver measurable value and align with your strategic objectives.",
+      id: "outcome-focused",
+      title: "Outcome-Focused",
+      description: "We align every engagement with your strategic objectives. Solutions are designed for measurable impact and clear ownership.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
       color: "from-purple-600 to-purple-500"
     },
     {
-      id: "agile-delivery",
-      title: "Agile Delivery",
-      description: "We use iterative development cycles to deliver value early and often. This approach ensures flexibility, rapid feedback, and continuous improvement throughout the project.",
+      id: "phased-delivery",
+      title: "Phased Delivery",
+      description: "We deliver in phases: pilot, scale, production. Each phase has clear scope and success criteria so you see value early and reduce risk.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -25,9 +25,9 @@ export default function OurApproach() {
       color: "from-cyan-600 to-cyan-500"
     },
     {
-      id: "quality-first",
-      title: "Quality-First",
-      description: "Quality is built into every stage of development, not added at the end. We implement comprehensive testing, code reviews, and best practices to ensure robust, reliable software.",
+      id: "governance-built-in",
+      title: "Governance Built In",
+      description: "Security, auditability, and compliance are designed in from the start. No afterthoughts.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -36,20 +36,20 @@ export default function OurApproach() {
       color: "from-green-600 to-green-500"
     },
     {
-      id: "innovation-driven",
-      title: "Innovation-Driven",
-      description: "We stay ahead of technology trends and leverage cutting-edge tools to give you a competitive edge. Innovation isn't just about new tech—it's about solving problems better.",
+      id: "architecture-first",
+      title: "Architecture-First",
+      description: "We design for scale and integration before implementation. Your existing systems and future roadmap inform every decision.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
         </svg>
       ),
       color: "from-blue-600 to-blue-500"
     },
     {
       id: "transparent",
-      title: "Transparent Communication",
-      description: "Clear, honest communication builds trust. We provide regular updates, maintain open channels, and ensure you're always informed about progress, challenges, and successes.",
+      title: "Transparent Engagement",
+      description: "Clear communication, defined scope, and no surprises. You stay informed on progress, decisions, and trade-offs.",
       icon: (
         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -60,57 +60,36 @@ export default function OurApproach() {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-[#0a0a0f] to-[#13131a] relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 glass rounded-full border border-purple-500/20">
-            <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-            </svg>
-            <span className="text-sm font-medium text-slate-300">Our Approach</span>
-          </div>
-
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-            How We <span className="gradient-text">Deliver Success</span>
+    <section className="py-24 sm:py-32 bg-[var(--background-section)] animate-section-reveal">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-16">
+          <h2 className="font-heading text-[32px] sm:text-[40px] font-semibold text-[var(--foreground)] tracking-tight mb-4">
+            How We Deliver
           </h2>
-          <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Our methodology is built on five core principles that ensure every project delivers exceptional results
+          <p className="text-[var(--foreground-secondary)] text-base max-w-xl leading-[1.6]">
+            Five principles that guide every engagement: outcome focus, phased delivery, governance, architecture, and transparency.
           </p>
         </div>
 
         {/* Principles */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           {principles.map((principle, index) => (
             <div
               key={principle.id}
-              className="group glass-card rounded-2xl p-6 lg:p-8 hover:scale-[1.01] transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20"
+              className="rounded-lg border border-[var(--border)] bg-[var(--background-card)] p-6 lg:p-8 card-hover"
             >
               <div className="flex items-start gap-6">
-                {/* Number Badge */}
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 rounded-xl flex items-center justify-center border border-purple-500/30">
-                    <span className="text-2xl font-bold gradient-text">{index + 1}</span>
-                  </div>
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[var(--background-secondary)] border border-[var(--border)] flex items-center justify-center text-lg font-semibold text-[var(--foreground-muted)]">
+                  {index + 1}
                 </div>
-
-                {/* Icon */}
-                <div className={`flex-shrink-0 w-14 h-14 bg-gradient-to-br ${principle.color} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-[var(--background-secondary)] flex items-center justify-center text-[var(--foreground-muted)]">
                   {principle.icon}
                 </div>
-
-                {/* Content */}
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                  <h3 className="font-heading text-lg font-semibold text-[var(--foreground)] mb-2">
                     {principle.title}
                   </h3>
-                  <p className="text-slate-400 leading-relaxed">
+                  <p className="text-[var(--foreground-secondary)] text-base leading-[1.6]">
                     {principle.description}
                   </p>
                 </div>
@@ -119,27 +98,26 @@ export default function OurApproach() {
           ))}
         </div>
 
-        {/* Process Visual */}
-        <div className="mt-16 glass-card rounded-2xl p-8">
-          <h3 className="text-2xl font-bold text-white text-center mb-8">Our Development Process</h3>
-          <div className="grid md:grid-cols-5 gap-4">
+        <div className="mt-16 pt-16 border-t border-[var(--border)]">
+          <h3 className="font-heading text-lg font-semibold text-[var(--foreground)] mb-8">Engagement Process</h3>
+          <div className="grid md:grid-cols-5 gap-6">
             {[
-              { step: "1", title: "Discovery", desc: "Understanding your needs" },
-              { step: "2", title: "Planning", desc: "Strategy & roadmap" },
-              { step: "3", title: "Development", desc: "Agile implementation" },
-              { step: "4", title: "Testing", desc: "Quality assurance" },
-              { step: "5", title: "Launch", desc: "Deployment & support" }
+              { step: "1", title: "Discovery", desc: "Goals, constraints, scope" },
+              { step: "2", title: "Strategy", desc: "Roadmap & architecture" },
+              { step: "3", title: "Design", desc: "Solution design" },
+              { step: "4", title: "Build", desc: "Implementation" },
+              { step: "5", title: "Deploy", desc: "Production & handover" }
             ].map((phase, idx) => (
               <div key={phase.step} className="relative">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3 shadow-lg">
+                  <div className="w-12 h-12 rounded-full bg-[var(--background-card)] border border-[var(--border)] flex items-center justify-center text-[var(--foreground)] font-semibold mx-auto mb-3">
                     {phase.step}
                   </div>
-                  <h4 className="font-semibold text-white mb-1">{phase.title}</h4>
-                  <p className="text-sm text-slate-400">{phase.desc}</p>
+                  <h4 className="font-medium text-[var(--foreground)] mb-1 text-sm">{phase.title}</h4>
+                  <p className="text-xs text-[var(--foreground-muted)]">{phase.desc}</p>
                 </div>
                 {idx < 4 && (
-                  <div className="hidden md:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500"></div>
+                  <div className="hidden md:block absolute top-6 left-[calc(50%+1.5rem)] w-[calc(100%-3rem)] h-px bg-[var(--border)]" />
                 )}
               </div>
             ))}

@@ -8,7 +8,7 @@ export default function ServiceFAQ({ items }: { items: QA[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="rounded-2xl bg-white p-0 md:p-6 border border-slate-300">
+    <section className="rounded-3xl bg-white p-0 md:p-6 border border-slate-200 shadow-sm">
       <div className="px-6 pt-6 pb-3">
         <h3 className="text-2xl md:text-3xl font-bold text-slate-900">You have questions. We have answers.</h3>
       </div>

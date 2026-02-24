@@ -17,11 +17,11 @@ export default function AdvancedSchema({ type, data }: AdvancedSchemaProps) {
           return {
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": data.name || "Software Development Services",
-            "description": data.description || "Professional software development services including web development, mobile app development, cloud solutions, and AI/ML development.",
+            "name": data.name || "Enterprise AI & Automation",
+            "description": data.description || "Enterprise AI systems, AI automation architecture, LLM integrations, intelligent workflow systems.",
             "provider": {
               "@type": "Organization",
-              "name": "MIVS Software Development",
+              "name": "MIVS",
               "url": baseUrl,
               "logo": `${baseUrl}/images/logo.png`,
               "address": {
@@ -42,11 +42,11 @@ export default function AdvancedSchema({ type, data }: AdvancedSchemaProps) {
               "@type": "Country",
               "name": "India"
             },
-            "serviceType": "Software Development",
-            "category": data.category || "Technology Services",
+            "serviceType": "AI Consulting",
+            "category": data.category || "Enterprise AI",
             "offers": {
               "@type": "Offer",
-              "description": "Professional software development services",
+              "description": "Enterprise AI automation and consulting",
               "priceCurrency": "INR",
               "availability": "https://schema.org/InStock"
             }
@@ -84,7 +84,7 @@ export default function AdvancedSchema({ type, data }: AdvancedSchemaProps) {
             "@type": "Review",
             "itemReviewed": {
               "@type": "Organization",
-              "name": "MIVS Software Development",
+              "name": "MIVS",
               "url": baseUrl
             },
             "author": {
@@ -96,15 +96,15 @@ export default function AdvancedSchema({ type, data }: AdvancedSchemaProps) {
               "ratingValue": data.rating || "5",
               "bestRating": "5"
             },
-            "reviewBody": data.review || "Excellent software development services"
+            "reviewBody": data.review || "Excellent enterprise AI and automation engagement"
           };
 
         case 'localBusiness':
           return {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "MIVS Software Development",
-            "description": "Professional software development services including web development, mobile app development, cloud solutions, and AI/ML development.",
+            "name": "MIVS",
+            "description": "Enterprise AI automation and AI consulting. AI systems, LLM integrations, intelligent workflows.",
             "url": baseUrl,
             "logo": `${baseUrl}/images/logo.png`,
             "image": `${baseUrl}/images/MIVS_1.png`,
@@ -133,38 +133,38 @@ export default function AdvancedSchema({ type, data }: AdvancedSchemaProps) {
             },
             "hasOfferCatalog": {
               "@type": "OfferCatalog",
-              "name": "Software Development Services",
+              "name": "Enterprise AI & Automation",
               "itemListElement": [
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Web Development",
-                    "description": "Custom web applications built with modern technologies"
+                    "name": "Enterprise AI Systems",
+                    "description": "AI strategy, architecture, and implementation"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Mobile App Development",
-                    "description": "Native and cross-platform mobile applications"
+                    "name": "LLM Integrations",
+                    "description": "Production LLM, RAG, and AI agents"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "Cloud Solutions",
-                    "description": "Cloud infrastructure setup and management"
+                    "name": "AI Automation Architecture",
+                    "description": "Workflow and automation design"
                   }
                 },
                 {
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",
-                    "name": "AI/ML Development",
-                    "description": "Artificial Intelligence and Machine Learning solutions"
+                    "name": "Intelligent Workflow Systems",
+                    "description": "Process and decision automation"
                   }
                 }
               ]
@@ -195,7 +195,7 @@ export default function AdvancedSchema({ type, data }: AdvancedSchemaProps) {
       // Cleanup script on unmount
       const scripts = document.querySelectorAll('script[type="application/ld+json"]');
       scripts.forEach(script => {
-        if (script.textContent?.includes('MIVS Software Development')) {
+        if (script.textContent?.includes('MIVS')) {
           script.remove();
         }
       });

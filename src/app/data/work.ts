@@ -9,43 +9,42 @@ export type WorkItem = {
 export const OUR_WORK: WorkItem[] = [
   {
     id: "ai-jobs",
-    label: "AI Job Matcher",
-    title: "AI-Powered Job Recommendation System",
+    label: "Intelligent Matching",
+    title: "Enterprise Talent–JD Matching System",
     description:
-      "AI-driven job search with resume-to-JD match scores, scraping multiple job boards.",
-    tags: ["NLP", "Scraping", "FastAPI", "Vector"],
+      "Intelligent system that automates candidate–role matching using NLP and vector similarity. Predictive scoring and workflow automation replace manual shortlisting.",
+    tags: ["NLP", "Vector Search", "FastAPI", "Decision Engine"],
   },
   {
     id: "insightx",
-    label: "Analytics Dashboard",
-    title: "InsightX – Business Analytics",
+    label: "Predictive Analytics",
+    title: "InsightX – Intelligent Business Analytics Platform",
     description:
-      "Drag-and-drop dashboards with automated reports and AI forecasting.",
-    tags: ["Next.js", "ETL", "Forecast", "Postgres"],
+      "AI-driven analytics engine with automated forecasting, decision-ready dashboards, and predictive logic for planning and optimization.",
+    tags: ["Next.js", "ETL", "Forecasting", "Predictive Logic"],
   },
   {
     id: "travel",
-    label: "Travel Platform",
-    title: "TravelEase – Tours & Travel",
+    label: "Smart Orchestration",
+    title: "TravelEase – Intelligent Trip Orchestration",
     description:
-      "Smart trip planning, price tracking, and multi-stop itineraries.",
-    tags: ["AI", "Flights API", "Maps"],
+      "Automation workflows for trip planning with price-prediction logic, multi-stop optimization, and intelligent recommendation systems.",
+    tags: ["AI", "Workflow Automation", "Optimization", "APIs"],
   },
   {
     id: "multilang",
-    label: "Translator Utility",
-    title: "Multilang – Multilingual Website Translator",
+    label: "Localization Intelligence",
+    title: "Multilang – AI-Powered Localization Engine",
     description:
-      "Instant translations with SEO-friendly localized URLs and CDN caching.",
-    tags: ["i18n", "SEO", "CDN"],
+      "Intelligent localization system with automated translation workflows, SEO-aware routing, and decision logic for language and market rollout.",
+    tags: ["i18n", "Automation", "SEO", "CDN"],
   },
   {
     id: "whatsquery",
-    label: "WhatsApp Analytics",
-    title: "WhatsQuery – Search & Filter",
+    label: "Conversation Intelligence",
+    title: "WhatsQuery – Conversational AI Analytics",
     description:
-      "Search and analyze WhatsApp Business chats with AI insights and reports.",
-    tags: ["WhatsApp API", "LLM", "Reporting"],
+      "Enterprise conversation intelligence: LLM-powered search, automated insight extraction, and reporting workflows for WhatsApp Business operations.",
+    tags: ["WhatsApp API", "LLM", "Analytics", "Automation"],
   },
 ];
-

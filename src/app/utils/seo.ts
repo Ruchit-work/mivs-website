@@ -11,16 +11,11 @@ export interface SEOData {
 }
 
 export const defaultSEO: SEOData = {
-  title: "MIVS Software Development | Web, Mobile & Cloud Solutions",
-  description: "Professional software development services. We build scalable web, mobile, cloud, and AI solutions tailored to your business needs. Expert team, proven process, reliable delivery.",
+  title: "MIVS | Enterprise AI Automation & AI Consulting",
+  description: "Enterprise AI automation and AI consulting. AI automation architecture, LLM integrations, intelligent workflow systems, and AI-powered decision engines.",
   keywords: [
-    "software development", "web development", "mobile app development", "cloud solutions",
-    "AI/ML development", "DevOps services", "custom software", "enterprise solutions",
-    "React development", "Node.js development", "Python development", "Next.js development",
-    "React Native", "Flutter development", "AWS cloud", "Google Cloud", "Azure cloud",
-    "machine learning", "artificial intelligence", "data analytics", "API development",
-    "database design", "UI/UX design", "responsive web design", "e-commerce development",
-    "MIVS", "software company", "tech solutions", "digital transformation"
+    "enterprise AI", "AI automation", "AI consulting", "LLM integration", "intelligent workflow",
+    "AI-powered decision engines", "enterprise transformation", "MIVS"
   ],
   canonical: "https://mivs.in",
   ogImage: "/images/MIVS_1.png",
@@ -28,7 +23,7 @@ export const defaultSEO: SEOData = {
   twitterCard: "summary_large_image"
 };
 
-export function generatePageTitle(pageTitle: string, siteName: string = "MIVS Software Development"): string {
+export function generatePageTitle(pageTitle: string, siteName: string = "MIVS"): string {
   return `${pageTitle} | ${siteName}`;
 }
 
@@ -94,10 +89,10 @@ export function generateStructuredData(type: 'organization' | 'website' | 'servi
       return {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "MIVS Software Development",
+        "name": "MIVS",
         "url": baseUrl,
         "logo": `${baseUrl}/images/logo.png`,
-        "description": "Professional software development services including web development, mobile app development, cloud solutions, and AI/ML development.",
+        "description": "Enterprise AI automation and AI consulting. AI systems, LLM integrations, intelligent workflows, and enterprise transformation.",
         "foundingDate": "2020",
         "address": {
           "@type": "PostalAddress",
@@ -120,12 +115,12 @@ export function generateStructuredData(type: 'organization' | 'website' | 'servi
       return {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "MIVS Software Development",
+        "name": "MIVS",
         "url": baseUrl,
-        "description": "Professional software development services. We build scalable web, mobile, cloud, and AI solutions tailored to your business needs.",
+        "description": "Enterprise AI automation and AI consulting. AI automation architecture, LLM integrations, intelligent workflow systems.",
         "publisher": {
           "@type": "Organization",
-          "name": "MIVS Software Development",
+          "name": "MIVS",
           "logo": {
             "@type": "ImageObject",
             "url": `${baseUrl}/images/logo.png`
@@ -137,18 +132,18 @@ export function generateStructuredData(type: 'organization' | 'website' | 'servi
       return {
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": data.name || "Software Development Services",
-        "description": data.description || "Professional software development services including web development, mobile app development, cloud solutions, and AI/ML development.",
+        "name": data.name || "Enterprise AI & Automation",
+        "description": data.description || "Enterprise AI systems, AI automation architecture, LLM integrations, intelligent workflow systems, AI-powered decision engines.",
         "provider": {
           "@type": "Organization",
-          "name": "MIVS Software Development",
+          "name": "MIVS",
           "url": baseUrl
         },
         "areaServed": {
           "@type": "Country",
           "name": "India"
         },
-        "serviceType": "Software Development"
+        "serviceType": "AI Consulting"
       };
       
     case 'breadcrumb':

@@ -16,134 +16,159 @@ export type CaseStudy = {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
+    id: "hospital-management-system",
+    client: "Healthcare Institution",
+    industry: "Healthcare",
+    challenge: "Hospitals needed a unified system to streamline operations, improve patient care coordination, and turn clinical and operational data into actionable insights.",
+    solution: "An advanced AI-enabled Hospital Management System that enhances patient care, improves operational efficiency, and delivers data-driven insights for healthcare institutions. The platform integrates scheduling, records, billing, and analytics with AI for demand forecasting, resource optimization, and care pathway recommendations.",
+    metrics: [
+      {
+        label: "Efficiency",
+        value: "40%",
+        description: "Reduction in administrative overhead"
+      },
+      {
+        label: "Insights",
+        value: "Real-time",
+        description: "Data-driven dashboards and reporting"
+      },
+      {
+        label: "Care",
+        value: "Enhanced",
+        description: "Coordinated patient care workflows"
+      }
+    ],
+    technologies: ["AI/ML", "Healthcare APIs", "Analytics", "Secure Cloud", "HL7/FHIR"],
+    image: "/images/case-study-healthcare.jpg"
+  },
+  {
     id: "ecommerce-platform",
     client: "Leading Retail Chain",
     industry: "Retail & E-commerce",
-    challenge: "Legacy e-commerce platform couldn't handle peak traffic, resulting in lost sales and poor customer experience during high-demand periods.",
-    solution: "Built a scalable cloud-native e-commerce platform with microservices architecture, CDN integration, and real-time inventory management.",
+    challenge: "Manual order and inventory decisions could not scale during peak demand, leading to stockouts, delayed fulfillment, and lost revenue.",
+    solution: "Deployed an intelligent commerce platform with real-time demand prediction, automated inventory allocation, and decision systems for pricing and fulfillment. AI workflows replaced manual reorder and routing logic.",
     metrics: [
       {
-        label: "Performance Improvement",
+        label: "Efficiency Gain",
         value: "85%",
-        description: "Faster page load times"
+        description: "Faster decision-to-fulfillment cycle"
       },
       {
-        label: "Traffic Handling",
+        label: "Automation",
         value: "10x",
-        description: "Peak capacity increase"
+        description: "Peak capacity without proportional headcount"
       },
       {
-        label: "Revenue Growth",
+        label: "Optimization",
         value: "45%",
-        description: "Year-over-year increase"
+        description: "Revenue growth from demand prediction"
       }
     ],
-    technologies: ["Next.js", "Node.js", "AWS", "Redis", "PostgreSQL"],
+    technologies: ["Next.js", "Node.js", "AWS", "Redis", "PostgreSQL", "Predictive Logic"],
     image: "/images/case-study-ecommerce.jpg"
   },
   {
     id: "healthcare-portal",
     client: "Healthcare Provider Network",
     industry: "Healthcare",
-    challenge: "Manual patient record management led to delays, errors, and compliance risks across multiple facilities.",
-    solution: "Developed a HIPAA-compliant patient portal with AI-powered scheduling, electronic health records, and telemedicine capabilities.",
+    challenge: "Manual patient record handling and scheduling caused delays, errors, and compliance risk across facilities.",
+    solution: "Built a HIPAA-compliant intelligent care platform with AI-powered scheduling automation, predictive capacity planning, and decision systems for referrals and follow-ups. Automated workflows replaced manual data entry and booking.",
     metrics: [
       {
-        label: "Processing Time",
+        label: "Efficiency Gain",
         value: "88%",
-        description: "Reduction in patient onboarding"
+        description: "Reduction in onboarding processing time"
       },
       {
-        label: "Error Reduction",
+        label: "Automation",
         value: "94%",
-        description: "Fewer data entry mistakes"
+        description: "Fewer manual data-entry touchpoints"
       },
       {
-        label: "Patient Satisfaction",
+        label: "Optimization",
         value: "92%",
-        description: "Positive feedback rating"
+        description: "Patient satisfaction from faster routing"
       }
     ],
-    technologies: ["React", "Python", "Django", "PostgreSQL", "AWS"],
+    technologies: ["React", "Python", "Django", "PostgreSQL", "AWS", "Decision Systems"],
     image: "/images/case-study-healthcare.jpg"
   },
   {
     id: "fintech-app",
     client: "Digital Banking Startup",
     industry: "Financial Services",
-    challenge: "Needed to launch a secure, user-friendly mobile banking app to compete with established players in a tight market.",
-    solution: "Created a feature-rich mobile banking application with biometric authentication, real-time notifications, and AI-powered financial insights.",
+    challenge: "Needed to compete with established banks using intelligent, secure experiences and data-driven product decisions.",
+    solution: "Delivered an intelligent banking platform with biometric authentication, real-time decisioning, and AI-powered financial insights. Predictive logic and automation workflows power personalized offers and risk-aware experiences.",
     metrics: [
       {
-        label: "User Adoption",
+        label: "Efficiency Gain",
         value: "50K+",
         description: "Active users in 6 months"
       },
       {
-        label: "Transaction Speed",
+        label: "Automation",
         value: "3s",
-        description: "Average transaction time"
+        description: "Average decision-to-confirmation time"
       },
       {
-        label: "App Rating",
+        label: "Optimization",
         value: "4.8/5",
-        description: "Customer satisfaction"
+        description: "Satisfaction from personalized intelligence"
       }
     ],
-    technologies: ["React Native", "Node.js", "MongoDB", "AWS", "Stripe"],
+    technologies: ["React Native", "Node.js", "MongoDB", "AWS", "Stripe", "Predictive Logic"],
     image: "/images/case-study-fintech.jpg"
   },
   {
     id: "supply-chain-optimization",
     client: "Manufacturing Company",
     industry: "Manufacturing & Logistics",
-    challenge: "Inefficient supply chain visibility and manual processes causing delays and increased operational costs.",
-    solution: "Implemented an AI-driven supply chain management system with real-time tracking, predictive analytics, and automated reporting.",
+    challenge: "Manual supply chain decisions and limited visibility led to delays, excess inventory, and higher operational cost.",
+    solution: "Implemented an AI-driven supply chain intelligence system with real-time tracking, predictive demand and replenishment, and automated workflow orchestration. Decision systems now drive ordering, routing, and exception handling.",
     metrics: [
       {
-        label: "Cost Savings",
+        label: "Efficiency Gain",
         value: "35%",
-        description: "Annual operational reduction"
+        description: "Annual operational cost reduction"
       },
       {
-        label: "Delivery Time",
+        label: "Automation",
         value: "60%",
-        description: "Faster order fulfillment"
+        description: "Faster order fulfillment via smart routing"
       },
       {
-        label: "Inventory Accuracy",
+        label: "Optimization",
         value: "99%",
-        description: "Real-time tracking precision"
+        description: "Inventory accuracy with predictive logic"
       }
     ],
-    technologies: ["Python", "TensorFlow", "React", "PostgreSQL", "Docker"],
+    technologies: ["Python", "TensorFlow", "React", "PostgreSQL", "Docker", "Workflow Automation"],
     image: "/images/case-study-manufacturing.jpg"
   },
   {
     id: "edtech-platform",
     client: "Educational Institution",
     industry: "Education",
-    challenge: "Remote learning infrastructure couldn't support interactive classes and engagement was declining rapidly.",
-    solution: "Built a comprehensive learning management system with live classes, interactive assessments, and progress analytics.",
+    challenge: "Remote learning lacked intelligent pacing, engagement signals, and automated support, leading to drop-off and inconsistent outcomes.",
+    solution: "Built an intelligent learning platform with adaptive content routing, automated assessment and feedback workflows, and predictive analytics for at-risk learners. Decision systems drive recommendations and instructor alerts.",
     metrics: [
       {
-        label: "Student Engagement",
+        label: "Efficiency Gain",
         value: "78%",
-        description: "Increase in participation"
+        description: "Increase in participation from smart nudges"
       },
       {
-        label: "Concurrent Users",
+        label: "Automation",
         value: "5000+",
-        description: "Simultaneous live sessions"
+        description: "Concurrent sessions with automated scaling"
       },
       {
-        label: "Content Delivery",
+        label: "Optimization",
         value: "99.9%",
-        description: "Uptime reliability"
+        description: "Uptime with intelligent failover"
       }
     ],
-    technologies: ["Next.js", "Node.js", "WebRTC", "MongoDB", "AWS"],
+    technologies: ["Next.js", "Node.js", "WebRTC", "MongoDB", "AWS", "Predictive Analytics"],
     image: "/images/case-study-education.jpg"
   }
 ];
-

@@ -10,56 +10,30 @@ import ServicesMegaMenu from './ServicesMegaMenu';
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(true); // default to dark theme
     const [isClient, setIsClient] = useState(false);
     const pathname = usePathname();
     const [showServicesMenu, setShowServicesMenu] = useState(false);
     const [servicesExiting, setServicesExiting] = useState(false);
     let servicesTimerRef;
 
-    const baseLinkClasses = 'px-3 py-2 text-base font-semibold transition-all duration-200 relative group';
+    const baseLinkClasses = 'px-3 py-2 text-base font-medium transition-all duration-200 relative group text-[var(--foreground-secondary)]';
     const desktopLink = (href, text) => (
         <Link 
             href={href}
-            className={`${pathname === href ? 'text-purple-400' : 'text-slate-300 hover:text-white'} ${baseLinkClasses}`}
+            className={`${pathname === href ? 'text-[var(--foreground)]' : 'hover:text-[var(--foreground)]'} ${baseLinkClasses}`}
         >
             {text}
-            <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 transform transition-transform duration-300 ${pathname === href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+            <span className={`absolute bottom-0 left-0 w-full h-px bg-[var(--foreground)] transform transition-transform duration-200 ${pathname === href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
         </Link>
     );
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const [mounted, setMounted] = useState(false);
 
-    // Set client-side rendering flag
     useEffect(() => {
+        setMounted(true);
         setIsClient(true);
     }, []);
-
-    // Initialize theme from localStorage on component mount (forced default: dark)
-    useEffect(() => {
-        if (!isClient) return;
-        
-        // Force dark as baseline; user can toggle after
-        localStorage.setItem('theme', 'dark');
-        setIsDarkMode(true);
-        document.documentElement.removeAttribute('data-theme');
-    }, [isClient]);
-
-    // Theme toggle function
-    const toggleTheme = () => {
-        const newTheme = !isDarkMode;
-        setIsDarkMode(newTheme);
-        
-        if (newTheme) {
-            // Dark mode
-            document.documentElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            // Light mode
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        }
-    };
 
     useEffect(() => {
         if (!isClient) return;
@@ -96,38 +70,16 @@ export default function Navbar() {
         setIsMenuOpen(false);
     };
 
-    // Prevent hydration mismatch by not rendering until client-side
-    if (!isClient) {
-        return (
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16 lg:h-20">
-                        <div className="flex-shrink-0">
-                            <Link href="/" className="flex items-center space-x-3">
-                                <div className="flex items-center">
-                                    <Image 
-                                        src="/images/MIVS_1.png" 
-                                        alt="MIVS Software Development" 
-                                        width={200}
-                                        height={90}
-                                        className="h-30 lg:h-30 w-auto"
-                                        priority
-                                    />
-                                </div>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        );
-    }
+    // Static initial class so server and client render identical HTML (avoids hydration mismatch)
+    const initialNavClass = "fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform bg-[var(--background)]/90 backdrop-blur-sm border-b border-[var(--border)] translate-y-0";
+    const navClassName = mounted
+        ? `fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform ${
+            isScrolled ? "bg-[var(--background)]/95 border-b border-[var(--border)] backdrop-blur-sm" : "bg-[var(--background)]/90 backdrop-blur-sm border-b border-[var(--border)]"
+          } ${isVisible ? "translate-y-0" : "-translate-y-full"}`
+        : initialNavClass;
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform will-change-transform ${
-            isScrolled 
-                ? 'glass border-b border-purple-500/20 shadow-lg shadow-purple-500/10' 
-                : 'bg-transparent'
-        } ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+        <nav className={navClassName} suppressHydrationWarning>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 lg:h-20">
                     {/* Logo */}
@@ -135,8 +87,8 @@ export default function Navbar() {
                         <Link href="/" className="flex items-center space-x-3">
                             <div className="flex items-center">
                                 <Image 
-                                    src="/images/MIVS_1.png" 
-                                    alt="MIVS Software Development" 
+                                    src="/images/mivs_black_2.png" 
+                                    alt="MIVS" 
                                     width={200}
                                     height={90}
                                     className="h-30 lg:h-30 w-auto"
@@ -164,15 +116,15 @@ export default function Navbar() {
                                     }, 120);
                                 }}
                             >
-                                <Link 
-								href="/services"
-                                    className={`${pathname === '/services' ? 'text-purple-400' : 'text-slate-300 hover:text-white'} ${baseLinkClasses} flex items-center gap-1`}
+<Link 
+                                    href="/services"
+                                    className={`${pathname === '/services' ? 'text-[var(--foreground)]' : 'hover:text-[var(--foreground)]'} ${baseLinkClasses} flex items-center gap-1`}
 							>
 								<span>Services</span>
-                                    <svg className={`w-3.5 h-3.5 ml-0.5 transition-transform duration-200 ${showServicesMenu && !servicesExiting ? 'rotate-180 animate-bounce-subtle' : 'rotate-0'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <svg className={`w-3.5 h-3.5 ml-0.5 transition-transform duration-200 ${showServicesMenu && !servicesExiting ? 'rotate-180' : 'rotate-0'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 9l6 6 6-6" />
                                     </svg>
-								<span className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 transform transition-transform duration-300 ${pathname === '/services' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
+								<span className={`absolute bottom-0 left-0 w-full h-px bg-[var(--foreground)] transform transition-transform duration-200 ${pathname === '/services' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
 							</Link>
                                 {showServicesMenu && (
                                     <div className="absolute left-1/2 -translate-x-1/2">
@@ -195,39 +147,17 @@ export default function Navbar() {
                             </div>
                             {desktopLink('/industries', 'Industries')}
                             {desktopLink('/case-studies', 'Case Studies')}
-                            {desktopLink('/portfolio', 'Portfolio')}
+                            {desktopLink('/portfolio', 'AI Solutions')}
                             {/* {desktopLink('/pricing', 'Pricing')} */}
                         </div>
                     </div>
 
-                    {/* Theme Toggle Button */}
                     <div className="hidden lg:flex items-center gap-3">
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2.5 glass border border-purple-500/30 rounded-lg hover:bg-purple-500/20 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-purple-500 group"
-                            aria-label="Toggle theme"
-                            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-                        >
-                            {isDarkMode ? (
-                                // Sun icon for switching to light mode
-                                <svg className="w-5 h-5 text-slate-300 group-hover:text-yellow-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                                </svg>
-                            ) : (
-                                // Moon icon for switching to dark mode
-                                <svg className="w-5 h-5 text-slate-700 group-hover:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                </svg>
-                            )}
-                        </button>
-                        
-                        {/* CTA Button */}
                         <Link 
                             href="/contact" 
-                            className="relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white rounded-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="btn-primary inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium focus:outline-none rounded-lg"
                         >
-                            <span className="relative z-10">Contact Us</span>
-                            <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                            Contact Us
                         </Link>
                     </div>
 
@@ -235,7 +165,7 @@ export default function Navbar() {
                     <div className="lg:hidden">
                         <button
                             onClick={toggleMenu}
-                            className="inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-white hover:bg-purple-500/20 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 transition-colors duration-200"
+                            className="inline-flex items-center justify-center p-2 rounded-md text-[var(--foreground-secondary)] hover:text-[var(--accent)] hover:bg-[var(--background-card)] focus:outline-none transition-colors duration-200"
                             aria-expanded="false"
                         >
                             <span className="sr-only">Open main menu</span>
@@ -259,52 +189,52 @@ export default function Navbar() {
                     ? 'max-h-[600px] opacity-100' 
                     : 'max-h-0 opacity-0 overflow-hidden'
             }`}>
-                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass border-t border-purple-500/20">
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[var(--background)] border-t border-[var(--border)]">
                     <Link 
                         href="/" 
-                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-colors ${pathname === '/' ? 'text-[var(--accent)] bg-[var(--background-card)]' : 'text-[var(--foreground-secondary)] hover:text-[var(--accent)] hover:bg-[var(--background-card)]'}`}
                         onClick={closeMenu}
                     >
                         Home
                     </Link>
                     <Link 
                         href="/about" 
-                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/about' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-colors ${pathname === '/about' ? 'text-[var(--accent)] bg-[var(--background-card)]' : 'text-[var(--foreground-secondary)] hover:text-[var(--accent)] hover:bg-[var(--background-card)]'}`}
                         onClick={closeMenu}
                     >
                         About
                     </Link>
                     <Link 
                         href="/services" 
-                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/services' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-colors ${pathname === '/services' ? 'text-[var(--accent)] bg-[var(--background-card)]' : 'text-[var(--foreground-secondary)] hover:text-[var(--accent)] hover:bg-[var(--background-card)]'}`}
                         onClick={closeMenu}
                     >
                         Services
                     </Link>
                     <Link 
                         href="/industries" 
-                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/industries' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-colors ${pathname === '/industries' ? 'text-[var(--accent)] bg-[var(--background-card)]' : 'text-[var(--foreground-secondary)] hover:text-[var(--accent)] hover:bg-[var(--background-card)]'}`}
                         onClick={closeMenu}
                     >
                         Industries
                     </Link>
                     <Link 
                         href="/case-studies" 
-                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/case-studies' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-colors ${pathname === '/case-studies' ? 'text-[var(--accent)] bg-[var(--background-card)]' : 'text-[var(--foreground-secondary)] hover:text-[var(--accent)] hover:bg-[var(--background-card)]'}`}
                         onClick={closeMenu}
                     >
                         Case Studies
                     </Link>
                     <Link 
                         href="/portfolio" 
-                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/portfolio' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-colors ${pathname === '/portfolio' ? 'text-[var(--accent)] bg-[var(--background-card)]' : 'text-[var(--foreground-secondary)] hover:text-[var(--accent)] hover:bg-[var(--background-card)]'}`}
                         onClick={closeMenu}
                     >
-                        Portfolio
+                        AI Solutions
                     </Link>
                     <Link 
                         href="/process" 
-                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/process' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-colors ${pathname === '/process' ? 'text-[var(--accent)] bg-[var(--background-card)]' : 'text-[var(--foreground-secondary)] hover:text-[var(--accent)] hover:bg-[var(--background-card)]'}`}
                         onClick={closeMenu}
                     >
                         Process
@@ -312,41 +242,17 @@ export default function Navbar() {
                     
                     {/*
                     <a 
-                        href="/pricing" 
-                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-all duration-200 ${pathname === '/pricing' ? 'text-purple-400 bg-purple-500/20' : 'text-slate-300 hover:text-white hover:bg-purple-500/10'}`}
+href="/pricing"
+                        className={`block px-3 py-2 rounded-lg text-base font-semibold transition-colors ${pathname === '/pricing' ? 'text-[var(--accent)] bg-[var(--background-card)]' : 'text-[var(--foreground-secondary)] hover:text-[var(--accent)] hover:bg-[var(--background-card)]'}`}
                         onClick={closeMenu}
                     >
                         Pricing
                     </a>
                     */}
-                    {/* Theme Toggle for Mobile */}
-                    <div className="pt-4 border-t border-purple-500/20">
-                        <button
-                            onClick={() => {
-                                toggleTheme();
-                                closeMenu();
-                            }}
-                            className="w-full flex items-center justify-center gap-3 px-4 py-3 text-base font-semibold rounded-lg transition-all duration-300 glass border border-purple-500/30 hover:bg-purple-500/20 mb-3"
-                        >
-                            {isDarkMode ? (
-                                <>
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                                    </svg>
-                                    <span className="text-slate-300">Switch to Light Mode</span>
-                                </>
-                            ) : (
-                                <>
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                    </svg>
-                                    <span className="text-slate-700">Switch to Dark Mode</span>
-                                </>
-                            )}
-                        </button>
+                    <div className="pt-4 border-t border-[var(--border)] flex flex-col gap-2">
                         <Link 
                             href="/contact" 
-                            className="block text-center px-4 py-3 text-base font-semibold text-white rounded-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-500 hover:to-cyan-500 shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="btn-primary block text-center px-4 py-3 text-base font-medium rounded-lg"
                             onClick={closeMenu}
                         >
                             Contact Us

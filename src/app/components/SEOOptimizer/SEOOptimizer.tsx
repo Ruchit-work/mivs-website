@@ -14,14 +14,7 @@ export default function SEOOptimizer() {
 
     // Preload critical resources
     const preloadCriticalResources = () => {
-      // Preload critical fonts
-      const fontLink = document.createElement('link');
-      fontLink.rel = 'preload';
-      fontLink.href = '/fonts/geist-sans.woff2';
-      fontLink.as = 'font';
-      fontLink.type = 'font/woff2';
-      fontLink.crossOrigin = 'anonymous';
-      document.head.appendChild(fontLink);
+      // Fonts are handled by next/font (Inter) in layout.tsx – no manual preload needed
 
       // Preload critical images
       const imageLink = document.createElement('link');
@@ -52,10 +45,10 @@ export default function SEOOptimizer() {
       const structuredData = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "MIVS Software Development",
+        "name": "MIVS",
         "url": "https://mivs-website.vercel.app",
         "logo": "https://mivs-website.vercel.app/images/logo.png",
-        "description": "Professional software development services including web development, mobile app development, cloud solutions, and AI/ML development.",
+        "description": "Enterprise AI automation and AI consulting. AI systems, LLM integrations, intelligent workflows.",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Jay Ambe Society",
@@ -70,43 +63,43 @@ export default function SEOOptimizer() {
           "email": "admin@mivs.in"
         },
         "sameAs": [
-          "https://linkedin.com/company/mivs-software",
+          "https://www.linkedin.com/company/110551451",
           "https://twitter.com/mivs_software"
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "Software Development Services",
+          "name": "Enterprise AI & Automation",
           "itemListElement": [
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Web Development",
-                "description": "Custom web applications built with modern technologies like React, Next.js, Node.js"
+                "name": "Enterprise AI Systems",
+                "description": "AI strategy, architecture, and implementation"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Mobile App Development",
-                "description": "Native and cross-platform mobile applications using React Native and Flutter"
+                "name": "LLM Integrations",
+                "description": "Production LLM, RAG, and AI agents"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Cloud Solutions",
-                "description": "Cloud infrastructure setup and management on AWS, Google Cloud, and Azure"
+                "name": "AI Automation Architecture",
+                "description": "Workflow and automation design and deployment"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "AI/ML Development",
-                "description": "Artificial Intelligence and Machine Learning solutions for business automation"
+                "name": "Intelligent Workflow Systems",
+                "description": "Process and decision automation"
               }
             }
           ]

@@ -26,26 +26,25 @@ export default function ServiceHero({
 
         <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
           <div className="flex-1 pr-0 lg:pr-10">
-            <div className="mb-4 text-purple-200 text-sm font-semibold">Services</div>
-            <h1 className="hero-title text-4xl md:text-6xl font-bold mb-4 leading-tight">
+            <div className="mb-4 text-[var(--accent)] text-sm font-semibold">Services</div>
+            <h1 className="font-heading text-4xl md:text-6xl font-bold mb-4 leading-tight text-[var(--foreground)]">
               {title}
             </h1>
-            <p className="hero-subtitle text-lg md:text-xl max-w-2xl">{subtitle}</p>
+            <p className="text-[var(--foreground-secondary)] text-lg md:text-xl max-w-2xl leading-[1.6]">{subtitle}</p>
           </div>
 
-          {/* Right overlay highlights (desktop) */}
           <aside className="hidden md:block w-[40%] max-w-[460px] self-stretch">
-            <div className="h-full bg-black/50 backdrop-blur-sm rounded-l-2xl border-l border-white/10 overflow-hidden">
+            <div className="h-full bg-[var(--background)]/90 backdrop-blur-sm rounded-l-xl border-l border-[var(--border)] overflow-hidden">
               {highlights.map((h, idx) => (
                 <a
                   key={idx}
                   href={h.href}
-                  className="block p-6 border-b border-white/10 text-left hover:bg-white/10 transition-colors"
+                  className="block p-6 border-b border-[var(--border)] text-left hover:bg-[var(--background-card)]/50 transition-colors"
                 >
-                  <div className="text-xl font-semibold text-white leading-snug">
+                  <div className="font-heading text-xl font-semibold text-[var(--foreground)] leading-snug">
                     {h.title}
                   </div>
-                  <div className="mt-2 text-sm text-slate-200">{h.cta}</div>
+                  <div className="mt-2 text-sm text-[var(--foreground-secondary)]">{h.cta}</div>
                 </a>
               ))}
             </div>

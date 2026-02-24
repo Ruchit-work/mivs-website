@@ -7,38 +7,36 @@ export default function ServicesMegaMenu({ onMouseEnter, onMouseLeave, isExiting
 
     return (
         <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 w-[min(1100px,95vw)] z-[60]" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-            <div className={`bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden origin-top ${isExiting ? 'animate-fade-out-up' : 'animate-fade-up'}` }>
+            <div className={`bg-[var(--background-card)] border border-[var(--border)] rounded-xl shadow-xl overflow-hidden origin-top ${isExiting ? 'animate-fade-out-up' : 'animate-fade-up'}`}>
                 <div className="grid grid-cols-12">
-                    {/* Left column - What do you want to do today? */}
-                    <div className="col-span-12 md:col-span-3 p-6 bg-slate-50">
-                        <h4 className="text-lg font-semibold text-slate-900 mb-4">What do you want to do today?</h4>
-                        <ul className="space-y-3 text-slate-700">
+                    <div className="col-span-12 md:col-span-3 p-6 bg-[var(--background-secondary)]">
+                        <h4 className="font-heading text-lg font-semibold text-[var(--foreground)] mb-4">Capabilities</h4>
+                        <ul className="space-y-3 text-[var(--foreground-secondary)]">
                             <li>
-                                <Link href="/services" className="flex items-start gap-3 p-2 rounded-lg hover:bg-purple-50 transition-colors">
-                                    <span className="mt-1 w-2 h-2 rounded-full bg-purple-500"></span>
-                                    <span>Scale AI you can trust</span>
+                                <Link href="/services#ai" className="flex items-start gap-3 p-2 rounded-lg hover:bg-[var(--background-card)] hover:text-[var(--accent)] transition-colors">
+                                    <span className="mt-1 w-2 h-2 rounded-full bg-[var(--accent)] flex-shrink-0" />
+                                    <span>Enterprise AI systems</span>
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/services" className="flex items-start gap-3 p-2 rounded-lg hover:bg-purple-50 transition-colors">
-                                    <span className="mt-1 w-2 h-2 rounded-full bg-purple-500"></span>
-                                    <span>Transform applications to unlock value</span>
+                                <Link href="/services" className="flex items-start gap-3 p-2 rounded-lg hover:bg-[var(--background-card)] hover:text-[var(--accent)] transition-colors">
+                                    <span className="mt-1 w-2 h-2 rounded-full bg-[var(--accent)] flex-shrink-0" />
+                                    <span>LLM integrations & RAG</span>
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/services" className="flex items-start gap-3 p-2 rounded-lg hover:bg-purple-50 transition-colors">
-                                    <span className="mt-1 w-2 h-2 rounded-full bg-purple-500"></span>
-                                    <span>Navigate cyber risk with confidence</span>
+                                <Link href="/services" className="flex items-start gap-3 p-2 rounded-lg hover:bg-[var(--background-card)] hover:text-[var(--accent)] transition-colors">
+                                    <span className="mt-1 w-2 h-2 rounded-full bg-[var(--accent)] flex-shrink-0" />
+                                    <span>AI automation architecture</span>
                                 </Link>
                             </li>
                         </ul>
                     </div>
 
-                    {/* Center column - Services from data */}
-                    <div className="col-span-12 md:col-span-9 p-6 border-t md:border-t-0 md:border-l border-slate-200">
+                    <div className="col-span-12 md:col-span-9 p-6 border-t md:border-t-0 md:border-l border-[var(--border)]">
                         <div className="flex items-center justify-between mb-4">
-                            <h4 className="text-lg font-semibold text-slate-900">Services that drive business results</h4>
-                            <Link href="/services" className="text-sm text-purple-600 hover:text-purple-700 transition-colors">View all services →</Link>
+                            <h4 className="font-heading text-lg font-semibold text-[var(--foreground)]">Enterprise AI & automation</h4>
+                            <Link href="/services" className="text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">View all services →</Link>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {[leftList, rightList].map((col, idx) => (
@@ -47,10 +45,10 @@ export default function ServicesMegaMenu({ onMouseEnter, onMouseLeave, isExiting
                                         <Link
                                             key={s.id}
                                             href={`/services/${s.id}`}
-                                            className={`group flex items-center justify-between p-3 rounded-xl hover:bg-purple-50 border border-transparent hover:border-purple-100 transition-colors`}
+                                            className="group flex items-center justify-between p-3 rounded-xl hover:bg-[var(--background-secondary)] border border-transparent hover:border-[var(--border)] transition-colors"
                                         >
-                                            <span className={`text-slate-700 hover:text-purple-600`}>{s.title}</span>
-                                            <svg className={`w-4 h-4 text-slate-400 group-hover:text-purple-600 transition-colors`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <span className="text-[var(--foreground-secondary)] group-hover:text-[var(--accent)]">{s.title}</span>
+                                            <svg className="w-4 h-4 text-[var(--foreground-muted)] group-hover:text-[var(--accent)] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                             </svg>
                                         </Link>
@@ -59,8 +57,6 @@ export default function ServicesMegaMenu({ onMouseEnter, onMouseLeave, isExiting
                             ))}
                         </div>
                     </div>
-
-                    {/* Spotlight column removed as requested */}
                 </div>
             </div>
         </div>

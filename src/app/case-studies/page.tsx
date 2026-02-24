@@ -1,71 +1,104 @@
-import CaseStudies from "../components/CaseStudies/CaseStudies";
-import AnimatedHero from "../components/Hero/AnimatedHero";
-import CallToAction from "../components/CTA/CallToAction";
+import { CASE_STUDIES } from "../data/case-studies";
 import type { Metadata } from "next";
+import PageHero from "@/app/components/Hero/PageHero";
 
 export const metadata: Metadata = {
-  title: "Case Studies & Success Stories | MIVS Software Development",
-  description: "Explore our portfolio of successful software projects. Real results, measurable impact. See how we've helped businesses transform with technology.",
-  keywords: [
-    "case studies", "success stories", "portfolio", "client results", "software projects",
-    "digital transformation", "project outcomes", "client testimonials", "real results"
-  ],
+  title: "Case Studies | Enterprise AI Deployments | MIVS",
+  description: "Enterprise AI deployments with measurable impact. Problem, architecture, implementation, and results.",
+  keywords: ["case studies", "enterprise AI", "AI deployment", "automation", "measurable impact"],
   openGraph: {
-    title: "Case Studies & Success Stories | MIVS Software Development",
-    description: "Real results, measurable impact. See how we've helped businesses transform with technology.",
+    title: "Case Studies | Enterprise AI Deployments | MIVS",
     url: "https://mivs.in/case-studies",
-    images: [
-      {
-        url: "/images/case-studies-hero.jpg",
-        width: 1200,
-        height: 630,
-        alt: "MIVS Case Studies and Success Stories",
-      },
-    ],
   },
-  alternates: {
-    canonical: "https://mivs.in/case-studies",
-  },
+  alternates: { canonical: "https://mivs.in/case-studies" },
 };
 
 export default function CaseStudiesPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pt-20">
-      <AnimatedHero 
-        title="Success Stories"
-        subtitle="Real projects. Real results. See how we've helped businesses achieve their goals."
-        backgroundImage="/images/success.jpg"
+    <div className="min-h-screen bg-[var(--background)]">
+      <PageHero
+        title="Enterprise AI Deployments with Measurable Impact"
+        subtitle="Problem, architecture, approach, and outcomes—executive-level view of our AI transformation work."
+        backgroundImage="/images/portfolio.jpg"
       />
 
-      {/* Stats Overview */}
-      <section className="py-16 bg-gradient-to-b from-[#0a0a0f] to-[#13131a]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { label: "Projects Delivered", value: "100+", suffix: "" },
-              { label: "Industries Served", value: "15+", suffix: "" },
-              { label: "Client Satisfaction", value: "98", suffix: "%" },
-              { label: "Countries", value: "10+", suffix: "" }
-            ].map((stat) => (
-              <div key={stat.label} className="text-center glass-card rounded-xl p-6">
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                  {stat.value}{stat.suffix}
+      {/* Case study blocks */}
+      <section className="py-28 bg-[var(--background)]" aria-label="Case studies">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-24">
+            {CASE_STUDIES.map((study) => (
+              <article
+                key={study.id}
+                className="rounded-3xl border border-slate-200 bg-white p-10 lg:p-12 transition-all duration-300 hover:shadow-lg"
+              >
+                <div className="flex flex-wrap items-center gap-3 mb-8">
+                  <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-sm font-medium">
+                    {study.industry}
+                  </span>
+                  <h2 className="font-heading text-2xl font-semibold text-slate-900 tracking-tight">{study.client}</h2>
                 </div>
-                <div className="text-sm text-slate-400">{stat.label}</div>
-              </div>
+
+                <div className="grid lg:grid-cols-2 gap-10 mb-10">
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Problem</h3>
+                      <p className="text-slate-600 leading-relaxed">{study.challenge}</p>
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">AI System Architecture</h3>
+                      <p className="text-slate-600 leading-relaxed">{study.solution}</p>
+                    </div>
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Implementation Approach</h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Strategic assessment → architecture design → phased build → production deployment with monitoring and handover.
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Measurable Results</h3>
+                    <div className="space-y-6">
+                      {study.metrics.map((m) => (
+                        <div key={m.label} className="rounded-2xl border border-slate-200 bg-slate-50/50 p-6">
+                          <div className="font-heading text-4xl font-semibold text-indigo-600 tracking-tight">{m.value}</div>
+                          <p className="text-slate-700 font-medium mt-1">{m.description}</p>
+                          <p className="text-slate-500 text-sm mt-0.5">{m.label}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Tech stack</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {study.technologies.map((t) => (
+                      <span key={t} className="px-3 py-1.5 rounded-xl bg-slate-100 text-slate-700 text-sm font-medium">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* All Case Studies */}
-      <CaseStudies />
-
       {/* CTA */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <CallToAction />
-      </div>
+      <section className="py-10 sm:py-12 bg-slate-50/50 border-t border-slate-200 flex items-center">
+        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-white border border-slate-200/80 shadow-lg shadow-slate-200/50 px-6 py-5 sm:px-8 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <p className="text-slate-600 m-0">Discuss your AI transformation initiative.</p>
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all duration-300 shrink-0"
+            >
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
-
