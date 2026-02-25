@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/app/components/Hero/PageHero";
+import OrbitText from "@/app/components/OrbitText/OrbitText";
 
 export default function ContactPage() {
   const [loading, setLoading] = useState(false);
@@ -83,7 +84,7 @@ export default function ContactPage() {
           Send a message
         </Link>
         {/* <a
-          href="mailto:mivs.work.gpt@gmail.com"
+          href="mailto:admin@mivs.in"
           className="px-8 py-4 rounded-2xl bg-white border border-slate-200 text-slate-700 font-medium hover:bg-slate-50 transition-all duration-300 inline-flex items-center justify-center"
         >
           Email us
@@ -93,10 +94,15 @@ export default function ContactPage() {
       {/* Contact section – same spacing and container as other pages */}
       <section
         id="contact-form"
-        className="py-24 sm:py-32 bg-[var(--background-secondary)]"
+        className="relative py-24 sm:py-32 bg-[var(--background-secondary)] overflow-hidden"
         aria-label="Contact"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="absolute top-0 right-0 flex justify-end items-start pt-12 pr-8 pointer-events-none opacity-15">
+          <div className="scale-90">
+            <OrbitText letterColor="rgba(15, 23, 42, 0.15)" />
+          </div>
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             {/* Left: messaging + contact details + image */}
             <div>
@@ -112,7 +118,7 @@ export default function ContactPage() {
 
               <div className="space-y-4 mb-10">
                 <a
-                  href="mailto:mivs.work.gpt@gmail.com"
+                  href="mailto:admin@mivs.in"
                   className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition-shadow"
                   aria-label="Email us"
                 >
@@ -123,7 +129,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-heading font-semibold text-slate-900">Email</p>
-                    <p className="text-slate-600 text-sm">mivs.work.gpt@gmail.com</p>
+                    <p className="text-slate-600 text-sm">admin@mivs.in</p>
                   </div>
                 </a>
                 <a

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
 
 /* ============================================
    MIVS – Light theme, premium AI consulting
@@ -76,6 +77,99 @@ p {
 
 .animate-section-reveal {
   animation: section-reveal 0.6s ease-out both;
+}
+
+/* ===== Hero glitch title (letter-by-letter + text glitch) ===== */
+.glitch-hero-title {
+  color: var(--foreground);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Share Tech Mono", var(--font-mono);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  animation: glitch-hero-textGlitch 3s ease-in-out infinite alternate;
+}
+.glitch-hero-line {
+  display: block;
+}
+.glitch-hero-word {
+  display: inline-block;
+}
+.glitch-hero-letter {
+  display: inline-block;
+  min-width: 0.1em;
+  opacity: 0;
+  transform: translateY(2px);
+  animation: glitch-hero-displayLetter 6s ease-in-out infinite;
+}
+
+@keyframes glitch-hero-displayLetter {
+  0% {
+    transform: translateY(2px);
+    color: var(--foreground);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+    color: #6366f1;
+  }
+  8% {
+    opacity: 0;
+    color: var(--foreground);
+    transform: translateY(0);
+  }
+  12% {
+    opacity: 1;
+    color: #4f46e5;
+    transform: translateY(1px);
+  }
+  15% {
+    opacity: 1;
+    color: var(--foreground);
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 1;
+    color: var(--foreground);
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+    color: var(--foreground);
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(2px);
+    color: var(--foreground);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-hero-textGlitch {
+  0% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  95% {
+    opacity: 0.15;
+  }
+  96% {
+    opacity: 1;
+    transform: translateX(1px);
+  }
+  97% {
+    opacity: 0.15;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ===== Scroll-triggered reveal – eye-catching scale + slide + stagger ===== */
@@ -157,11 +251,506 @@ p {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
 }
 
+/* ===== Results That Speak – case study cards (depth, accent bar, CTA) ===== */
+.results-section-card {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.results-section-card:hover {
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.04),
+    0 12px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+.results-section-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--accent);
+}
+.results-section-card[data-industry="Healthcare"]::before { background: #4F46E5; }
+.results-section-card[data-industry="Retail & E-commerce"]::before { background: #059669; }
+.results-section-card[data-industry="Financial Services"]::before { background: #0E7490; }
+.results-section-card[data-industry="Manufacturing"]::before { background: #6D28D9; }
+.results-section-card[data-industry="Technology"]::before { background: #0369A1; }
+.results-section-card[data-industry="Government"]::before { background: #475569; }
+
+/* Industry pills – labels only, minimal hover so they don’t feel clickable */
+.industry-pill {
+  transition: background-color 0.2s ease;
+}
+.industry-pill:hover {
+  background: #f1f5f9;
+}
+
+/* ===== MIVS orbit text – CodePen “Orbital Text Donut”: multiple slices in a ring, letters orbit on each ellipse ===== */
+@property --orbit-progress {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.orbit-text {
+  --orbit-letters: 8;
+  --orbit-slices: 16;
+  --orbit-radius: calc(var(--orbit-letters) * 8px);
+  --orbit-radius-x: calc(var(--orbit-radius) / 2.3);
+  --orbit-radius-y: calc(var(--orbit-radius-x) * 1.5);
+  position: relative;
+  width: calc(var(--orbit-radius) * 2.6);
+  height: calc(var(--orbit-radius) * 2.6);
+}
+
+/* Each slice is rotated around the center, translated to the donut ring, then rotated 90deg (CodePen .donut__slice) */
+.orbit-text__slice {
+  --orbit-slice-angle: calc(360deg / var(--orbit-slices) * var(--orbit-slice-i) - 90deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  transform: rotate(var(--orbit-slice-angle)) translate(var(--orbit-radius)) rotate(90deg);
+  pointer-events: none;
+}
+
+.orbit-text__inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--orbit-radius-x) * 2);
+  height: calc(var(--orbit-radius-y) * 2);
+  pointer-events: none;
+}
+
+/* Each letter orbits on the ellipse: animation on the letter drives --orbit-progress (like CodePen .donut__letter) */
+.orbit-text__letter {
+  --orbit-base: calc(360deg / var(--orbit-letters) * var(--orbit-letter-i));
+  --orbit-angle: calc(var(--orbit-base) + var(--orbit-progress));
+  --orbit-raw: calc((sin(var(--orbit-angle) + 90deg) + 1) / 1.8);
+  --orbit-phase: calc(var(--orbit-raw) * var(--orbit-raw));
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: calc(3px + var(--orbit-phase) * 14px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  will-change: transform;
+  color: color-mix(
+    in srgb,
+    transparent calc((1 - var(--orbit-phase)) * 100%),
+    var(--orbit-letter-color, rgba(79, 70, 229, 0.55)) calc(var(--orbit-phase) * 100%)
+  );
+  transform: translate(-50%, -50%)
+    translate(
+      calc(cos(var(--orbit-angle)) * var(--orbit-radius-x)),
+      calc(sin(var(--orbit-angle)) * var(--orbit-radius-y))
+    );
+  animation: orbit-letter-spin 16s ease-in-out infinite;
+}
+
+@keyframes orbit-letter-spin {
+  from { --orbit-progress: 0deg; }
+  to { --orbit-progress: 360deg; }
+}
+
+/* ===== Leadership – founder profile 3D tilt on hover (CodePen-style) ===== */
+.leadership-card-grid {
+  perspective: 1200px;
+}
+
+.leadership-card-3d {
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+}
+
+/* Colors effect: multi-layer colored glow on hover (CodePen-style) */
+.leadership-card-inner {
+  transition: box-shadow 0.65s ease, border-color 0.65s ease;
+  min-height: 420px;
+}
+
+.leadership-card-3d:hover .leadership-card-inner {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow:
+    0 40px 260px rgba(79, 70, 229, 0.12),
+    0 40px 130px rgba(124, 58, 237, 0.18),
+    -80px -40px 230px rgba(6, 182, 212, 0.12),
+    80px 40px 230px rgba(99, 102, 241, 0.15);
+}
+
+/* Banner background: subtle dim on hover (like CodePen image opacity) */
+.leadership-card__banner-bg {
+  transition: opacity 0.65s ease, filter 0.65s ease;
+}
+.leadership-card-inner:hover .leadership-card__banner-bg {
+  opacity: 0.9;
+  filter: brightness(0.95);
+}
+
+/* Profile circle: scale down on hover (CodePen profile scale) */
+.leadership-card__profile {
+  transform: scale(1.25);
+  transition: transform 0.65s ease;
+}
+.leadership-card-inner:hover .leadership-card__profile {
+  transform: scale(1);
+}
+
+/* Job title: color pops on hover */
+.leadership-card__job {
+  color: rgba(79, 70, 229, 0.6);
+  transition: color 0.65s ease;
+}
+.leadership-card-inner:hover .leadership-card__job {
+  color: rgb(79, 70, 229);
+}
+
+/* Teaser: visible by default (2 lines), fades out on hover so card doesn’t look empty */
+.leadership-card__teaser {
+  transition: opacity 0.65s ease;
+}
+.leadership-card-inner:hover .leadership-card__teaser {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Body: relative so bio can overlay teaser area */
+.leadership-card__body {
+  position: relative;
+}
+
+/* Bio: overlays teaser area, slides up + fades in on hover */
+.leadership-card__bio {
+  position: absolute;
+  top: 4rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  transform: translateY(28%);
+  opacity: 0;
+  transition: transform 0.65s ease, opacity 0.65s ease;
+}
+.leadership-card-inner:hover .leadership-card__bio {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Footer: slide up + fade in on hover (CodePen card__footer) */
+.leadership-card__footer {
+  transform: translateY(60%);
+  opacity: 0;
+  transition: transform 0.65s ease, opacity 0.65s ease;
+}
+.leadership-card-inner:hover .leadership-card__footer {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ===== Strategy to Scalable – cards stacked initially, spread when section in view ===== */
+.strategy-cards-grid {
+  position: relative;
+}
+
+.strategy-card {
+  transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* Initial: all cards stacked in center (one on one) – desktop only (3-column grid) */
+@media (min-width: 768px) {
+  #strategy-to-scalable .strategy-card[data-strategy-index="0"] {
+    transform: translateX(calc(100% + 2.5rem));
+    z-index: 2;
+  }
+  #strategy-to-scalable .strategy-card[data-strategy-index="1"] {
+    transform: translateX(0);
+    z-index: 3;
+  }
+  #strategy-to-scalable .strategy-card[data-strategy-index="2"] {
+    transform: translateX(calc(-100% - 2.5rem));
+    z-index: 2;
+  }
+
+  /* When section in view: cards spread to their grid positions */
+  #strategy-to-scalable.strategy-cards-revealed .strategy-card[data-strategy-index="0"] {
+    transform: translateX(0);
+    transition-delay: 0.15s;
+  }
+  #strategy-to-scalable.strategy-cards-revealed .strategy-card[data-strategy-index="1"] {
+    transform: translateX(0);
+    transition-delay: 0.35s;
+  }
+  #strategy-to-scalable.strategy-cards-revealed .strategy-card[data-strategy-index="2"] {
+    transform: translateX(0);
+    transition-delay: 0.55s;
+  }
+
+  /* AI Solutions We Deliver – same stack → spread (desktop only) */
+  .ai-solutions-cards-grid {
+    position: relative;
+  }
+  .ai-solution-card-spread {
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.6s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+  #ai-solutions-deliver .ai-solution-card-spread[data-column="0"] {
+    transform: translateX(calc(100% + 2.5rem));
+    z-index: 2;
+  }
+  #ai-solutions-deliver .ai-solution-card-spread[data-column="1"] {
+    transform: translateX(0);
+    z-index: 3;
+  }
+  #ai-solutions-deliver .ai-solution-card-spread[data-column="2"] {
+    transform: translateX(calc(-100% - 2.5rem));
+    z-index: 2;
+  }
+  #ai-solutions-deliver.ai-solutions-cards-revealed .ai-solution-card-spread {
+    transform: translateX(0);
+  }
+  #ai-solutions-deliver.ai-solutions-cards-revealed .ai-solution-card-spread[data-card-index="0"] { transition-delay: 0.15s; }
+  #ai-solutions-deliver.ai-solutions-cards-revealed .ai-solution-card-spread[data-card-index="1"] { transition-delay: 0.35s; }
+  #ai-solutions-deliver.ai-solutions-cards-revealed .ai-solution-card-spread[data-card-index="2"] { transition-delay: 0.55s; }
+  #ai-solutions-deliver.ai-solutions-cards-revealed .ai-solution-card-spread[data-card-index="3"] { transition-delay: 0.75s; }
+  #ai-solutions-deliver.ai-solutions-cards-revealed .ai-solution-card-spread[data-card-index="4"] { transition-delay: 0.95s; }
+}
+
+/* ===== Built to run – two gradients only ===== */
+.built-to-run-gradient-a {
+  background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+}
+.built-to-run-gradient-b {
+  background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
+}
+
+/* ===== Built to run – cards always visible; optional stagger when section revealed ===== */
+#built-to-run .built-to-run-card {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+/* When scroll observer sets data-scroll-revealed: subtle stagger from slightly below */
+#built-to-run .built-to-run-card:nth-child(1) { transition-delay: 0.05s; }
+#built-to-run .built-to-run-card:nth-child(2) { transition-delay: 0.12s; }
+#built-to-run .built-to-run-card:nth-child(3) { transition-delay: 0.2s; }
+#built-to-run[data-scroll-revealed="true"] .built-to-run-card:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+#built-to-run[data-scroll-revealed="true"] .built-to-run-card:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
+#built-to-run[data-scroll-revealed="true"] .built-to-run-card:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.46s; }
+
+/* CodePen-style hover: scale + corner overlays */
+.built-to-run-card {
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.built-to-run-card:hover {
+  transform: translateY(0) scale(1.08);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+}
+
+/* Corner overlay layers – slide in from bottom-left on hover */
+.built-to-run-corner {
+  position: absolute;
+  z-index: 0;
+  left: -45%;
+  bottom: -45%;
+  width: 55%;
+  height: 55%;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%);
+  transition: left 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), bottom 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  pointer-events: none;
+}
+.built-to-run-corner-2 { width: 38%; height: 38%; left: -42%; bottom: -42%; transition-delay: 0.12s; }
+.built-to-run-corner-3 { width: 22%; height: 22%; left: -28%; bottom: -28%; transition-delay: 0.24s; }
+
+.built-to-run-card:hover .built-to-run-corner { left: -1px; bottom: -1px; }
+.built-to-run-card:hover .built-to-run-corner-2 { transition-delay: 0.12s; }
+.built-to-run-card:hover .built-to-run-corner-3 { transition-delay: 0.24s; }
+
+/* ===== Case study hero (Healthcare) – CodePen vEgVYY full implementation ===== */
+.case-study-hero-bg {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* Base like .bg: radial gradient */
+  background: radial-gradient(
+    ellipse 120% 100% at 50% 0%,
+    rgba(79, 70, 229, 0.12),
+    rgba(241, 245, 249, 0.98)
+  );
+  position: relative;
+}
+.case-study-hero-bg__radial,
+.case-study-hero-bg__flare,
+.case-study-hero-bg__grid {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.case-study-hero-bg__radial {
+  background: radial-gradient(
+    ellipse 100% 80% at 50% 20%,
+    rgba(79, 70, 229, 0.14) 0%,
+    rgba(6, 182, 212, 0.08) 45%,
+    transparent 75%
+  );
+  animation: case-study-hero-radial-pulse 4s ease-in-out infinite;
+}
+@keyframes case-study-hero-radial-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+/* Flare layer – linear gradient top to bottom like CodePen .flare */
+.case-study-hero-bg__flare {
+  background: linear-gradient(
+    to bottom,
+    rgba(79, 70, 229, 0.08) 0%,
+    transparent 30%,
+    transparent 60%,
+    rgba(6, 182, 212, 0.06) 100%
+  );
+}
+/* Grid – 10px grid lines like CodePen .grid */
+.case-study-hero-bg__grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+  background-size: 10px 10px;
+  background-position: -2px -2px, -2px -2px;
+  opacity: 0.85;
+}
+
+/* Orbital container – spinning shapes (p1–p8 style) */
+.case-study-hero-bg__orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+/* Center of orbits – right side of card so they don’t cover text */
+.case-study-hero-bg__p1,
+.case-study-hero-bg__p2,
+.case-study-hero-bg__p3,
+.case-study-hero-bg__p4,
+.case-study-hero-bg__p7,
+.case-study-hero-bg__p8 {
+  position: absolute;
+  top: 50%;
+  right: 22%;
+  transform-origin: center center;
+}
+/* p1: quarter circle (top-left quadrant), spin reverse */
+.case-study-hero-bg__p1 {
+  width: 56px;
+  height: 56px;
+  margin-top: -56px;
+  margin-right: -28px;
+  background: rgba(79, 70, 229, 0.18);
+  border-radius: 56px 0 0 0;
+  transform-origin: bottom right;
+  animation: case-study-hero-spin1 22s infinite linear;
+}
+/* p2: quarter circle (bottom-right quadrant) */
+.case-study-hero-bg__p2 {
+  width: 56px;
+  height: 56px;
+  margin-top: 0;
+  margin-right: -28px;
+  background: rgba(6, 182, 212, 0.2);
+  border-radius: 0 0 56px 0;
+  transform-origin: top left;
+  animation: case-study-hero-spin1 22s infinite linear;
+}
+/* p3: dotted circle */
+.case-study-hero-bg__p3 {
+  width: 72px;
+  height: 72px;
+  margin-top: -36px;
+  margin-right: -36px;
+  border: 2px dotted rgba(79, 70, 229, 0.25);
+  border-radius: 50%;
+  animation: case-study-hero-spin 18s infinite linear;
+}
+/* p4: full circle thin */
+.case-study-hero-bg__p4 {
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-right: -50px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 50%;
+}
+/* p7: larger circle */
+.case-study-hero-bg__p7 {
+  width: 140px;
+  height: 140px;
+  margin-top: -70px;
+  margin-right: -70px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 50%;
+}
+/* p8: circle with only bottom+right border */
+.case-study-hero-bg__p8 {
+  width: 160px;
+  height: 160px;
+  margin-top: -80px;
+  margin-right: -80px;
+  border-radius: 50%;
+  border-bottom: 2px solid rgba(79, 70, 229, 0.2);
+  border-right: 2px solid rgba(79, 70, 229, 0.2);
+}
+@keyframes case-study-hero-spin {
+  to { transform: translate(0, 0) rotate(360deg); }
+}
+@keyframes case-study-hero-spin1 {
+  to { transform: translate(0, 0) rotate(-360deg); }
+}
+
+/* Floating dots – exact CodePen .ani keyframes (opacity 0 → .2 → 0) */
+.case-study-hero-bg__dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(79, 70, 229, 0.4);
+  pointer-events: none;
+  animation: case-study-hero-ani 2s ease-in-out infinite;
+}
+@keyframes case-study-hero-ani {
+  0% { opacity: 0; }
+  50% { opacity: 0.25; }
+  100% { opacity: 0; }
+}
+/* Scattered positions (no JS – like random placement) */
+.case-study-hero-bg__dot--0 { left: 8%; top: 18%; animation-delay: 0s; }
+.case-study-hero-bg__dot--1 { left: 22%; top: 42%; animation-delay: 0.3s; }
+.case-study-hero-bg__dot--2 { left: 15%; top: 68%; animation-delay: 0.6s; }
+.case-study-hero-bg__dot--3 { left: 38%; top: 22%; animation-delay: 0.2s; }
+.case-study-hero-bg__dot--4 { left: 45%; top: 55%; animation-delay: 0.5s; }
+.case-study-hero-bg__dot--5 { left: 52%; top: 78%; animation-delay: 0.1s; }
+.case-study-hero-bg__dot--6 { left: 68%; top: 15%; animation-delay: 0.4s; }
+.case-study-hero-bg__dot--7 { left: 75%; top: 48%; animation-delay: 0.7s; }
+.case-study-hero-bg__dot--8 { left: 82%; top: 72%; animation-delay: 0.15s; }
+.case-study-hero-bg__dot--9 { left: 28%; top: 35%; animation-delay: 0.45s; }
+.case-study-hero-bg__dot--10 { left: 58%; top: 32%; animation-delay: 0.25s; }
+.case-study-hero-bg__dot--11 { left: 88%; top: 58%; animation-delay: 0.55s; }
+.case-study-hero-bg__dot--12 { left: 35%; top: 82%; animation-delay: 0.35s; }
+.case-study-hero-bg__dot--13 { left: 62%; top: 8%; animation-delay: 0.65s; }
+.case-study-hero-bg__dot--14 { left: 18%; top: 52%; animation-delay: 0.05s; }
+
 .glass-card {
   background: var(--background-card);
   border: 1px solid var(--border);
   border-radius: 1rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.case-study-card-shadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .glass {

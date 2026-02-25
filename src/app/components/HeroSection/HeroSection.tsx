@@ -1,8 +1,9 @@
 import Link from "next/link";
+import GlitchHeroTitle from "./GlitchHeroTitle";
 
 export default function HeroSection() {
   return (
-    <section className="relative overflow-hidden py-32 min-h-[80vh]" role="banner" aria-label="Hero section"
+    <section className="relative overflow-hidden py-20 sm:py-24 min-h-[70vh]" role="banner" aria-label="Hero section"
       style={{ background: "#fafbff" }}
     >
 
@@ -50,12 +51,10 @@ export default function HeroSection() {
           </p>
         </div>
 
-        <h1 className="text-5xl md:text-6xl font-semibold 
-          text-slate-900 leading-tight tracking-tight font-heading">
-          AI Automation That Transforms
-          <br />
-          How Businesses Operate
-        </h1>
+        <GlitchHeroTitle
+          lines={["AI Automation That Transforms", "How Businesses Operate"]}
+          className="text-slate-900"
+        />
 
         <p className="mt-6 text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
           We design intelligent AI systems that eliminate manual work,

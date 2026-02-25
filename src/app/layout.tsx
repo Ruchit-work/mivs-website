@@ -5,8 +5,7 @@ import Navbar from "./components/navbar/page";
 import Footer from "./components/footer/page";
 import StructuredData from "./components/StructuredData/StructuredData";
 import PerformanceMonitor from "./components/PerformanceMonitor/PerformanceMonitor";
-import ScrollRevealObserver from "./components/ScrollReveal/ScrollRevealObserver";
-
+import ScrollRevealObserverClient from "./components/ScrollReveal/ScrollRevealObserverClient";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -29,19 +28,18 @@ export const metadata: Metadata = {
   publisher: "MIVS",
   metadataBase: new URL('https://mivs.in'),
   
-  // Enhanced favicon and icons
+  // Favicon / tab icon – use site logo so it appears in browser tab (URL bar)
   icons: {
     icon: [
-      { url: '/images/logo.png', sizes: 'any', type: 'image/png' },
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
-      { url: '/images/logo.png', sizes: '16x16', type: 'image/png' },
+      { url: '/images/mivs_black_2.png', sizes: 'any', type: 'image/png' },
+      { url: '/images/mivs_black_2.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/mivs_black_2.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: [
-      { url: '/images/logo.png', sizes: '180x180', type: 'image/png' },
+      { url: '/images/mivs_black_2.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { rel: 'mask-icon', url: '/images/logo.png', color: '#0F172A' },
+      { rel: 'mask-icon', url: '/images/mivs_black_2.png', color: '#0F172A' },
     ],
   },
 
@@ -139,7 +137,7 @@ export default function RootLayout({
         <Navbar />
         <main className="page-enter-animate pt-20">
           {children}
-          <ScrollRevealObserver />
+          <ScrollRevealObserverClient />
         </main>
         <Footer />
       </body>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import PageHero from "@/app/components/Hero/PageHero";
+import OrbitText from "@/app/components/OrbitText/OrbitText";
 
 export const metadata: Metadata = {
   title: "Industries | AI Architectures for High-Complexity Industries | MIVS",
@@ -135,9 +136,16 @@ export default function IndustriesPage() {
               <div
                 key={ind.id}
                 id={ind.id}
-                className={`py-14 md:py-16 border-b border-slate-200 last:border-b-0 scroll-mt-28 ${i % 2 === 1 ? "bg-slate-50/60" : ""}`}
+                className={`relative py-14 md:py-16 border-b border-slate-200 last:border-b-0 scroll-mt-28 overflow-hidden ${i % 2 === 1 ? "bg-slate-50/60" : ""}`}
               >
-                <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-start">
+                {i === 0 && (
+                  <div className="absolute top-0 right-0 flex justify-end items-start pt-8 pr-8 pointer-events-none opacity-15">
+                    <div className="scale-75">
+                      <OrbitText letterColor="rgba(15, 23, 42, 0.18)" />
+                    </div>
+                  </div>
+                )}
+                <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-start relative z-10">
                   <div>
                     <h2 className="font-heading text-2xl font-semibold text-slate-900 tracking-tight">
                       {ind.title}

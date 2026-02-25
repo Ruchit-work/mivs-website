@@ -25,12 +25,12 @@ const PRINCIPLES = [
 const FOUNDERS = [
   {
     name: "Parjanya Patel",
-    title: "Chief AI Architect",
+    title: "Founder",
     quote: "Intelligence belongs in the workflow, not in a dashboard. We design systems that decide, act, and scale.",
   },
   {
     name: "Harshit Prajapati",
-    title: "Head of AI Engineering",
+    title: "Co-Founder",
     quote: "Production-grade means it runs when it matters. We build for reliability, governance, and long-term impact.",
   },
 ];
@@ -83,18 +83,18 @@ export default function About() {
       </section>
 
       {/* 3. Operating Principles */}
-      <section className="py-14 sm:py-20 bg-white border-t border-slate-200" aria-label="Operating principles">
+      <section className="py-10 sm:py-12 bg-white border-t border-slate-200" aria-label="Operating principles">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-sm font-medium text-slate-500 uppercase tracking-wider mb-8">
+          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-5">
             Operating principles
           </p>
-          <ul className="space-y-8">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {PRINCIPLES.map((principle, i) => (
-              <li key={principle} className="flex gap-4 md:gap-6 items-baseline border-b border-slate-100 pb-8 last:border-b-0 last:pb-0">
-                <span className="font-heading text-sm font-semibold text-slate-400 tracking-tight tabular-nums shrink-0 w-8">
+              <li key={principle} className="flex gap-3 items-center rounded-xl bg-slate-50/80 border border-slate-100 px-4 py-3">
+                <span className="font-heading text-xs font-semibold text-indigo-600 tracking-tight tabular-nums shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="font-heading text-lg sm:text-xl font-semibold text-slate-900 tracking-tight">
+                <span className="font-heading text-sm font-semibold text-slate-900 tracking-tight leading-snug">
                   {principle}
                 </span>
               </li>
@@ -103,12 +103,18 @@ export default function About() {
         </div>
       </section>
 
-      {/* 4. Leadership – team image */}
-      <section className="py-14 sm:py-20 bg-white border-t border-slate-200/80" aria-labelledby="leadership-heading">
+      {/* 4. Leadership – compact cards */}
+      <section className="py-12 sm:py-16 bg-slate-50/60 border-t border-slate-200/80" aria-labelledby="leadership-heading">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-start md:gap-12">
-            <div className="shrink-0 mb-8 md:mb-0">
-              <div className="relative w-full max-w-sm aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
+          <h2 id="leadership-heading" className="sr-only">
+            Leadership
+          </h2>
+          <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-6" aria-hidden="true">
+            Leadership
+          </p>
+          <div className="flex flex-col lg:flex-row lg:items-stretch gap-8 lg:gap-10">
+            <div className="shrink-0 lg:w-[280px]">
+              <div className="relative w-full aspect-[4/3] max-w-sm mx-auto lg:mx-0 rounded-2xl overflow-hidden border border-slate-200/80 bg-slate-100 shadow-sm">
                 <Image
                   src="/images/team.jpg"
                   alt="Our team"
@@ -118,21 +124,23 @@ export default function About() {
                 />
               </div>
             </div>
-            <div className="flex-1">
-              <h2 id="leadership-heading" className="font-heading text-2xl font-semibold text-slate-900 tracking-tight mb-8">
-                Leadership
-              </h2>
-              <div className="space-y-12">
-                {FOUNDERS.map((person) => (
-                  <div key={person.name}>
-                    <p className="font-heading text-lg font-semibold text-slate-900 tracking-tight">{person.name}</p>
-                    <p className="text-indigo-600 text-sm font-medium mt-1">{person.title}</p>
-                    <p className="text-slate-600 mt-4 max-w-2xl leading-relaxed italic">
-                      &ldquo;{person.quote}&rdquo;
-                    </p>
-                  </div>
-                ))}
-              </div>
+            <div className="flex-1 grid sm:grid-cols-2 gap-6 min-w-0">
+              {FOUNDERS.map((person) => (
+                <div
+                  key={person.name}
+                  className="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6 shadow-sm flex flex-col"
+                >
+                  <p className="font-heading text-base font-semibold text-slate-900 tracking-tight">
+                    {person.name}
+                  </p>
+                  <p className="text-indigo-600 text-xs font-medium mt-0.5 uppercase tracking-wide">
+                    {person.title}
+                  </p>
+                  <p className="text-slate-600 text-sm mt-4 leading-relaxed flex-1">
+                    &ldquo;{person.quote}&rdquo;
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

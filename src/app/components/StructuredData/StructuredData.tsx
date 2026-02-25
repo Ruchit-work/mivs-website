@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
 interface StructuredDataProps {
   type: 'organization' | 'website' | 'service' | 'breadcrumb' | 'faq' | 'article';
@@ -8,7 +8,8 @@ interface StructuredDataProps {
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
-  const getStructuredData = () => {
+  const dataKey = JSON.stringify(data);
+  const getStructuredData = useCallback(() => {
     switch (type) {
       case 'organization':
         return {
@@ -171,10 +172,11 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       default:
         return {};
     }
-  };
+    // dataKey is JSON.stringify(data); we intentionally avoid listing every data.* key
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, dataKey]);
 
-  const dataKey = JSON.stringify(data);
-  const structuredData = useMemo(() => getStructuredData(), [type, dataKey]);
+  const structuredData = useMemo(() => getStructuredData(), [getStructuredData]);
 
   useEffect(() => {
     const script = document.createElement("script");

@@ -1,35 +1,96 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+// Ease-out cubic for scroll-driven zoom
+function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+}
+
+// Simple 2-color gradient – light, clean, scales with scroll
+const FOOTER_GRADIENT = 'linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%)';
 
 export default function Footer() {
-    const [scrollOffset, setScrollOffset] = useState(0);
+    const gradientRef = useRef(null);
+    const rafIdRef = useRef(null);
+    const footerRef = useRef(null);
+    const [colorsGlowVisible, setColorsGlowVisible] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => setScrollOffset(window.scrollY);
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
+        const el = footerRef.current;
+        if (!el) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => setColorsGlowVisible(entry.isIntersecting),
+            { threshold: 0.08, rootMargin: '0px 0px 120px 0px' }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
     }, []);
 
-    const drift = scrollOffset * 0.05;
-    const glowY = 100 - Math.min(8, drift * 0.15);
+    useEffect(() => {
+        const el = gradientRef.current;
+        if (!el) return;
+        const updateFromScroll = () => {
+            const scrollY = window.scrollY ?? document.documentElement.scrollTop ?? 0;
+            const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+            const progress = maxScroll > 0 ? Math.min(1, scrollY / maxScroll) : 0;
+            const eased = easeOutCubic(progress);
+            // Gradient starts small (0.45) and grows to full size (1.25) as user scrolls down
+            const minScale = 0.45;
+            const maxScale = 1.25;
+            const scale = minScale + (maxScale - minScale) * eased;
+            el.style.transform = `translateZ(0) scale(${scale})`;
+        };
+        const onScroll = () => {
+            if (rafIdRef.current != null) return;
+            rafIdRef.current = requestAnimationFrame(() => {
+                updateFromScroll();
+                rafIdRef.current = null;
+            });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateFromScroll();
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            if (rafIdRef.current != null) cancelAnimationFrame(rafIdRef.current);
+        };
+    }, []);
 
     return (
-        <footer className="relative text-[var(--foreground)] mt-20 border-t border-[var(--border)] bg-[var(--background)]">
-            <div className="relative overflow-hidden">
-                {/* Gradient layer – same effect as FooterGradient */}
+        <footer
+            ref={footerRef}
+            className={`relative text-[var(--foreground)] mt-20 border-t border-[var(--border)] bg-[var(--background)] footer-colors-glow-root ${colorsGlowVisible ? 'footer-colors-glow-visible' : ''}`}
+            suppressHydrationWarning
+        >
+            {/* Colored glow overlay when footer is in view (scroll-triggered) */}
+            <div
+                className="footer-colors-glow-layer"
+                aria-hidden
+            />
+            <div className="relative min-h-[320px] sm:min-h-[360px] overflow-hidden">
                 <div
-                    className="absolute inset-0 pointer-events-none"
+                    ref={gradientRef}
+                    className="absolute inset-0 z-0 pointer-events-none overflow-hidden origin-center"
                     style={{
-                        background: `
-                            radial-gradient(ellipse 120% 70% at 50% ${glowY}%, rgba(254, 215, 170, 0.55) 0%, rgba(253, 186, 116, 0.3) 30%, rgba(254, 243, 199, 0.12) 50%, transparent 65%),
-                            linear-gradient(180deg, #ffffff 0%, #f8fafc 15%, #f0f9ff 40%, #e0f2fe 75%, #fefce8 100%)
-                        `,
+                        transformOrigin: 'center center',
+                        willChange: 'transform',
+                        transform: 'translateZ(0) scale(1)',
                     }}
+                >
+                    <div
+                        className="absolute -left-[25%] -top-[25%] w-[150%] h-[150%]"
+                        style={{
+                            backgroundImage: FOOTER_GRADIENT,
+                            backgroundSize: '100% 100%',
+                        }}
+                    />
+                </div>
+                <div
+                    className="absolute inset-0 z-[1] pointer-events-none bg-white/10"
+                    aria-hidden
                 />
-                <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 md:py-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* Brand + Summary */}
                     <div className="lg:col-span-1">
@@ -39,7 +100,7 @@ export default function Footer() {
                                 alt="MIVS" 
                                 width={200}
                                 height={90}
-                                className="h-12 lg:h-30 w-auto" 
+                                className="h-12 lg:h-30 w-auto opacity-95" 
                                 priority
                             />
                         </div>
@@ -51,7 +112,7 @@ export default function Footer() {
                                 href="https://twitter.com/mivssoftware" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="w-10 h-10 border border-[var(--border)] rounded-lg flex items-center justify-center transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                                className="w-10 h-10 border border-[var(--border)] rounded-lg flex items-center justify-center transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] text-[var(--foreground-secondary)] bg-white/60"
                                 aria-label="Follow us on Twitter"
                             >
                                 <svg className="w-5 h-5 text-[var(--foreground-secondary)] transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -62,7 +123,7 @@ export default function Footer() {
                                 href="https://www.linkedin.com/company/110551451" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="w-10 h-10 border border-[var(--border)] rounded-lg flex items-center justify-center transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                                className="w-10 h-10 border border-[var(--border)] rounded-lg flex items-center justify-center transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] text-[var(--foreground-secondary)] bg-white/60"
                                 aria-label="Connect with us on LinkedIn"
                             >
                                 <svg className="w-5 h-5 text-[var(--foreground-secondary)] transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -73,7 +134,7 @@ export default function Footer() {
                                 href="https://github.com/mivs-software" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                className="w-10 h-10 border border-[var(--border)] rounded-lg flex items-center justify-center transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                                className="w-10 h-10 border border-[var(--border)] rounded-lg flex items-center justify-center transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] text-[var(--foreground-secondary)] bg-white/60"
                                 aria-label="View our GitHub profile"
                             >
                                 <svg className="w-5 h-5 text-[var(--foreground-secondary)] transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -207,11 +268,11 @@ export default function Footer() {
                                     </svg>
                                 </div>
                                 <a 
-                                    href="mailto:mivs.work.gpt@gmail.com" 
+                                    href="mailto:admin@mivs.in" 
                                     className="text-[var(--foreground-secondary)] hover:text-[var(--accent)] transition-colors"
                                     aria-label="Send us an email"
                                 >
-                                    mivs.work.gpt@gmail.com
+                                    admin@mivs.in
                                 </a>
                             </li>
                             <li className="flex items-start space-x-3 group">
@@ -247,29 +308,29 @@ export default function Footer() {
                 <div className="border-t border-[var(--border)] my-12" />
 
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                    <div className="text-[var(--foreground-muted)] text-sm">
-                        © {new Date().getFullYear()} MIVS. All rights reserved.
+                    <div className="text-[var(--foreground-muted)] text-sm" suppressHydrationWarning>
+                        © 2026 MIVS. All rights reserved.
                     </div>
 
                     <div className="flex flex-wrap gap-6 text-sm">
                         <a 
                             href="/privacy-policy" 
-                            className="text-[var(--foreground-muted)] hover:text-[var(--accent)] transition-colors"
-                            aria-label="Read our privacy policy"
+className="text-[var(--foreground-muted)] hover:text-[var(--accent)] transition-colors"
+                                          aria-label="Read our privacy policy"
                         >
                             Privacy Policy
                         </a>
                         <a 
                             href="/terms" 
-                            className="text-[var(--foreground-muted)] hover:text-[var(--accent)] transition-colors"
-                            aria-label="Read our terms of service"
+className="text-[var(--foreground-muted)] hover:text-[var(--accent)] transition-colors"
+                                          aria-label="Read our terms of service"
                         >
                             Terms of Service
                         </a>
                         <a 
                             href="/contact" 
-                            className="text-[var(--foreground-muted)] hover:text-[var(--accent)] transition-colors"
-                            aria-label="Contact us"
+className="text-[var(--foreground-muted)] hover:text-[var(--accent)] transition-colors"
+                                          aria-label="Contact us"
                         >
                             Contact Us
                         </a>

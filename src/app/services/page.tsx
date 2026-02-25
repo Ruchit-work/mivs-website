@@ -1,48 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import type { Metadata } from "next";
+import { useRef, useState, useEffect } from "react";
 import PageHero from "../components/Hero/PageHero";
-
-export const metadata: Metadata = {
-  title: "Enterprise AI & Automation | Capabilities",
-  description:
-    "Enterprise AI systems, AI automation architecture, LLM integrations, intelligent workflow systems, AI-powered decision engines, and enterprise transformation.",
-  keywords: [
-    "enterprise AI",
-    "AI automation",
-    "LLM integration",
-    "intelligent workflow",
-    "decision engines",
-    "enterprise transformation",
-    "AI consulting",
-    "RAG",
-    "AI agents",
-    "MLOps",
-  ],
-  openGraph: {
-    title: "Enterprise AI & Automation | MIVS",
-    description:
-      "Enterprise AI systems, LLM integrations, intelligent workflows, and AI-powered decision engines.",
-    url: "https://mivs.in/services",
-    images: [
-      {
-        url: "/images/services-hero.jpg",
-        width: 1200,
-        height: 630,
-        alt: "MIVS Enterprise AI & Automation",
-      },
-    ],
-  },
-  twitter: {
-    title: "Enterprise AI & Automation | MIVS",
-    description:
-      "Enterprise AI systems, LLM integrations, intelligent workflows, and AI-powered decision engines.",
-    images: ["/images/services-hero.jpg"],
-  },
-  alternates: {
-    canonical: "https://mivs.in/services",
-  },
-};
+import OrbitText from "../components/OrbitText/OrbitText";
 
 const AI_CAPABILITIES = [
   {
@@ -114,6 +76,37 @@ const ENGAGEMENT_MODELS = [
 ];
 
 export default function Services() {
+  const capabilitiesSectionRef = useRef<HTMLElement>(null);
+  const [capabilitiesRevealed, setCapabilitiesRevealed] = useState(false);
+  const engagementSectionRef = useRef<HTMLElement>(null);
+  const [engagementRevealed, setEngagementRevealed] = useState(false);
+
+  useEffect(() => {
+    const el = capabilitiesSectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setCapabilitiesRevealed(true);
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -80px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = engagementSectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setEngagementRevealed(true);
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -80px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <PageHero
@@ -136,9 +129,11 @@ export default function Services() {
         </Link>
       </PageHero>
 
-      {/* AI Capabilities – same structure as Home "AI Solutions We Deliver" */}
+      {/* AI Capabilities – stack → spread on scroll */}
       <section
-        className="py-14 sm:py-20 bg-[var(--background-secondary)]"
+        ref={capabilitiesSectionRef}
+        id="services-capabilities"
+        className={`py-14 sm:py-20 bg-[var(--background-secondary)] ${capabilitiesRevealed ? "services-cards-revealed" : ""}`}
         aria-label="AI capabilities"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -148,11 +143,13 @@ export default function Services() {
           <p className="text-[#475569] text-base max-w-xl mx-auto mb-10 text-center leading-[1.65]">
             Strategy, architecture, and implementation for enterprise AI systems.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {AI_CAPABILITIES.map((item) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 services-cards-grid">
+            {AI_CAPABILITIES.map((item, index) => (
               <div
                 key={item.title}
-                className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-[var(--border)] card-hover"
+                className="services-card-spread bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-[var(--border)] card-hover"
+                data-card-index={index}
+                data-column={index % 3}
               >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center text-[var(--accent)] mb-5 bg-[#EEF2FF] overflow-hidden">
                   {item.iconRefector ? (
@@ -192,9 +189,11 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Engagement Models – light section, same spacing and container as Home */}
+      {/* Engagement Models – stack → spread on scroll */}
       <section
-        className="py-14 sm:py-20 bg-[var(--background)]"
+        ref={engagementSectionRef}
+        id="services-engagement"
+        className={`py-14 sm:py-20 bg-[var(--background)] ${engagementRevealed ? "services-cards-revealed" : ""}`}
         aria-label="Engagement models"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -202,9 +201,14 @@ export default function Services() {
             <h3 className="font-heading text-[28px] sm:text-[34px] font-semibold text-slate-900 tracking-tight mb-6 text-center">
               Engagement Models
             </h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {ENGAGEMENT_MODELS.map((model) => (
-                <div key={model.title} className="text-center">
+            <div className="grid md:grid-cols-3 gap-6 services-cards-grid">
+              {ENGAGEMENT_MODELS.map((model, index) => (
+                <div
+                  key={model.title}
+                  className="services-card-spread text-center"
+                  data-card-index={index}
+                  data-column={index % 3}
+                >
                   <div className="w-14 h-14 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 mx-auto mb-4">
                     {model.icon}
                   </div>
@@ -256,7 +260,12 @@ export default function Services() {
             </div>
 
             {/* Right: decorative visual – same as ClosingCTA */}
-            <div className="relative w-full h-[320px] min-h-[260px] flex items-center justify-center">
+            <div className="relative w-full h-[320px] min-h-[260px] flex items-center justify-center overflow-hidden">
+              <div className="absolute top-0 right-0 flex justify-end items-start pt-4 pr-4 pointer-events-none opacity-20">
+                <div className="scale-75">
+                  <OrbitText letterColor="rgba(15, 23, 42, 0.25)" />
+                </div>
+              </div>
               <div
                 className="absolute inset-0 max-w-[480px] max-h-[480px] w-full h-full mx-auto rounded-full bg-indigo-500/20 blur-3xl"
                 aria-hidden

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ReactNode } from "react";
 
 interface PageHeroProps {
@@ -58,7 +59,7 @@ export default function PageHero({ title, subtitle, backgroundImage, badge, chil
 
       <div className="relative z-10 max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center mb-6">
-          <img
+          <Image
             src="/images/refector/motif.svg"
             alt=""
             width={228}

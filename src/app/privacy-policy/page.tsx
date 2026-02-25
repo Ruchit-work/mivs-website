@@ -57,11 +57,11 @@ export default function PrivacyPolicy() {
               </section>
               <section id="your-rights" className="scroll-mt-28">
                 <h2 className="font-heading text-xl font-semibold text-slate-900 tracking-tight mb-4">Your Rights</h2>
-                <p>You may request access, correction, or deletion of your personal data by contacting <a href="mailto:mivs.work.gpt@gmail.com" className="text-indigo-600 hover:underline">mivs.work.gpt@gmail.com</a>.</p>
+                <p>You may request access, correction, or deletion of your personal data by contacting <a href="mailto:admin@mivs.in" className="text-indigo-600 hover:underline">admin@mivs.in</a>.</p>
               </section>
               <section id="contact" className="scroll-mt-28">
                 <h2 className="font-heading text-xl font-semibold text-slate-900 tracking-tight mb-4">Contact</h2>
-                <p>If you have questions about this policy, contact us at <a href="mailto:mivs.work.gpt@gmail.com" className="text-indigo-600 hover:underline">mivs.work.gpt@gmail.com</a>.</p>
+                <p>If you have questions about this policy, contact us at <a href="mailto:admin@mivs.in" className="text-indigo-600 hover:underline">admin@mivs.in</a>.</p>
               </section>
             </div>
           </main>

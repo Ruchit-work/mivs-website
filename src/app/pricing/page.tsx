@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import OrbitText from "@/app/components/OrbitText/OrbitText";
 
 export const metadata: Metadata = {
   title: "Engagement Models | AI Strategy & Development | MIVS",
@@ -40,8 +41,13 @@ export default function EngagementModelsPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] pt-20">
       {/* Hero */}
-      <section className="py-28 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-28 bg-gradient-to-b from-white to-slate-50/80 border-b border-slate-200 overflow-hidden">
+        <div className="absolute top-0 right-0 flex justify-end items-start pt-12 pr-12 pointer-events-none opacity-15">
+          <div className="scale-90">
+            <OrbitText letterColor="rgba(15, 23, 42, 0.12)" />
+          </div>
+        </div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="font-heading text-4xl sm:text-5xl font-semibold text-slate-900 tracking-tight">
             Engagement Models
           </h1>

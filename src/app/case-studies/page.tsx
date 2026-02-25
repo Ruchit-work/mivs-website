@@ -1,6 +1,7 @@
 import { CASE_STUDIES } from "../data/case-studies";
 import type { Metadata } from "next";
 import PageHero from "@/app/components/Hero/PageHero";
+import OrbitText from "@/app/components/OrbitText/OrbitText";
 
 export const metadata: Metadata = {
   title: "Case Studies | Enterprise AI Deployments | MIVS",
@@ -26,12 +27,19 @@ export default function CaseStudiesPage() {
       <section className="py-28 bg-[var(--background)]" aria-label="Case studies">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-24">
-            {CASE_STUDIES.map((study) => (
+            {CASE_STUDIES.map((study, idx) => (
               <article
                 key={study.id}
-                className="rounded-3xl border border-slate-200 bg-white p-10 lg:p-12 transition-all duration-300 hover:shadow-lg"
+                className="relative rounded-3xl border border-slate-200 bg-white p-10 lg:p-12 transition-all duration-300 hover:shadow-lg overflow-hidden"
               >
-                <div className="flex flex-wrap items-center gap-3 mb-8">
+                {idx === 0 && (
+                  <div className="absolute top-0 right-0 flex justify-end items-start pt-6 pr-6 pointer-events-none opacity-15">
+                    <div className="scale-75">
+                      <OrbitText letterColor="rgba(15, 23, 42, 0.2)" />
+                    </div>
+                  </div>
+                )}
+                <div className="relative z-10 flex flex-wrap items-center gap-3 mb-8">
                   <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-sm font-medium">
                     {study.industry}
                   </span>

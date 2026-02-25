@@ -5,7 +5,8 @@ import { useEffect } from "react";
 const ROOT_MARGIN = "0px 0px -40px 0px";
 const THRESHOLD = 0.05;
 
-function observeMain(main: Element) {
+function observeMain(main: Element): () => void {
+  if (typeof IntersectionObserver === "undefined") return () => {};
   const sections = main.querySelectorAll("section");
   const toObserve = Array.from(sections).filter(
     (el) => !el.hasAttribute("data-scroll-reveal-skip")
@@ -32,14 +33,28 @@ function observeMain(main: Element) {
 
 export default function ScrollRevealObserver() {
   useEffect(() => {
+    if (typeof document === "undefined") return;
     const main = document.querySelector("main");
     if (!main) return;
 
-    let disconnect = observeMain(main);
+    let disconnect: () => void = () => {};
+    try {
+      disconnect = observeMain(main);
+    } catch {
+      return;
+    }
+
+    if (typeof MutationObserver === "undefined") {
+      return () => disconnect();
+    }
 
     const mo = new MutationObserver(() => {
       disconnect();
-      disconnect = observeMain(main);
+      try {
+        disconnect = observeMain(main);
+      } catch {
+        disconnect = () => {};
+      }
     });
 
     mo.observe(main, { childList: true, subtree: false });
