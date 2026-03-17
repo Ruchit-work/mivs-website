@@ -29,12 +29,16 @@ const METRICS = [
 const INDUSTRIES = ["Financial Services", "Healthcare", "Retail & E-commerce", "Manufacturing", "Technology", "Government"];
 
 export default function Home() {
-  const previewStudies = CASE_STUDIES.slice(0, 2);
+  const previewStudies = CASE_STUDIES.filter((study) =>
+    ["ai-recruitment-platform", "ai-travel-experiences"].includes(study.id)
+  );
   const [svgRotation, setSvgRotation] = useState(0);
   const strategySectionRef = useRef<HTMLElement>(null);
   const [strategyCardsRevealed, setStrategyCardsRevealed] = useState(false);
   const aiSolutionsSectionRef = useRef<HTMLElement>(null);
   const [aiSolutionsCardsRevealed, setAiSolutionsCardsRevealed] = useState(false);
+  const projectsSectionRef = useRef<HTMLElement>(null);
+  const [projectsCardsRevealed, setProjectsCardsRevealed] = useState(false);
 
   useEffect(() => {
     let rafId: number;
@@ -68,6 +72,19 @@ export default function Home() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setAiSolutionsCardsRevealed(true);
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -80px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = projectsSectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setProjectsCardsRevealed(true);
       },
       { threshold: 0.2, rootMargin: "0px 0px -80px 0px" }
     );
@@ -353,7 +370,7 @@ export default function Home() {
             </p>
 
             {/* Featured case – large, gradient, hero metric + CodePen vEgVYY full effect */}
-            <div className="case-study-hero-bg mt-10 rounded-3xl relative overflow-hidden p-10 sm:p-12 md:p-16">
+              <div className="case-study-hero-bg mt-10 rounded-3xl relative overflow-hidden p-10 sm:p-12 md:p-16">
               {/* 1) Background layers (bg + flare + grid) like CodePen */}
               <div className="case-study-hero-bg__radial" aria-hidden />
               <div className="case-study-hero-bg__flare" aria-hidden />
@@ -376,18 +393,18 @@ export default function Home() {
                 />
               ))}
               <div className="relative z-10">
-                <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Healthcare</span>
+                <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">AI Recruitment</span>
                 <h3 className="font-heading text-2xl sm:text-3xl font-semibold text-slate-900 mt-2 mb-6">
-                  Healthcare Institution
+                  CollarUp – AI Recruitment Platform
                 </h3>
                 <div className="font-heading text-6xl font-semibold text-indigo-600 tracking-tight">
-                  40%
+                  3x
                 </div>
                 <p className="text-slate-600 text-lg mt-2 uppercase tracking-wide">
-                  Operational Cost Reduction
+                  Faster Time-to-Hire
                 </p>
                 <p className="text-slate-600 mt-8 max-w-xl leading-relaxed">
-                  Architected an AI-powered hospital management system to unify clinical operations, automate workflows, and deliver real-time operational intelligence.
+                  Deployed an always-on agentic hiring team with Alex and Morgan handling voice and video interviews, auto-scoring candidates, and syncing shortlists into ATS and calendars with zero manual screening bottlenecks.
                 </p>
               </div>
             </div>
@@ -401,18 +418,18 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="relative z-10">
-                  <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Retail & E-commerce</span>
+                  <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">AI Recruitment</span>
                   <h3 className="font-heading text-xl font-semibold text-slate-900 mt-2 mb-8">
-                    Retail Chain
+                    CollarUp – Agentic AI Hiring Suite
                   </h3>
                   <div className="font-heading text-5xl md:text-6xl font-semibold text-indigo-600 tracking-tight">
-                    85%
+                    3x
                   </div>
                   <p className="text-slate-500 text-sm uppercase tracking-wide mt-2">
-                    Faster decision-to-fulfillment
+                    Faster time-to-hire
                   </p>
                   <p className="text-slate-600 mt-6 leading-relaxed">
-                    Predictive commerce platform with real-time demand forecasting and intelligent inventory automation.
+                    Agentic AI team (Alex & Morgan) that runs 24/7 voice and video interviews, converts conversations into structured scores, and auto-syncs shortlists to ATS and calendars.
                   </p>
                 </div>
               </div>
@@ -423,18 +440,18 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="relative z-10">
-                  <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Healthcare</span>
+                  <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Travel & Hospitality</span>
                   <h3 className="font-heading text-xl font-semibold text-slate-900 mt-2 mb-8">
-                    Healthcare Provider Network
+                    Travzee – Experience-First Travel Platform
                   </h3>
                   <div className="font-heading text-5xl md:text-6xl font-semibold text-indigo-600 tracking-tight">
-                    88%
+                    30%
                   </div>
                   <p className="text-slate-500 text-sm uppercase tracking-wide mt-2">
-                    Reduction in onboarding processing time
+                    Lift in booking conversion
                   </p>
                   <p className="text-slate-600 mt-6 leading-relaxed">
-                    HIPAA-compliant AI care coordination with automated scheduling and predictive capacity planning.
+                    Activity-centric travel discovery with an AI intent engine, experience-based recommendations, and integrated Pay Now + WhatsApp support to reduce friction for complex itineraries.
                   </p>
                 </div>
               </div>
@@ -452,8 +469,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Our Work – portfolio projects */}
-        <section className="py-16 sm:py-20 bg-[var(--background-secondary)]" aria-label="Our work">
+        {/* Our Work – portfolio projects (stack → spread on scroll) */}
+        <section
+          ref={projectsSectionRef}
+          id="projects-delivered"
+          className={`py-16 sm:py-20 bg-[var(--background-secondary)] ${projectsCardsRevealed ? "projects-cards-revealed" : ""}`}
+          aria-label="Our work"
+        >
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <span className="text-sm uppercase tracking-wide text-indigo-600 font-medium">
               Our Work
@@ -464,12 +486,14 @@ export default function Home() {
             <p className="text-slate-600 mt-4 max-w-2xl leading-relaxed">
               From healthcare and analytics to AI and travel—work that blends UX with measurable outcomes.
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-              {PORTFOLIO_PROJECTS.map((p) => (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 projects-cards-grid">
+              {PORTFOLIO_PROJECTS.map((p, index) => (
                 <Link
                   key={p.id}
                   href="/portfolio"
-                  className="block bg-white rounded-2xl p-6 shadow-sm border border-[var(--border)] card-hover overflow-hidden"
+                  className="project-card-spread block bg-white rounded-2xl p-6 shadow-sm border border-[var(--border)] card-hover overflow-hidden"
+                  data-card-index={index}
+                  data-column={index % 3}
                 >
                   <span className="text-xs font-medium text-indigo-600 uppercase tracking-wider">
                     {p.category}

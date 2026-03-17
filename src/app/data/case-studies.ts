@@ -68,56 +68,30 @@ export const CASE_STUDIES: CaseStudy[] = [
     image: "/images/case-study-ecommerce.jpg"
   },
   {
-    id: "healthcare-portal",
-    client: "Healthcare Provider Network",
-    industry: "Healthcare",
-    challenge: "Manual patient record handling and scheduling caused delays, errors, and compliance risk across facilities.",
-    solution: "Built a HIPAA-compliant intelligent care platform with AI-powered scheduling automation, predictive capacity planning, and decision systems for referrals and follow-ups. Automated workflows replaced manual data entry and booking.",
+    id: "ai-recruitment-platform",
+    client: "CollarUp – AI Recruitment Platform",
+    industry: "HR & Recruitment",
+    challenge: "Traditional hiring pipelines suffered from slow manual screening, recruiter burnout, and inconsistent evaluation at scale.",
+    solution: "Implemented an agentic AI hiring suite with specialized voice and video agents. Alex conducts multilingual, always-on phone screens while Morgan runs structured async video interviews. An integration layer connects ATS platforms like Workday, Salesforce, and Ashby with calendars and collaboration tools so interviews, scores, and shortlists sync automatically.",
     metrics: [
       {
-        label: "Efficiency Gain",
-        value: "88%",
-        description: "Reduction in onboarding processing time"
+        label: "Time-to-Hire",
+        value: "3x",
+        description: "Faster candidate progression from application to shortlist"
       },
       {
-        label: "Automation",
-        value: "94%",
-        description: "Fewer manual data-entry touchpoints"
+        label: "Screening Coverage",
+        value: "24/7",
+        description: "Always-on AI agents engaging candidates the moment they apply"
       },
       {
-        label: "Optimization",
-        value: "92%",
-        description: "Patient satisfaction from faster routing"
+        label: "Recruiter Focus",
+        value: "60%",
+        description: "More recruiter time redirected to closing top candidates"
       }
     ],
-    technologies: ["React", "Python", "Django", "PostgreSQL", "AWS", "Decision Systems"],
-    image: "/images/case-study-healthcare.jpg"
-  },
-  {
-    id: "fintech-app",
-    client: "Digital Banking Startup",
-    industry: "Financial Services",
-    challenge: "Needed to compete with established banks using intelligent, secure experiences and data-driven product decisions.",
-    solution: "Delivered an intelligent banking platform with biometric authentication, real-time decisioning, and AI-powered financial insights. Predictive logic and automation workflows power personalized offers and risk-aware experiences.",
-    metrics: [
-      {
-        label: "Efficiency Gain",
-        value: "50K+",
-        description: "Active users in 6 months"
-      },
-      {
-        label: "Automation",
-        value: "3s",
-        description: "Average decision-to-confirmation time"
-      },
-      {
-        label: "Optimization",
-        value: "4.8/5",
-        description: "Satisfaction from personalized intelligence"
-      }
-    ],
-    technologies: ["React Native", "Node.js", "MongoDB", "AWS", "Stripe", "Predictive Logic"],
-    image: "/images/case-study-fintech.jpg"
+    technologies: ["LLMs", "Voice AI", "Video Intelligence", "Workflow Automation", "ATS Integrations"],
+    image: "/images/case-study-recruitment.jpg"
   },
   {
     id: "supply-chain-optimization",
@@ -146,29 +120,55 @@ export const CASE_STUDIES: CaseStudy[] = [
     image: "/images/case-study-manufacturing.jpg"
   },
   {
-    id: "edtech-platform",
-    client: "Educational Institution",
-    industry: "Education",
-    challenge: "Remote learning lacked intelligent pacing, engagement signals, and automated support, leading to drop-off and inconsistent outcomes.",
-    solution: "Built an intelligent learning platform with adaptive content routing, automated assessment and feedback workflows, and predictive analytics for at-risk learners. Decision systems drive recommendations and instructor alerts.",
+    id: "ai-travel-experiences",
+    client: "Travzee – Experience-First Travel Platform",
+    industry: "Travel & Hospitality",
+    challenge: "Travelers struggled with fragmented booking tools, information overload, and difficulty discovering trips by experience type such as Spiritual, Trekking, or Retreat.",
+    solution: "Designed an activity-centric travel platform with a modular AI layer. An intent engine segments users by region and vibe, a recommendation layer maps natural language queries to curated itineraries like Spiti Valley or Tawang to Kaziranga, and a trust module surfaces real-time client reviews and guarantees to increase confidence. Seamless Pay Now and WhatsApp support reduce friction at checkout.",
     metrics: [
       {
-        label: "Efficiency Gain",
-        value: "78%",
-        description: "Increase in participation from smart nudges"
+        label: "Discovery Speed",
+        value: "4x",
+        description: "Faster path from first visit to a relevant itinerary"
       },
       {
-        label: "Automation",
-        value: "5000+",
-        description: "Concurrent sessions with automated scaling"
+        label: "Conversion",
+        value: "30%",
+        description: "Increase in bookings for curated activity-based tours"
       },
       {
-        label: "Optimization",
-        value: "99.9%",
-        description: "Uptime with intelligent failover"
+        label: "Support Satisfaction",
+        value: "4.9/5",
+        description: "Average rating driven by instant human + AI assistance"
       }
     ],
-    technologies: ["Next.js", "Node.js", "WebRTC", "MongoDB", "AWS", "Predictive Analytics"],
-    image: "/images/case-study-education.jpg"
+    technologies: ["Next.js", "Node.js", "NLP Search", "Recommendation Systems", "Payment & Messaging Integrations"],
+    image: "/images/case-study-travel.jpg"
+  },
+  {
+    id: "multilang-website-translator",
+    client: "Multilang – Website Translator",
+    industry: "Technology & SaaS",
+    challenge: "Growing global traffic was blocked by single-language content, inconsistent manual translations, and slow rollout of localized pages across regions.",
+    solution: "Delivered an AI-powered website translation platform that plugs into existing CMS and frontends. A language detection layer routes users to the right locale, LLM-backed translation pipelines generate and continuously improve localized content, and a review workflow lets human editors approve high-visibility pages before publish.",
+    metrics: [
+      {
+        label: "Global Reach",
+        value: "8+",
+        description: "New languages launched without redesigning the site"
+      },
+      {
+        label: "Localization Speed",
+        value: "5x",
+        description: "Faster time from content creation to translated go-live"
+      },
+      {
+        label: "Engagement",
+        value: "35%",
+        description: "Increase in session duration from native-language experiences"
+      }
+    ],
+    technologies: ["Next.js", "Edge Middleware", "LLM Translation", "Glossary Management", "CMS Integrations"],
+    image: "/images/case-study-multilang.jpg"
   }
 ];
