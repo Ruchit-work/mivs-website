@@ -18,7 +18,7 @@ export const defaultSEO: SEOData = {
     "AI-powered decision engines", "enterprise transformation", "MIVS"
   ],
   canonical: "https://mivs.in",
-  ogImage: "/images/MIVS_1.png",
+  ogImage: "/images/Logo/MIVS_2.png",
   ogType: "website",
   twitterCard: "summary_large_image"
 };
@@ -91,7 +91,7 @@ export function generateStructuredData(type: 'organization' | 'website' | 'servi
         "@type": "Organization",
         "name": "MIVS",
         "url": baseUrl,
-        "logo": `${baseUrl}/images/logo.png`,
+        "logo": `${baseUrl}/images/Logo/MIVS_2.png`,
         "description": "Enterprise AI automation and AI consulting. AI systems, LLM integrations, intelligent workflows, and enterprise transformation.",
         "foundingDate": "2020",
         "address": {
@@ -123,7 +123,7 @@ export function generateStructuredData(type: 'organization' | 'website' | 'servi
           "name": "MIVS",
           "logo": {
             "@type": "ImageObject",
-            "url": `${baseUrl}/images/logo.png`
+            "url": `${baseUrl}/images/Logo/MIVS_2.png`
           }
         }
       };

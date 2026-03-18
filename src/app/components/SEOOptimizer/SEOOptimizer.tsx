@@ -19,7 +19,7 @@ export default function SEOOptimizer() {
       // Preload critical images
       const imageLink = document.createElement('link');
       imageLink.rel = 'preload';
-      imageLink.href = '/images/logo.png';
+      imageLink.href = '/images/Logo/MIVS_2.png';
       imageLink.as = 'image';
       document.head.appendChild(imageLink);
     };
@@ -47,7 +47,7 @@ export default function SEOOptimizer() {
         "@type": "Organization",
         "name": "MIVS",
         "url": "https://mivs-website.vercel.app",
-        "logo": "https://mivs-website.vercel.app/images/logo.png",
+        "logo": "https://mivs-website.vercel.app/images/Logo/MIVS_2.png",
         "description": "Enterprise AI automation and AI consulting. AI systems, LLM integrations, intelligent workflows.",
         "address": {
           "@type": "PostalAddress",

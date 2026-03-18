@@ -69,7 +69,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "ai-recruitment-platform",
-    client: "CollarUp – AI Recruitment Platform",
+    client: "AI Recruitment Platform",
     industry: "HR & Recruitment",
     challenge: "Traditional hiring pipelines suffered from slow manual screening, recruiter burnout, and inconsistent evaluation at scale.",
     solution: "Implemented an agentic AI hiring suite with specialized voice and video agents. Alex conducts multilingual, always-on phone screens while Morgan runs structured async video interviews. An integration layer connects ATS platforms like Workday, Salesforce, and Ashby with calendars and collaboration tools so interviews, scores, and shortlists sync automatically.",
@@ -121,7 +121,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "ai-travel-experiences",
-    client: "Travzee – Experience-First Travel Platform",
+    client: "Experience-First Travel Platform",
     industry: "Travel & Hospitality",
     challenge: "Travelers struggled with fragmented booking tools, information overload, and difficulty discovering trips by experience type such as Spiritual, Trekking, or Retreat.",
     solution: "Designed an activity-centric travel platform with a modular AI layer. An intent engine segments users by region and vibe, a recommendation layer maps natural language queries to curated itineraries like Spiti Valley or Tawang to Kaziranga, and a trust module surfaces real-time client reviews and guarantees to increase confidence. Seamless Pay Now and WhatsApp support reduce friction at checkout.",
@@ -147,7 +147,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: "multilang-website-translator",
-    client: "Multilang – Website Translator",
+    client: "Multilingual Website Translator",
     industry: "Technology & SaaS",
     challenge: "Growing global traffic was blocked by single-language content, inconsistent manual translations, and slow rollout of localized pages across regions.",
     solution: "Delivered an AI-powered website translation platform that plugs into existing CMS and frontends. A language detection layer routes users to the right locale, LLM-backed translation pipelines generate and continuously improve localized content, and a review workflow lets human editors approve high-visibility pages before publish.",

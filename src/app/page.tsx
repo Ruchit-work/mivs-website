@@ -395,7 +395,7 @@ export default function Home() {
               <div className="relative z-10">
                 <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">AI Recruitment</span>
                 <h3 className="font-heading text-2xl sm:text-3xl font-semibold text-slate-900 mt-2 mb-6">
-                  CollarUp – AI Recruitment Platform
+                  AI Recruitment Platform
                 </h3>
                 <div className="font-heading text-6xl font-semibold text-indigo-600 tracking-tight">
                   3x
@@ -404,7 +404,7 @@ export default function Home() {
                   Faster Time-to-Hire
                 </p>
                 <p className="text-slate-600 mt-8 max-w-xl leading-relaxed">
-                  Deployed an always-on agentic hiring team with Alex and Morgan handling voice and video interviews, auto-scoring candidates, and syncing shortlists into ATS and calendars with zero manual screening bottlenecks.
+                  Deployed an always-on agentic hiring stack with specialized voice and video agents handling interviews, auto-scoring candidates, and syncing shortlists into ATS and calendars with zero manual screening bottlenecks.
                 </p>
               </div>
             </div>
@@ -420,7 +420,7 @@ export default function Home() {
                 <div className="relative z-10">
                   <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">AI Recruitment</span>
                   <h3 className="font-heading text-xl font-semibold text-slate-900 mt-2 mb-8">
-                    CollarUp – Agentic AI Hiring Suite
+                    Agentic AI Hiring Suite
                   </h3>
                   <div className="font-heading text-5xl md:text-6xl font-semibold text-indigo-600 tracking-tight">
                     3x
@@ -429,7 +429,7 @@ export default function Home() {
                     Faster time-to-hire
                   </p>
                   <p className="text-slate-600 mt-6 leading-relaxed">
-                    Agentic AI team (Alex & Morgan) that runs 24/7 voice and video interviews, converts conversations into structured scores, and auto-syncs shortlists to ATS and calendars.
+                    Agentic AI interviewers running 24/7 voice and video conversations, turning them into structured scores, and auto-syncing shortlists to ATS and calendars.
                   </p>
                 </div>
               </div>
@@ -442,7 +442,7 @@ export default function Home() {
                 <div className="relative z-10">
                   <span className="text-xs font-medium text-slate-500 uppercase tracking-wide">Travel & Hospitality</span>
                   <h3 className="font-heading text-xl font-semibold text-slate-900 mt-2 mb-8">
-                    Travzee – Experience-First Travel Platform
+                    Experience-First Travel Platform
                   </h3>
                   <div className="font-heading text-5xl md:text-6xl font-semibold text-indigo-600 tracking-tight">
                     30%

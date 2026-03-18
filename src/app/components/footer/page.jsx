@@ -96,7 +96,7 @@ export default function Footer() {
                     <div className="lg:col-span-1">
                         <div className="mb-6">
                             <Image 
-                                src="/images/mivs_black_2.png" 
+                                src="/images/Logo/MIVS_2.png" 
                                 alt="MIVS" 
                                 width={200}
                                 height={90}

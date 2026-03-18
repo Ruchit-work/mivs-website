@@ -23,7 +23,7 @@ export default function AdvancedSchema({ type, data }: AdvancedSchemaProps) {
               "@type": "Organization",
               "name": "MIVS",
               "url": baseUrl,
-              "logo": `${baseUrl}/images/logo.png`,
+              "logo": `${baseUrl}/images/Logo/MIVS_2.png`,
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Jay Ambe Society",
@@ -106,8 +106,8 @@ export default function AdvancedSchema({ type, data }: AdvancedSchemaProps) {
             "name": "MIVS",
             "description": "Enterprise AI automation and AI consulting. AI systems, LLM integrations, intelligent workflows.",
             "url": baseUrl,
-            "logo": `${baseUrl}/images/logo.png`,
-            "image": `${baseUrl}/images/MIVS_1.png`,
+            "logo": `${baseUrl}/images/Logo/MIVS_2.png`,
+            "image": `${baseUrl}/images/Logo/MIVS_2.png`,
             "telephone": "+91-6380541373",
             "email": "admin@mivs.in",
             "address": {

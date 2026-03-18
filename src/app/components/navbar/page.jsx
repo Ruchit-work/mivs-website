@@ -87,7 +87,7 @@ export default function Navbar() {
                         <Link href="/" className="flex items-center space-x-3">
                             <div className="flex items-center">
                                 <Image 
-                                    src="/images/mivs_black_2.png" 
+                                    src="/images/Logo/MIVS_2.png" 
                                     alt="MIVS" 
                                     width={200}
                                     height={90}

@@ -11,9 +11,12 @@ export default function ContactPage() {
   const [message, setMessage] = useState("");
   const [selectedService, setSelectedService] = useState("");
   const [customService, setCustomService] = useState("");
+  /** Avoid hydration mismatch: extensions (e.g. password managers) inject attrs like fdprocessedid before hydrate */
+  const [formMounted, setFormMounted] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    setFormMounted(true);
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
@@ -184,6 +187,37 @@ export default function ContactPage() {
               <p className="text-slate-600 text-sm mb-8">
                 Tell us about your initiative and we&apos;ll get back within 24 hours.
               </p>
+              {!formMounted ? (
+                <div
+                  className="space-y-6 min-h-[28rem]"
+                  aria-busy="true"
+                  aria-label="Loading form"
+                >
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <div className="h-4 w-24 bg-slate-100 rounded animate-pulse" />
+                      <div className="h-12 bg-slate-100 rounded-xl animate-pulse" />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-4 w-20 bg-slate-100 rounded animate-pulse" />
+                      <div className="h-12 bg-slate-100 rounded-xl animate-pulse" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="h-4 w-16 bg-slate-100 rounded animate-pulse" />
+                    <div className="h-12 bg-slate-100 rounded-xl animate-pulse" />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="h-4 w-20 bg-slate-100 rounded animate-pulse" />
+                    <div className="h-12 bg-slate-100 rounded-xl animate-pulse" />
+                  </div>
+                  <div className="space-y-2">
+                    <div className="h-4 w-16 bg-slate-100 rounded animate-pulse" />
+                    <div className="h-32 bg-slate-100 rounded-xl animate-pulse" />
+                  </div>
+                  <div className="h-14 bg-indigo-100 rounded-2xl animate-pulse" />
+                </div>
+              ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
@@ -195,6 +229,7 @@ export default function ContactPage() {
                       required
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-shadow"
                       placeholder="John"
+                      autoComplete="given-name"
                     />
                   </div>
                   <div>
@@ -205,6 +240,7 @@ export default function ContactPage() {
                       name="lastName"
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"
                       placeholder="Doe"
+                      autoComplete="family-name"
                     />
                   </div>
                 </div>
@@ -217,6 +253,7 @@ export default function ContactPage() {
                     required
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm"
                     placeholder="you@company.com"
+                    autoComplete="email"
                   />
                 </div>
                 <div>
@@ -257,6 +294,7 @@ export default function ContactPage() {
                     required
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm resize-none"
                     placeholder="Brief description of your initiative and goals..."
+                    autoComplete="off"
                   />
                 </div>
                 <button
@@ -272,6 +310,7 @@ export default function ContactPage() {
                   </p>
                 )}
               </form>
+              )}
               <p className="mt-6 text-sm text-slate-500 text-center">
                 We use your information only to respond and deliver services. No spam.
               </p>

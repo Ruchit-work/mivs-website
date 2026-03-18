@@ -17,7 +17,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           "@type": "Organization",
           "name": "MIVS",
           "url": "https://mivs.in",
-          "logo": "https://mivs.in/images/logo.png",
+          "logo": "https://mivs.in/images/Logo/MIVS_2.png",
           "description": "Enterprise AI automation and AI consulting. AI systems, LLM integrations, intelligent workflows, and enterprise transformation.",
           "foundingDate": "2020",
           "address": {
@@ -91,7 +91,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             "name": "MIVS",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://mivs.in/images/logo.png"
+              "url": "https://mivs.in/images/Logo/MIVS_2.png"
             }
           },
           "potentialAction": {
@@ -162,7 +162,7 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             "name": "MIVS",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://mivs.in/images/logo.png"
+              "url": "https://mivs.in/images/Logo/MIVS_2.png"
             }
           },
           "datePublished": data.datePublished,

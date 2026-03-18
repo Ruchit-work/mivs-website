@@ -28,18 +28,18 @@ export const metadata: Metadata = {
   publisher: "MIVS",
   metadataBase: new URL('https://mivs.in'),
   
-  // Favicon / tab icon – use site logo so it appears in browser tab (URL bar)
+  // Favicon: favicon-tab.png = logo trimmed & scaled ~88% of 192px canvas (reads larger in tabs)
   icons: {
     icon: [
-      { url: '/images/mivs_black_2.png', sizes: 'any', type: 'image/png' },
-      { url: '/images/mivs_black_2.png', sizes: '32x32', type: 'image/png' },
-      { url: '/images/mivs_black_2.png', sizes: '16x16', type: 'image/png' },
+      { url: '/images/Logo/favicon-tab.png', sizes: '192x192', type: 'image/png' },
+      { url: '/images/Logo/favicon-tab.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/Logo/favicon-tab.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: [
-      { url: '/images/mivs_black_2.png', sizes: '180x180', type: 'image/png' },
+      { url: '/images/Logo/MIVS_2.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { rel: 'mask-icon', url: '/images/mivs_black_2.png', color: '#0F172A' },
+      { rel: 'mask-icon', url: '/images/Logo/MIVS_2.png', color: '#0F172A' },
     ],
   },
 
@@ -53,17 +53,10 @@ export const metadata: Metadata = {
     description: 'Enterprise AI automation and AI consulting. AI automation architecture, LLM integrations, intelligent workflow systems.',
     images: [
       {
-        url: '/images/MIVS_1.png',
-        width: 1200,
-        height: 630,
-        alt: 'MIVS - Enterprise AI Automation & Consulting',
-        type: 'image/png',
-      },
-      {
-        url: '/images/logo.png',
-        width: 800,
-        height: 600,
-        alt: 'MIVS Logo',
+        url: '/images/Logo/MIVS_2.png',
+        width: 512,
+        height: 512,
+        alt: 'MIVS Technologies - Enterprise AI Automation & Consulting',
         type: 'image/png',
       },
     ],
@@ -76,7 +69,7 @@ export const metadata: Metadata = {
     creator: '@mivs_software',
     title: 'MIVS | Enterprise AI Automation & AI Consulting',
     description: 'Enterprise AI automation and AI consulting. LLM integrations, intelligent workflows, AI-powered decision engines.',
-    images: ['/images/MIVS_1.png'],
+    images: ['/images/Logo/MIVS_2.png'],
   },
 
   // Enhanced robots and SEO
